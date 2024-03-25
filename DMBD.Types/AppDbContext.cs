@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DMBD.Types
 {
+    //kumsal 
     public class AppDbContext:DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
