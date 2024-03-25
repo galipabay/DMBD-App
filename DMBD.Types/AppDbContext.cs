@@ -16,6 +16,7 @@ namespace DMBD.Types
                 
         }
 
+        //DbSet ef.core'un bize sağladığı bir nimettir.
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
     }
