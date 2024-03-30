@@ -1,0 +1,49 @@
+.box {
+    background-color: lightblue;
+    min-height: 50px;
+}
+
+.navbar-text {
+    font-size: 18px; /* Yazı boyutunu isteğinize göre ayarlayın */
+    color: white; /* Yazı rengini beyaz yapar */
+}
+body {
+    padding-top: 120px;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* İki sütun */
+    gap: 10px; /* Boşluk */
+}
+
+.specific-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px; /* İsteğe bağlı: Sütunlar arasındaki boşluk */
+    overflow-y: auto; /* Dikey kaydırma ekleyin */
+    max-height: 240px; /* Container'ın maksimum yüksekliğini ayarlayın */
+}
+
+.specific-container .box {
+    background-color: #d1e4f2;
+    padding: 20px; /* İsteğe bağlı: İçeriğin etrafındaki boşluk */
+}
+
+.basic-container{
+    max-height: 250px;
+    padding: 50px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Navbar'ın diğer içeriklerin üstünde olmasını sağlar */
+}
+
+.page-content {
+    margin-top: 56px; /* Navbar'ın yüksekliği kadar bir üst margin ekleyin */
+    /* Eğer navbar'ın yüksekliği sabit değilse, bu değeri navbar'ın yüksekliğiyle değiştirmelisiniz */
+}
