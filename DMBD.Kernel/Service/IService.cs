@@ -9,17 +9,17 @@ namespace DMBD.Kernel.Service
 {
     public interface IService<T> where T : class 
     {
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         Task<T> GetByIdAsync(int id);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> Any(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);
 
-        void Update(T entity);
+        Task UpdateAsync(T entity);
 
-        void Delete(T entity);
+        Task RemoveAsync(T entity);
 
-        void RemoveRange(IEnumerable<T> entities);
+        Task RemoveRange(IEnumerable<T> entities);
     }
 }

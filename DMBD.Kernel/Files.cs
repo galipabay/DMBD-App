@@ -9,6 +9,15 @@ namespace DMBD.Kernel
     public class Files:BaseEntity
     {
         #region Properties
+
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
         private string tcNo;
 
         public string TcNo

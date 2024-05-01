@@ -8,7 +8,32 @@ namespace DMBD.Kernel
 {
     public class Subject:BaseEntity
     {
+        #region NullControlCtor
+        public Subject()
+        {
+            throw new ArgumentNullException(nameof(Subject.subjectId));
+            throw new ArgumentNullException(nameof(Subject.tcNo));
+            throw new ArgumentNullException(nameof(Subject.subjectName));
+            throw new ArgumentNullException(nameof(Subject.subjectCredit));
+            throw new ArgumentNullException(nameof(Subject.subjectAkts));
+            throw new ArgumentNullException(nameof(Subject.exemptSubjectName));
+            throw new ArgumentNullException(nameof(Subject.exemptSubjectCredit));
+            throw new ArgumentNullException(nameof(Subject.exemptSubjectAkts));
+            throw new ArgumentNullException(nameof(Subject.exemptSubjectId));
+            
+        }
+        #endregion
+
         #region Properties
+
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
 
         private int subjectId;
 

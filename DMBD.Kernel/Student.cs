@@ -12,6 +12,7 @@ namespace DMBD.Kernel
         #region NullControlCtor
         public Student()
         {
+            throw  new ArgumentNullException(nameof(Student.id));
             throw  new ArgumentNullException(nameof(Student.name));
             throw  new ArgumentNullException(nameof(Student.surname));
             throw  new ArgumentNullException(nameof(Student.mailAddress));
@@ -25,6 +26,22 @@ namespace DMBD.Kernel
         #endregion
 
         #region Properties
+
+        private int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        private int formId;
+
+        public int FormId
+        {
+            get { return formId; }
+            set { formId = value; }
+        }
 
         private string studentId;
         public string StudentId

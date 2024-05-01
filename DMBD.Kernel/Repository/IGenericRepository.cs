@@ -9,8 +9,8 @@ namespace DMBD.Kernel.Repository
 {
     public interface IGenericRepository<T> where T : class
     {
-        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         Task<T> GetByIdAsync(int id);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         IQueryable<T> Where(Expression<Func<T, bool>>expression);
         Task<bool> Any(Expression<Func<T, bool>> expression);
         Task AddAsync(T entity);
