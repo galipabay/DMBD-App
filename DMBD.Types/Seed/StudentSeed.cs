@@ -1,4 +1,4 @@
-﻿using DMBD.Kernel;
+﻿using DMBD.Kernel.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

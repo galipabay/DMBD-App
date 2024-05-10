@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMBD.Kernel
+namespace DMBD.Kernel.Model
 {
-    public class Student:BaseEntity
+    public class Student : BaseEntity
     {
 
-      #region Properties
-
+        #region Properties
 
         private int formId;
 

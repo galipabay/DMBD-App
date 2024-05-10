@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMBD.Kernel
+namespace DMBD.Kernel.Model
 {
-    public class Subject:BaseEntity
+    public class Subject : BaseEntity
     {
         #region Properties
 

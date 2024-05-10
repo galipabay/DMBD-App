@@ -1,3 +1,5 @@
+using DMBD.Business.Mapping;
+using DMBD.Business.Services;
 using DMBD.Kernel.Repository;
 using DMBD.Kernel.Service;
 using DMBD.Kernel.UnitOfWork;
@@ -5,6 +7,7 @@ using DMBD.Types;
 using DMBD.Types.Repositories;
 using DMBD.Types.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
@@ -15,7 +18,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {

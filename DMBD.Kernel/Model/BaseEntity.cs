@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMBD.Kernel
+namespace DMBD.Kernel.Model
 {
     //referans tiplerinde new keywordunu kullanmadan
     //oluşturacağımız entityler için abstract class kullanıyoruz.

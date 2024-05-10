@@ -1,12 +1,13 @@
-﻿using System;
+﻿using DMBD.Kernel.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMBD.Kernel
+namespace DMBD.Kernel.DTOs
 {
-    public class Files:BaseEntity
+    public class FilesDto : BaseEntity
     {
         #region Properties
 
