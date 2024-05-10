@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DMBD.Caching\DMBD.Caching.csproj" />
+  </ItemGroup>
+
 </Project>

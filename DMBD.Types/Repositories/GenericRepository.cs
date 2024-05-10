@@ -11,7 +11,6 @@ namespace DMBD.Types.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-
         protected readonly AppDbContext _context;
         private readonly DbSet<T> _dbSet;
 
@@ -30,19 +29,16 @@ namespace DMBD.Types.Repositories
         {
             await _dbSet.AddRangeAsync(entities);
         }
-
-        public async Task<bool> Any(Expression<Func<T, bool>> expression)
+        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AnyAsync(expression);
         }
-
-
         /// <summary>
         /// AsNoTracking ef core cektigi datalari memory'e almayip ve daha optimize calismasini saglar.
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression)
+        public IQueryable<T> GetAll()
         {
             return _dbSet.AsNoTracking().AsQueryable();
         }
@@ -51,7 +47,8 @@ namespace DMBD.Types.Repositories
         {
             return await _dbSet.FindAsync(id);
         }
-        public async void Remove(T entity)
+
+        public void Remove(T entity)
         {
             _dbSet.Remove(entity);
         }
