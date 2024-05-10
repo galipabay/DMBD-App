@@ -18,6 +18,7 @@ namespace DMBD.Kernel
             set { id = value; }
         }
 
+
         private string tcNo;
 
         public string TcNo
@@ -34,12 +35,12 @@ namespace DMBD.Kernel
             set { transcript = value; }
         }
 
-        private string subjectContext;
+        private string subjectContent;
 
-        public string SubjectContext
+        public string SubjectContent
         {
-            get { return subjectContext; }
-            set { subjectContext = value; }
+            get { return subjectContent; }
+            set { subjectContent = value; }
         }
 
         #endregion Properties

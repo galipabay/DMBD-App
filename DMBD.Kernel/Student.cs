@@ -9,31 +9,8 @@ namespace DMBD.Kernel
     public class Student:BaseEntity
     {
 
-        #region NullControlCtor
-        public Student()
-        {
-            throw  new ArgumentNullException(nameof(Student.id));
-            throw  new ArgumentNullException(nameof(Student.name));
-            throw  new ArgumentNullException(nameof(Student.surname));
-            throw  new ArgumentNullException(nameof(Student.mailAddress));
-            throw  new ArgumentNullException(nameof(Student.registerType));
-            throw  new ArgumentNullException(nameof(Student.preSchoolName));
-            throw  new ArgumentNullException(nameof(Student.preFacultyName));
-            throw  new ArgumentNullException(nameof(Student.preDepartmentName));
-            throw  new ArgumentNullException(nameof(Student.departmentName));
-            throw  new ArgumentNullException(nameof(Student.departmentId));
-        }
-        #endregion
+      #region Properties
 
-        #region Properties
-
-        private int id;
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
 
         private int formId;
 

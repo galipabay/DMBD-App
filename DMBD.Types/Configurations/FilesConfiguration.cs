@@ -17,7 +17,7 @@ namespace DMBD.Types.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.TcNo).IsRequired();
             builder.Property(x => x.Transcript).IsRequired();
-            builder.Property(x => x.SubjectContext).IsRequired();
+            builder.Property(x => x.SubjectContent).IsRequired();
         }
     }
 }

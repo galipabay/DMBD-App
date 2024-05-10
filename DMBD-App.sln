@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMBD.Business", "DMBD.Busin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMBD.Caching", "DMBD.Caching\DMBD.Caching.csproj", "{D5BAF714-C385-492C-93C4-23E54ADA5915}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMBD.Api", "DMBD.Api\DMBD.Api.csproj", "{1B12F683-39AF-484F-8635-A9CAEFF4ECD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMBD.Api", "DMBD.Api\DMBD.Api.csproj", "{1B12F683-39AF-484F-8635-A9CAEFF4ECD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
