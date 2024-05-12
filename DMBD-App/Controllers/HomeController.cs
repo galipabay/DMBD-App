@@ -22,6 +22,10 @@ namespace DMBD_App.Controllers
         {
             return View();
         }
+        public IActionResult AdminPanelLogin()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
