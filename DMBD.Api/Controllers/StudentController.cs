@@ -16,10 +16,10 @@ namespace DMBD.Api.Controllers
         private readonly IMapper _mapper;
         private readonly IService<Student> _service;
 
-        public StudentController(IService<Student> _service, IMapper _mapper)
+        public StudentController(IService<Student> service, IMapper mapper)
         {
-            _service = _service;
-            _mapper = _mapper;
+            _service = service;
+            _mapper = mapper;
         }
 
         /// GET api/students

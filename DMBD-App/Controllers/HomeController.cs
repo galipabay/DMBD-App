@@ -18,6 +18,10 @@ namespace DMBD_App.Controllers
             return View();
         }
 
+        public IActionResult PdfScreen()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

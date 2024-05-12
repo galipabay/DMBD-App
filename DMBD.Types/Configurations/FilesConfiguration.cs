@@ -18,6 +18,8 @@ namespace DMBD.Types.Configurations
             builder.Property(x => x.TcNo).IsRequired();
             builder.Property(x => x.Transcript).IsRequired();
             builder.Property(x => x.SubjectContent).IsRequired();
+
+            builder.ToTable("Files");
         }
     }
 }

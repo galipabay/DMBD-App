@@ -1,0 +1,104 @@
+﻿/* Ekran genişliği 600 pikselden küçükse */
+@media screen and (max-width: 600px) {
+    /* Özel stil kuralları */
+    body {
+        font-size: 14px;
+    }
+}
+
+.navbar {
+    flex-wrap: nowrap;
+    --bs-navbar-padding-y: 0rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-text {
+    font-size: 18px;
+    color: white;
+    padding-bottom: 0rem;
+}
+
+.container-a4 {
+    padding-top: 1rem;
+    width: 21cm;
+    height: 29.7cm;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container-padding {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+
+body {
+    padding-top: 6rem;
+    background-color: rgb(235, 244, 244);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.girintili-paragraf {
+    text-indent: 3em;
+    font-size: 14px;
+}
+
+.container-signature {
+    margin-left: 30rem;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.container-yonetmelik {
+    table
+
+{
+    width: 100%;
+    border-collapse: collapse;
+    font-palette: light;
+}
+
+.baslik {
+    font-weight: bold;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    font-size: 11px;
+}
+
+}
+
+p {
+    text-indent: 20px; /* İstenilen girinti miktarı */
+}
+
+.result-department {
+    font-size: 14px;
+}
+
+.result-text {
+    text-indent: 3em;
+    font-size: 14px;
+}

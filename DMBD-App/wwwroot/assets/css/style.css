@@ -1,0 +1,83 @@
+/* Ekran genişliği 600 pikselden küçükse */
+@media only screen and (max-width: 600px) {
+    /* Özel stil kuralları */
+    body {
+        font-size: 14px;
+    }
+    div {
+        width: 100%;
+    }
+}
+
+.navbar {
+    flex-wrap: nowrap;
+    --bs-navbar-padding-y: 0rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.container {
+    padding-right: 0%;
+    padding-top: 1rem;
+}
+
+.container-fluid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* İki sütun */
+    gap: 10px; /* Boşluk */
+}
+
+.box {
+    background-color: lightblue;
+    min-height: 37rem;
+}
+
+.navbar-text {
+    font-size: 18px;
+    color: white;
+    padding-bottom: 0rem;
+}
+
+body {
+    padding-top: 6rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* İki sütun */
+    gap: 10px; /* Boşluk */
+}
+
+.specific-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px; /* İsteğe bağlı: Sütunlar arasındaki boşluk */
+    overflow-y: auto; /* Dikey kaydırma*/
+    max-height: 240px; /* Container'ın maksimum yüksekliği*/
+    padding: 20px;
+}
+
+
+input[type="text"],
+input[type="email"] {
+    width: 15rem; /* input alanı genişlik ayarı */
+}
+
+select {
+    width: 15rem; /* Genişlik ayarı */
+}
+
+#registeredCourse {
+    width: 200%; /* Tablo genişliği */
+}
+
+    #registeredCourse th {
+        width: 33%; /* Her sütunun genişliği*/
+    }
+
+        #registeredCourse th:nth-child(1) {
+            /* row satırı */
+            width: 10%;
+        }
