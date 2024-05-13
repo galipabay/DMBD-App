@@ -2,6 +2,8 @@
     ViewData["Title"] = "ETÜ";
 }
 
+
+
 <!--sayfa düzeni için container-->
 <div class="container-fluid">
     <div class="row">
@@ -270,7 +272,7 @@
         </div>
 
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-6 d-md-flex justify-content-md-end">
         <button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
 
         <script>
@@ -279,17 +281,11 @@
             }
         </script>
 
-
-    </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
-
         <script>
-            function ac() {
-                window.location.href = "/Home/PdfScreen";
+            function admin() {
+                window.location.href = "/Home/AdminPanelLogin";
             }
         </script>
-
 
     </div>
     <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
