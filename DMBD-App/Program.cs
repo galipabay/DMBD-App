@@ -1,3 +1,5 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using DMBD.Business.Mapping;
 using DMBD.Business.Services;
 using DMBD.Kernel.Repository;
@@ -6,6 +8,8 @@ using DMBD.Kernel.UnitOfWork;
 using DMBD.Types;
 using DMBD.Types.Repositories;
 using DMBD.Types.UnitOfWork;
+using DMBD_App;
+using DMBD_App.Modules;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.Options;
@@ -30,6 +34,11 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
+
+builder.Host.UseServiceProviderFactory
+    (new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
