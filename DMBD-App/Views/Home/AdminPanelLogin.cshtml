@@ -1,0 +1,72 @@
+﻿<!--Login ekranı başlangıç-->
+<div class="container-middle">
+    <div class="container-baslik">
+        <h3 class="baslik">YÖNETİCİ PANELİ GİRİŞ EKRANI</h3>
+    </div>
+    <div class="row-middle">
+        <div class="box-admin" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+            <form class="px-4 py-3" id="yonetimPaneli">
+                <div class="mb-3 row">
+                    <label for="formEmail" class="col-sm-2 col-form-label">E-mail</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="formEmail" placeholder="name@example.com">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Şifre</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword">
+                    </div>
+                </div>
+
+                <!--<button type="submit" class="btn btn-primary">Giriş Yap</button>-->
+
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button type="submit" onclick="login()" class="btn btn-outline-primary">Giriş Yap</button>
+
+                    <button type="button" class="btn btn-outline-primary">Yeni Kayıt</button>
+                </div>
+            </form>
+
+
+        </div>
+    </div> <!--row-->
+
+
+</div> <!--container-middle-->
+
+<script>
+    // Form elemanlarını seç
+    const yonetimPaneli = document.getElementById('yonetimPaneli');
+    const emailInput = document.getElementById('formEmail');
+    const passwordInput = document.getElementById('inputPassword');
+
+    // Form submit olduğunda çalışacak fonksiyon
+    yonetimPaneli.addEventListener('submit', function (event) {
+        // Formun varsayılan davranışını engelle
+        event.preventDefault();
+
+        // Form verilerini al
+        const userData = {
+            formEmail: emailInput.value,
+            inputPassword: passwordInput.value
+        };
+
+        // Verileri localStorage'a kaydet
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        // Kullanıcıyı bilgilendir
+        alert('Form verileri kaydedildi.');
+    });
+
+    // Sayfa yüklendiğinde form verilerini kontrol et ve doldur
+    window.addEventListener('load', function () {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            const userData = JSON.parse(storedUserData);
+            emailInput.value = userData.formEmail;
+            passwordInput.value = userData.inputPassword;
+        }
+    });
+
+</script>
