@@ -1,535 +1,322 @@
-﻿@{
-	ViewData["Title"] = "ETÜ";
-}
+﻿			@{
+				ViewData["Title"] = "ETÜ";
+			}
 
-<<<<<<< HEAD
-@using DMBD.Kernel.DTOs;
-@model StudentDto
-=======
+			@using DMBD.Kernel.DTOs;
+			@model StudentDto
 
+			<!--sayfa düzeni için container-->
+			<div class="container-fluid">
+				<div class="row">
 
->>>>>>> 493b85c33f660c8bff89bd658cca0ec887758dc7
-<!--sayfa düzeni için container-->
-<div class="container-fluid">
-	<div class="row">
-
-		<!--SOL BLOK BAŞLANGIÇ-->
-		<div class="col">
-			<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-				<!--sol kutu-->
-				<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
-				<div class="container">
-					<h5>Öğrenci Bilgileri</h5>
-					<br>
-					<!--FORM BAŞLANGICI -->
-					<!--<form action="action1.php">-->
-
-					<form asp-action="Save" method="post" asp-controller="Student">
-						<!--BACK END DOSYASI-->
-						<!--SOLUN SOLU-->
-						<div class="row">
-							<div class="col">
-								<label for="name">*Ad:</label>
+					<!--SOL BLOK BAŞLANGIÇ-->
+					<div class="col">
+						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+							<!--sol kutu-->
+							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
+							<div class="container">
+								<h5>Öğrenci Bilgileri</h5>
 								<br>
-								<input type="text" name="Name" id="name" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-
-								<label for="surname">*Soyad:</label>
-								<br>
-								<input type="text" name="Surname" id="surname" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-
-
-								<label for="tcNo">*TC Kimlik Numarası:</label>
-								<br>
-								<input type="text" name="TcNo" id="tcNo" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-
-
-								<label for="studentNo">Öğrenci Numarası:</label>
-								<br>
-								<input type="text" name="StudentNo" id="studentNo" placeholder="Giriniz..."
-									   style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-								<label for="mail">*E-posta:</label>
-								<br>
-								<input type="email" name="MailAdress" id="mailAddress" placeholder="birisi@example.com"
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-
-							</div>
-							<div class="col">
-
-								<label for="telNo">*Telefon Numarası:</label>
-								<br>
-								<input type="text" name="PhoneNo" id="PhoneNumber" placeholder="Giriniz..." required style="border: 2px solid #bad1da; border-radius: 10px;">
-
-								<br>
-
-								<label for="register">*Kayıtlanma Şekli</label>
-								<br>
-
-								<select name="RegisterType" id="RegisterType" required style="border: 2px solid #bad1da; border-radius: 10px;">
-								</select>
-
-								<script src="Enums.js"></script>
-								<script>
-									var RegisterTypes = {
-										1: "YKS",
-										2: "DGS",
-										3: "Ek Madde-1",
-										4: "AGNO ile Merkezi Yatay Geçiş"
-									};
-
-									var selectElement = document.getElementById('RegisterType');
-
-									for (var key in RegisterTypes) {
-										var optionElement = document.createElement('option');
-										optionElement.value = key;
-										optionElement.textContent = RegisterTypes[key];
-										selectElement.appendChild(optionElement);
-									}
-								</script>
-
-								<br>
-
-								<label for="preSchool">*Önceki Üniversite Bilgisi:</label>
-								<br>
-								<input type="text" name="PreSchoolName" id="preSchoolName" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-
-								<label for="preFac">*Önceki Fakülte Bilgisi:</label>
-								<br>
-								<input type="text" name="PreFacultyName" id="preFacultyName" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-
-								<br>
-
-								<label for="preDep">*Önceki Departman Bilgisi:</label>
-								<br>
-								<input type="text" name="PreDepartmentName" id="preDepartmentName" placeholder="Giriniz..."
-									   required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<br>
-								<label for="register">*Departman Secimi</label>
-								<br>
-								<select name="DepartmentName" id="DepartmentName" required style="border: 2px solid #bad1da; border-radius: 10px;">
-									<option value="Makine_Muhendisligi">Makine Muhendisligi</option>
-									<option value="Bilgisayar_Muhendisligi">Bilgisayar Muhendisligi</option>
-								</select>
-
-								<script>
-									function setDepartmentId() {
-										var select = document.getElementById("DepartmentName");
-										var departmentId = "";
-										if (select.value === "Makine_Muhendisligi") {
-											departmentId = "1"; // Örnek olarak Makine Mühendisliği için 1 değerini atadık
-										} else if (select.value === "Bilgisayar_Muhendisligi") {
-											departmentId = "2"; // Örnek olarak Bilgisayar Mühendisliği için 2 değerini atadık
-										}
-										// Bu departmentId değerini başka bir yerde kullanabilirsiniz
-										console.log("DepartmentId:", departmentId)
-									}
-								</script>
-								
-							</div>
+								<!--FORM BAŞLANGICI -->
+								<!--<form action="action1.php">-->
+					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
+						<div class="col-md-6">
+							<label asp-for="Name" class="form-label">Name</label>
+							<input asp-for="Name" class="form-control" />
+							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
-						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<input class="btn" type="submit" value="Bilgileri Kaydet"
-								   style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
+						<div class="col-md-6">
+							<label asp-for="Surname" class="form-label">Surname</label>
+							<input asp-for="Surname" class="form-control" />
+							<span asp-validation-for="Surname" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="TcNo" class="form-label">TcNo</label>
+							<input asp-for="TcNo" class="form-control" id="TcNoInput" onchange="setStudentId()" />
+							<span asp-validation-for="TcNo" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="StudentId" class="form-label">StudentId</label>
+							<input asp-for="StudentId" class="form-control" id="StudentIdInput" readonly />
+							<span asp-validation-for="StudentId" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="StudentNo" class="form-label">StudentNo</label>
+							<input asp-for="StudentNo" class="form-control" />
+							<span asp-validation-for="StudentNo" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="MailAddress" class="form-label">MailAddress</label>
+							<input asp-for="MailAddress" class="form-control" />
+							<span asp-validation-for="MailAddress" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="PhoneNumber" class="form-label">PhoneNumber</label>
+							<input asp-for="PhoneNumber" class="form-control" />
+							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="RegisterType" class="form-label">RegisterType</label>
+							<select asp-for="RegisterType" class="form-control" id="RegisterType" required style="border: 2px solid #bad1da; border-radius: 10px;">
+								<option disabled selected value="">Select</option>
+								<option value="1">YKS</option>
+								<option value="2">DGS</option>
+								<option value="3">Ek Madde-1</option>
+								<option value="4">AGNO ile Merkezi Yatay Geçiş</option>
+							</select>
+							<span asp-validation-for="RegisterType" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="PreSchoolName" class="form-label">PreSchoolName</label>
+							<input asp-for="PreSchoolName" class="form-control" />
+							<span asp-validation-for="PreSchoolName" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="PreFacultyName" class="form-label">PreFacultyName</label>
+							<input asp-for="PreFacultyName" class="form-control" />
+							<span asp-validation-for="PreFacultyName" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="PreDepartmentName" class="form-label">PreDepartmentName</label>
+							<input asp-for="PreDepartmentName" class="form-control" />
+							<span asp-validation-for="PreDepartmentName" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="DepartmentName" class="form-label">DepartmentName</label>
+							<input asp-for="DepartmentName" class="form-control" />
+							<span asp-validation-for="DepartmentName" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="DepartmentId" class="form-label">DepartmentId</label>
+							<select asp-for="DepartmentId" class="form-control" id="DepartmentName" onchange="setDepartmentId()">
+								<option value="1">Makine Mühendisliği</option>
+								<option value="2">Bilgisayar Mühendisliği</option>
+							</select>
+							<span asp-validation-for="DepartmentId" class="text-danger"></span>
+						</div>
+
+						<script>
+							function setDepartmentId() {
+								var select = document.getElementById("DepartmentName");
+								var departmentId = select.value;
+								console.log("DepartmentId:", departmentId);
+							}
+						</script>
+
+						<div class="col-md-6">
+							<label asp-for="Id" class="form-label">Id</label>
+							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
+						</div>
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary">Save</button>
 						</div>
 					</form>
-
-					<!--FORM BİTİŞİ-->
-				</div>
-
-				<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
-				<!--EKLER BAŞLANGIÇ-->
-
-				<div class="container">
-					<h5>Ekler</h5>
-					<div class="container row g-2">
-						<div class="col-sm">
-							<label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
-							<br>
-							<input type="file" accept=".pdf" required>
-						</div>
-						<div class="col-sm">
-							<label for="">*Ders İçerikleri (Onaylı PDF)</label>
-							<br>
-							<input type="file" accept=".pdf" required>
-						</div>
-						<br><br>
-					</div>
-					<br>
-				</div>
-
-				<!--EKLER BİTİŞ-->
-
-			</div>
-		</div>
-	</div>
-
-	<!--SOL BLOK BİTİŞ-->
-	<!--SAĞ BLOK BAŞLANGIÇ-->
-
-	<div class="col">
-		<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-			<div class="container">
-				<h5>Ders Bilgileri</h5>
-				<!--BACK END DOSYASI-->
-				<!--<form action="action2.php">-->
-				<form id="userInfoForm" action="PdfScreen.cshtml" method="get">
-					<!--SOLUN SOLU DAHA ÖNCE ALINAN DERS BİLGİLERİ-->
-					<div class="container">
-						<div class="grid-container">
-							<div class="left-container">
-								<h6>Daha Önce Alınan Dersin;</h6>
-								<div class="col-sm-7">
-									<label for="dersAdi">*Ders Adı:</label>
-									<br>
-									<select name="RegisterType" placeholder="Seçiniz" id="dersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-										<option disabled selected value="">Seçiniz</option>
-										<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-										<option value="ders2">Ders2 Örneği</option>
-										<option value="ders3">Ders3 Örneği</option>
-										<option value="ders4">Ders4 Örneği</option>
-									</select>
-								</div>
-								<div class="container row g-2">
-									<div class="col-sm">
-										<label for="kredi">Kredi:</label>
-										<br>
-										<input type="number" placeholder="00" name="SubjectCredit" id="kredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-									</div>
-									<div class="col-sm">
-										<label for="akts">AKTS:</label>
-										<br>
-										<input type="number" placeholder="00" name="SubjectAKTS" id="akts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-									</div>
-								</div>
+								<!--FORM BİTİŞİ-->
 							</div>
 
-							<div class="right-container">
-								<h6>Muaf Olunması İstenen Dersin;</h6>
-								<div class="col-sm-7">
-									<label for="muafDersAdi">*Ders Adı:</label>
-									<br>
-									<!--name=" " ve id=" " isimlendirmeleri değişecek-->
-									<select name="RegisterType2" placeholder="Seçiniz" id="muafDersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-										<option disabled selected value="">Seçiniz</option>
-										<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-										<option value="ders2">Ders2 Örneği</option>
-										<option value="ders3">Ders3 Örneği</option>
-										<option value="ders4">Ders4 Örneği</option>
-									</select>
-								</div>
+							<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
+							<!--EKLER BAŞLANGIÇ-->
+
+							<div class="container">
+								<h5>Ekler</h5>
 								<div class="container row g-2">
 									<div class="col-sm">
-										<label for="kredi">Kredi:</label>
+										<label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
 										<br>
-										<input type="number" placeholder="00" name="SubjectCredit" id="muafKredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+										<input type="file" accept=".pdf" required>
 									</div>
 									<div class="col-sm">
-										<label for="akts">AKTS:</label>
+										<label for="">*Ders İçerikleri (Onaylı PDF)</label>
 										<br>
-										<input type="number" placeholder="00" name="SubjectAKTS" id="muafAkts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+										<input type="file" accept=".pdf" required>
 									</div>
+									<br><br>
 								</div>
 								<br>
-								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-									<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
+							</div>
+							<!--EKLER BİTİŞ-->
+
+						</div>
+					</div>
+				</div>
+
+				<!--SOL BLOK BİTİŞ-->
+				<!--SAĞ BLOK BAŞLANGIÇ-->
+
+				<div class="col">
+					<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+						<div class="container">
+							<h5>Ders Bilgileri</h5>
+							<!--BACK END DOSYASI-->
+							<!--<form action="action2.php">-->
+							<form id="userInfoForm" action="PdfScreen.cshtml" method="get">
+								<!--SOLUN SOLU DAHA ÖNCE ALINAN DERS BİLGİLERİ-->
+								<div class="container">
+									<div class="grid-container">
+										<div class="left-container">
+											<h6>Daha Önce Alınan Dersin;</h6>
+											<div class="col-sm-7">
+												<label for="dersAdi">*Ders Adı:</label>
+												<br>
+												<select name="RegisterType" placeholder="Seçiniz" id="dersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
+													<option disabled selected value="">Seçiniz</option>
+													<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
+													<option value="ders2">Ders2 Örneği</option>
+													<option value="ders3">Ders3 Örneği</option>
+													<option value="ders4">Ders4 Örneği</option>
+												</select>
+											</div>
+											<div class="container row g-2">
+												<div class="col-sm">
+													<label for="kredi">Kredi:</label>
+													<br>
+													<input type="number" placeholder="00" name="SubjectCredit" id="kredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+												</div>
+												<div class="col-sm">
+													<label for="akts">AKTS:</label>
+													<br>
+													<input type="number" placeholder="00" name="SubjectAKTS" id="akts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+												</div>
+											</div>
+										</div>
+
+										<div class="right-container">
+											<h6>Muaf Olunması İstenen Dersin;</h6>
+											<div class="col-sm-7">
+												<label for="muafDersAdi">*Ders Adı:</label>
+												<br>
+												<!--name=" " ve id=" " isimlendirmeleri değişecek-->
+												<select name="RegisterType2" placeholder="Seçiniz" id="muafDersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
+													<option disabled selected value="">Seçiniz</option>
+													<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
+													<option value="ders2">Ders2 Örneği</option>
+													<option value="ders3">Ders3 Örneği</option>
+													<option value="ders4">Ders4 Örneği</option>
+												</select>
+											</div>
+											<div class="container row g-2">
+												<div class="col-sm">
+													<label for="kredi">Kredi:</label>
+													<br>
+													<input type="number" placeholder="00" name="SubjectCredit" id="muafKredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+												</div>
+												<div class="col-sm">
+													<label for="akts">AKTS:</label>
+													<br>
+													<input type="number" placeholder="00" name="SubjectAKTS" id="muafAkts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+												</div>
+											</div>
+											<br>
+											<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+												<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
+											</div>
+
+										</div>
+									</div>
+							</form>
+						</div>
+
+						<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
+						<div class="container">
+							<h5>Kaydedilen Ders Bilgileri</h5>
+							<div class="container" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
+
+								<div class="specific-container">
+
+									<table class="table table-light" id="registeredCourse">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Ders Kodu</th>
+												<th scope="col">Muaf Olunmak İstenen Ders</th>
+												<th scope="col">Kredi</th>
+												<th scope="col">AKTS</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">1</th>
+												<td> kod veri tabanından gelecek </td>
+												<td id="muafDersAdi"> </td>
+												<td id="muafKredi"> </td>
+												<td id="muafAkts"> </td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td> kod veri tabanından gelecek </td>
+												<td id="muafDersAdi"> </td>
+												<td id="muafKredi"> </td>
+												<td id="muafAkts"> </td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td> kod veri tabanından gelecek </td>
+												<td id="muafDersAdi"> </td>
+												<td id="muafKredi"> </td>
+												<td id="muafAkts"> </td>
+											</tr>
+
+										</tbody>
+									</table>
+
+
 								</div>
 
 							</div>
+
+
 						</div>
-				</form>
-			</div>
-
-			<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
-			<div class="container">
-				<h5>Kaydedilen Ders Bilgileri</h5>
-				<div class="container" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
-
-					<div class="specific-container">
-
-						<table class="table table-light" id="registeredCourse">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Ders Kodu</th>
-									<th scope="col">Muaf Olunmak İstenen Ders</th>
-									<th scope="col">Kredi</th>
-									<th scope="col">AKTS</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td> kod veri tabanından gelecek </td>
-									<td id="muafDersAdi"> </td>
-									<td id="muafKredi"> </td>
-									<td id="muafAkts"> </td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td> kod veri tabanından gelecek </td>
-									<td id="muafDersAdi"> </td>
-									<td id="muafKredi"> </td>
-									<td id="muafAkts"> </td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td> kod veri tabanından gelecek </td>
-									<td id="muafDersAdi"> </td>
-									<td id="muafKredi"> </td>
-									<td id="muafAkts"> </td>
-								</tr>
-
-							</tbody>
-						</table>
 
 
 					</div>
 
 				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
+
+					<script>
+						function ac() {
+							window.location.href = "/Home/Save";
+						}
+					</script>
 
 
+				</div>
+				<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+
+				<script>
+					document.getElementById('userInfoForm').addEventListener('submit', function (event) {
+						event.preventDefault(); // Formun submit işlemini durdur
+
+				
+								//kullanıcı bilgilerini al
+					
+								var preschool = document.getelementbyıd('preschool').value;
+								var prefaculty = document.getelementbyıd('prefac').value;
+								var department = document.getelementbyıd('departmentname').value;
+					
+								//kullanıcı bilgilerini ikinci sayfaya gönder
+								window.location.href = "save.cshtml";
+							});
+				</script>
+
+				<!--FORM BİTİŞİ-->
 			</div>
+						</div>
+					</div>
+				</div
+			<div class="d-grid gap-6 d-md-flex justify-content-md-end">
+				<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
 
+				<script> 
+					function ac() {
+						window.location.href = "/Home/PdfScreen";
+					}
+				</script>
 
-		</div>
-
-	</div>
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
-
-		<script>
-			function ac() {
-				window.location.href = "/Home/Save";
-			}
-		</script>
-
-
-	</div>
-	<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
-
-	<script>
-		document.getElementById('userInfoForm').addEventListener('submit', function (event) {
-			event.preventDefault(); // Formun submit işlemini durdur
-
-<<<<<<< HEAD
-			// Kullanıcı bilgilerini al
-			/*
-			var preSchool = document.getElementById('preSchool').value;
-			var preFaculty = document.getElementById('preFac').value;
-			var department = document.getElementById('departmentName').value;
-			*/
-			// Kullanıcı bilgilerini ikinci sayfaya gönder
-			//window.location.href = "Save.cshtml";
-		});
-	</script>
-=======
-                    </form>
-
-                    <!--FORM BİTİŞİ-->
-                </div>
-
-
-                <!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
-                <!--EKLER BAŞLANGIÇ-->
-
-                <div class="container">
-                    <h5>Ekler</h5>
-                    <div class="container row g-2">
-                        <div class="col-sm">
-                            <label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
-                            <br>
-                            <input type="file" accept=".pdf" required>
-                        </div>
-                        <div class="col-sm">
-                            <label for="">*Ders İçerikleri (Onaylı PDF)</label>
-                            <br>
-                            <input type="file" accept=".pdf" required>
-                        </div>
-                        <br><br>
-                    </div>
-                    <br>
-                </div>
-
-                <!--EKLER BİTİŞ-->
-
-            </div>
-        </div>
-    </div>
-
-    <!--SOL BLOK BİTİŞ-->
-    <!--SAĞ BLOK BAŞLANGIÇ-->
-
-    <div class="col">
-        <div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-            <div class="container">
-                <h5>Ders Bilgileri</h5>
-                <!--BACK END DOSYASI-->
-                <!--<form action="action2.php">-->
-                <form id="userInfoForm" action="PdfScreen.cshtml" method="get">
-                    <!--SOLUN SOLU DAHA ÖNCE ALINAN DERS BİLGİLERİ-->
-                    <div class="container">
-                        <div class="grid-container">
-                            <div class="left-container">
-                                <h6>Daha Önce Alınan Dersin;</h6>
-                                <div class="col-sm-7">
-                                    <label for="dersAdi">*Ders Adı:</label>
-                                    <br>
-                                    <select name="RegisterType" placeholder="Seçiniz" id="dersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-                                        <option disabled selected value="">Seçiniz</option>
-                                        <option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-                                        <option value="ders2">Ders2 Örneği</option>
-                                        <option value="ders3">Ders3 Örneği</option>
-                                        <option value="ders4">Ders4 Örneği</option>
-                                    </select>
-                                </div>
-                                <div class="container row g-2">
-                                    <div class="col-sm">
-                                        <label for="kredi">Kredi:</label>
-                                        <br>
-                                        <input type="number" placeholder="00" name="SubjectCredit" id="kredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="akts">AKTS:</label>
-                                        <br>
-                                        <input type="number" placeholder="00" name="SubjectAKTS" id="akts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="right-container">
-                                <h6>Muaf Olunması İstenen Dersin;</h6>
-                                <div class="col-sm-7">
-                                    <label for="muafDersAdi">*Ders Adı:</label>
-                                    <br>
-                                    <!--name=" " ve id=" " isimlendirmeleri değişecek-->
-                                    <select name="RegisterType2" placeholder="Seçiniz" id="muafDersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-                                        <option disabled selected value="">Seçiniz</option>
-                                        <option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-                                        <option value="ders2">Ders2 Örneği</option>
-                                        <option value="ders3">Ders3 Örneği</option>
-                                        <option value="ders4">Ders4 Örneği</option>
-                                    </select>
-                                </div>
-                                <div class="container row g-2">
-                                    <div class="col-sm">
-                                        <label for="kredi">Kredi:</label>
-                                        <br>
-                                        <input type="number" placeholder="00" name="SubjectCredit" id="muafKredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-                                    </div>
-                                    <div class="col-sm">
-                                        <label for="akts">AKTS:</label>
-                                        <br>
-                                        <input type="number" placeholder="00" name="SubjectAKTS" id="muafAkts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
-                                </div>
-
-                            </div>
-                        </div>
-                </form>
-            </div>
-
-            <!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
-            <div class="container">
-                <h5>Kaydedilen Ders Bilgileri</h5>
-                <div class="container" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
-
-                    <div class="specific-container">
-
-                        <table class="table table-light" id="registeredCourse">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Ders Kodu</th>
-                                    <th scope="col">Muaf Olunmak İstenen Ders</th>
-                                    <th scope="col">Kredi</th>
-                                    <th scope="col">AKTS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td> kod veri tabanından gelecek </td>
-                                    <td id="muafDersAdi"> </td>
-                                    <td id="muafKredi"> </td>
-                                    <td id="muafAkts"> </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td> kod veri tabanından gelecek </td>
-                                    <td id="muafDersAdi"> </td>
-                                    <td id="muafKredi"> </td>
-                                    <td id="muafAkts"> </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td> kod veri tabanından gelecek </td>
-                                    <td id="muafDersAdi"> </td>
-                                    <td id="muafKredi"> </td>
-                                    <td id="muafAkts"> </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-    <div class="d-grid gap-6 d-md-flex justify-content-md-end">
-        <button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
-
-        <script>
-            function ac() {
-                window.location.href = "/Home/PdfScreen";
-            }
-        </script>
-
-        <script>
-            function admin() {
-                window.location.href = "/Home/AdminPanelLogin";
-            }
-        </script>
-
-    </div>
-    <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
-
-    <script>
-        document.getElementById('userInfoForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Formun submit işlemini durdur
-
-            // Kullanıcı bilgilerini al
-            var preSchool = document.getElementById('preSchool').value;
-            var preFaculty = document.getElementById('preFac').value;
-            var department = document.getElementById('departmentName').value;
-
-            // Kullanıcı bilgilerini ikinci sayfaya gönder
-            window.location.href = "yazdirma.html?preSchool=" + encodeURIComponent(preSchool) + "&preFaculty=" + encodeURIComponent(preFaculty) + "&department=" + encodeURIComponent(department);
-        });
-    </script>
->>>>>>> 493b85c33f660c8bff89bd658cca0ec887758dc7
-
-</div>
-
-<!--SAĞ BLOK BİTİŞ-->
-		</div>
+				<script>
+					function admin() {
+						window.location.href = "/Home/AdminPanelLogin";
+					}
+				</script>
+			</div>

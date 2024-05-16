@@ -74,10 +74,8 @@ namespace DMBD_App.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 await _services.UpdateAsync(_mapper.Map<Student>(studentDto));
                 return RedirectToAction(nameof(Index));
-
             }
 
             var students = await _services.GetAllAsync();

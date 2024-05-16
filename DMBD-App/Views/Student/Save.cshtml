@@ -7,8 +7,6 @@
 
 <h1>Save Student</h1> 
 <div class="row">
-	           
-	s=col-md-6>
 
 		<form asp-action="Save" method="post" asp-controller="Student">
 
@@ -77,18 +75,28 @@
 				<input asp-for="DepartmentName" class="form-control" />
 				<span asp-validation-for="DepartmentName" class="text-danger"></span>
 			</div>
-			<!--Department Id Secilen Departmana gore Otomatik Atilacaktir-->
-			 <div class="form-group">
-				<label asp-for="DepartmentId"></label>
-				<input asp-for="DepartmentId" class="form-control" />
-				<span asp-validation-for="DepartmentId" class="text-danger"></span>
-			</div>
+		<div class="form-group">
+			<label asp-for="DepartmentId"></label>
+			<select asp-for="DepartmentId" class="form-control" id="DepartmentName" onchange="setDepartmentId()">
+				<option value="1">Makine Mühendisliği</option>
+				<option value="2">Bilgisayar Mühendisliği</option>
+			</select>
+			<span asp-validation-for="DepartmentId" class="text-danger"></span>
+		</div>
+
+		<script>
+			function setDepartmentId() {
+				var select = document.getElementById("DepartmentName");
+				var departmentId = select.value;
+				console.log("DepartmentId:", departmentId);
+			}
+		</script>
 
 			<div class="form-group">
-				<label asp-for="StudentId"></label>
-				<select asp-for="TcNo" asp-items="ViewBag.students" class="form-control"></select>
+				<label asp-for="Id"></label>
+				<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
 			</div>
-
+			
 			<div class="form-group">
 				<input type="submit" value="Save" class="btn-primary" />
 			</div>
