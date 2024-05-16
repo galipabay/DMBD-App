@@ -1,0 +1,20 @@
+{
+    "registerTypes": [
+        {
+            "value": 1,
+            "label": "YKS"
+        },
+        {
+            "value": 2,
+            "label": "DGS"
+        },
+        {
+            "value": 3,
+            "label": "Ek Madde-1"
+        },
+        {
+            "value": 4,
+            "label": "AGNO ile Merkezi Yatay Geçiş"
+        }
+    ]
+}

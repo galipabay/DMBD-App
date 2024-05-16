@@ -70,9 +70,6 @@ namespace DMBD.Api.Controllers
         {
             var student = await _service.GetByIdAsync(id);
 
-
-
-
             await _service.RemoveAsync(student);
 
             return CreateActionResult(CustomResponseDto<NoContent>.Success(204));

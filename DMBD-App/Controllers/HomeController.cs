@@ -19,7 +19,7 @@ namespace DMBD_App.Controllers
         }
 
         public IActionResult PdfScreen()
-        {
+        {                                                                 
             return View();
         }
         public IActionResult AdminPanelLogin()
