@@ -26,6 +26,27 @@ namespace DMBD_App.Controllers
         {
             return View();
         }
+
+        public IActionResult AdminPanel()
+        {
+            return View();
+        }
+
+        public IActionResult AddAdmin()
+        {
+            return View();
+        }
+
+        public IActionResult AdminList()
+        {
+            return View();
+        }
+
+        public IActionResult StudentApplication()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

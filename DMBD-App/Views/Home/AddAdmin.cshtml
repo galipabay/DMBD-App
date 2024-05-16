@@ -1,0 +1,64 @@
+﻿<!--İÇERİK BAŞLANGICI-->
+<h3 class="text-mainpanel" id="welcomeMessage">Yönetici Ekle</h3>
+<div class="container-addAdmin">
+    <form id="adminForm" onsubmit="return validateForm()">
+        <div class="row-add-2 mb-3">
+            <label for="adminName" class="col-sm-2 col-form-label">Ad</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="adminName" required />
+            </div>
+        </div>
+        <div class="row-add-2 mb-3">
+            <label for="adminSurname" class="col-sm-2 col-form-label">Soyad</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       class="form-control"
+                       id="adminSurname"
+                       required />
+            </div>
+        </div>
+        <div class="row-add-2 mb-3">
+            <label for="adminEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="adminEmail" required />
+            </div>
+        </div>
+        <div class="row-add-2 mb-3">
+            <label for="adminPassword" class="col-sm-2 col-form-label">Şifre</label>
+            <div class="col-sm-10">
+                <input type="password"
+                       class="form-control"
+                       id="adminPassword"
+                       required />
+            </div>
+        </div>
+        <div class="row-add-2 mb-3">
+            <label for="adminConfirmPassword" class="col-sm-2 col-form-label">Şifreyi Doğrula</label>
+            <div class="col-sm-10">
+                <input type="password"
+                       class="form-control"
+                       id="adminConfirmPassword"
+                       required />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
+<!--container-addAdmin-->
+
+<script>
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+            alert("Şifreler uyuşmuyor!");
+            return false; // Formun gönderilmesini engelle
+        }
+
+        // Diğer form doğrulama işlemleri buraya eklenebilir
+
+        return true; // Formun gönderilmesine izin ver
+    }
+</script>

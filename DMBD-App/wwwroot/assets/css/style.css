@@ -8,7 +8,7 @@
 
 body {
     padding-top: 6rem;
-    background-color: rgb(235, 244, 244);
+    background-color: rgb(243, 250, 250);
 }
 
 .navbar {
@@ -41,15 +41,6 @@ body {
     min-height: 37rem;
 }
 
-
-
-
-
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* İki sütun */
-    gap: 10px; /* Boşluk */
-}
 
 .specific-container {
     display: grid;
@@ -85,7 +76,7 @@ select {
 
 
 
-        /*yonetici.css içeriği*/
+/*yonetici.css içeriği*/
 .container-middle {
     margin-left: 30%;
     margin-right: 30%;
@@ -195,4 +186,99 @@ th, td {
 .result-text {
     text-indent: 3em;
     font-size: 14px;
+}
+
+/*ADMIN PANEL*/
+
+.container-aside {
+    padding-left: 1rem;
+    padding-right: 50rem;
+}
+
+.container-margin {
+    padding: 2rem;
+}
+
+.aside-box { /*sol kutu*/
+    min-height: 37rem;
+    background-color: #cedde6;
+    border: 2px solid #bad1da;
+    border-radius: 10px;
+
+}
+
+.box-main {
+    min-height: 37rem;
+    min-width: 70rem;
+}
+
+.row {
+    display: inline-flex;
+}
+
+
+.container-mainpanel {
+    background-color: #f0f9ff;
+    border: 2px solid #bad1da;
+    border-radius: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 500px;
+    padding-top: 30px;
+    padding-right: 100px;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+    max-height: 37rem;
+}
+
+.text-mainpanel {
+    text-align: center;
+    color: #456097;
+}
+
+.text-center {
+    text-align: -webkit-right;
+}
+
+/*addAdmin */
+
+.container-addAdmin {
+    margin: 0%;
+    padding-left: 50px;
+}
+
+
+/*adminList GÜNCELLEŞTİRMELERİ BURADA*/
+.table-list th, .table-list td {
+    width: 25%; /* kolonlar arası eşit mesafe */
+}
+
+.container-list {
+    padding-left: 50px;
+    margin: 0%;
+}
+
+/*öğrenci başvuruları listeleme*/
+.container-split {
+    padding-left: 10px;
+    margin: 0%;
+    padding-top: 20px;
+}
+
+.table-student {
+    table-layout: fixed;
+    width: 100%; /* veya istediğiniz genişliği piksel veya yüzde olarak belirleyebilirsiniz */
+    text-align: start;
+}
+
+    .table-student th,
+    .table-student td {
+        word-wrap: break-word;
+    }
+
+.detail {
+    background-color: #cedde6;
+    border: 2px solid #bad1da;
+    border-radius: 10px;
+    padding: 10px;
 }
