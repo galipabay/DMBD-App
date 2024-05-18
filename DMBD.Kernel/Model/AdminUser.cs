@@ -16,33 +16,33 @@ namespace DMBD.Kernel.Model
 			set { id = value; }
 		}
 
-		private int name;
+		private string name;
 
-		public int Name
+		public string Name
 		{
 			get { return name; }
 			set { name = value; }
 		}
 
-		private int surname;
+		private string surname;
 
-		public int Surname
+		public string Surname
 		{
 			get { return surname; }
 			set { surname = value; }
 		}
 
-		private int mailAddres;
+		private string mailAddres;
 
-		public int MailAddres
+		public string MailAddres
 		{
 			get { return mailAddres; }
 			set { mailAddres = value; }
 		}
 
-		private int password;
+		private string password;
 
-		public int Password
+		public string Password
 		{
 			get { return password; }
 			set { password = value; }
