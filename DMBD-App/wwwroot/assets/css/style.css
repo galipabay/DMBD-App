@@ -46,7 +46,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px; /* İsteğe bağlı: Sütunlar arasındaki boşluk */
-    overflow-y: auto; /* Dikey kaydırma*/
+    overflow-y: scroll; /* Dikey kaydırma*/
     max-height: 240px; /* Container'ın maksimum yüksekliği*/
     padding: 20px;
 }
@@ -192,13 +192,14 @@ th, td {
 
 .container-aside {
     padding-left: 1rem;
-    padding-right: 50rem;
+    /*padding-right: 50rem;*/
 }
 
 
 
 .aside-box { /*sol kutu*/
     min-height: 37rem;
+    max-height: 37rem;
     background-color: #cedde6;
     border: 2px solid #bad1da;
     border-radius: 10px;
@@ -211,7 +212,8 @@ th, td {
 }
 
 .row {
-    display: inline-flex;
+    display: flex; /* Inline-flex yerine flex kullanın */
+    flex-wrap: wrap;
 }
 
 
@@ -221,10 +223,11 @@ th, td {
     border-radius: 10px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 500px;
+    margin-bottom: 0rem; /* Ayarlanan margin */
     padding-top: 30px;
-    padding-right: 100px;
+    padding-right: 0rem; /* Ayarlanan dolgu */
     padding-bottom: 10px;
+    padding-left: 0px;
     overflow-y: scroll;
     max-height: 37rem;
 }
@@ -265,7 +268,7 @@ th, td {
 
 .table-student {
     table-layout: fixed;
-    width: 100%; /* veya istediğiniz genişliği piksel veya yüzde olarak belirleyebilirsiniz */
+    width: 100%;
     text-align: start;
 }
 
