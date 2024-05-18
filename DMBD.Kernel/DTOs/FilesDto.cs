@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DMBD.Kernel.DTOs
 {
-    public class FilesDto : BaseEntity
+    public class FilesDto : BaseDto
     {
         #region Properties
 

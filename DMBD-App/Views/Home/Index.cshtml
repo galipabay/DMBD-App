@@ -1,14 +1,13 @@
 ﻿			@{
 				ViewData["Title"] = "ETÜ";
 			}
-
+			
 			@using DMBD.Kernel.DTOs;
-			@model StudentDto
+			@model DMBD.Kernel.DTOs.StudentDto
 
 			<!--sayfa düzeni için container-->
 			<div class="container-fluid">
 				<div class="row">
-
 					<!--SOL BLOK BAŞLANGIÇ-->
 					<div class="col">
 						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
@@ -21,42 +20,48 @@
 								<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
-							<label asp-for="Name" class="form-label">Name</label>
+							<label asp-for="Name" class="form-label">Adı</label>
 							<input asp-for="Name" class="form-control" />
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="Surname" class="form-label">Surname</label>
+							<label asp-for="Surname" class="form-label">Soyadı</label>
 							<input asp-for="Surname" class="form-control" />
 							<span asp-validation-for="Surname" class="text-danger"></span>
 						</div>
+
 						<div class="col-md-6">
 							<label asp-for="TcNo" class="form-label">TcNo</label>
 							<input asp-for="TcNo" class="form-control" id="TcNoInput" onchange="setStudentId()" />
 							<span asp-validation-for="TcNo" class="text-danger"></span>
 						</div>
+
+						<script>
+							function setStudentId() {
+								var tcNo = document.getElementById("TcNoInput").value;
+								document.getElementById("StudentIdInput").value = tcNo;
+							}
+						</script>
+
+						<input asp-for="StudentId" type="hidden" id="StudentIdInput" />
+
 						<div class="col-md-6">
-							<label asp-for="StudentId" class="form-label">StudentId</label>
-							<input asp-for="StudentId" class="form-control" id="StudentIdInput" readonly />
-							<span asp-validation-for="StudentId" class="text-danger"></span>
-						</div>
-						<div class="col-md-6">
-							<label asp-for="StudentNo" class="form-label">StudentNo</label>
+							<label asp-for="StudentNo" class="form-label">Öğrenci Numarası</label>
 							<input asp-for="StudentNo" class="form-control" />
 							<span asp-validation-for="StudentNo" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="MailAddress" class="form-label">MailAddress</label>
+							<label asp-for="MailAddress" class="form-label">E-Posta Adresi</label>
 							<input asp-for="MailAddress" class="form-control" />
 							<span asp-validation-for="MailAddress" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="PhoneNumber" class="form-label">PhoneNumber</label>
+							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
 							<input asp-for="PhoneNumber" class="form-control" />
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="RegisterType" class="form-label">RegisterType</label>
+							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
 							<select asp-for="RegisterType" class="form-control" id="RegisterType" required style="border: 2px solid #bad1da; border-radius: 10px;">
 								<option disabled selected value="">Select</option>
 								<option value="1">YKS</option>
@@ -67,48 +72,49 @@
 							<span asp-validation-for="RegisterType" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="PreSchoolName" class="form-label">PreSchoolName</label>
+							<label asp-for="PreSchoolName" class="form-label">Eski Okul Adı</label>
 							<input asp-for="PreSchoolName" class="form-control" />
 							<span asp-validation-for="PreSchoolName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="PreFacultyName" class="form-label">PreFacultyName</label>
+							<label asp-for="PreFacultyName" class="form-label">Eski Fakülte Adı</label>
 							<input asp-for="PreFacultyName" class="form-control" />
 							<span asp-validation-for="PreFacultyName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="PreDepartmentName" class="form-label">PreDepartmentName</label>
+							<label asp-for="PreDepartmentName" class="form-label">Eski Departman Adı</label>
 							<input asp-for="PreDepartmentName" class="form-control" />
 							<span asp-validation-for="PreDepartmentName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							<label asp-for="DepartmentName" class="form-label">DepartmentName</label>
-							<input asp-for="DepartmentName" class="form-control" />
-							<span asp-validation-for="DepartmentName" class="text-danger"></span>
-						</div>
-						<div class="col-md-6">
-							<label asp-for="DepartmentId" class="form-label">DepartmentId</label>
-							<select asp-for="DepartmentId" class="form-control" id="DepartmentName" onchange="setDepartmentId()">
+							<label asp-for="DepartmentName" class="form-label">Departman Adı</label>
+							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()">
 								<option value="1">Makine Mühendisliği</option>
 								<option value="2">Bilgisayar Mühendisliği</option>
 							</select>
+							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1"/>
+							<input type="hidden" asp-for="DepartmentName" id="DepartmentNameInput" value="Makine Mühendisliği" />
 							<span asp-validation-for="DepartmentId" class="text-danger"></span>
 						</div>
 
 						<script>
-							function setDepartmentId() {
-								var select = document.getElementById("DepartmentName");
-								var departmentId = select.value;
-								console.log("DepartmentId:", departmentId);
+							function setDepartmentDetails() {
+								var select = document.getElementById("DepartmentSelect");
+								var selectedOption = select.options[select.selectedIndex];
+								var departmentId = selectedOption.value;
+								var departmentName = selectedOption.text;
+
+								document.getElementById("DepartmentIdInput").value = departmentId;
+								document.getElementById("DepartmentNameInput").value = departmentName;
 							}
 						</script>
 
 						<div class="col-md-6">
-							<label asp-for="Id" class="form-label">Id</label>
+							<label asp-for="Id" class="form-label" >Id</label>
 							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
 						</div>
 						<div class="col-12">
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-primary">Kaydet</button>
 						</div>
 					</form>
 								<!--FORM BİTİŞİ-->
@@ -255,19 +261,11 @@
 												<td id="muafKredi"> </td>
 												<td id="muafAkts"> </td>
 											</tr>
-
 										</tbody>
 									</table>
-
-
 								</div>
-
 							</div>
-
-
 						</div>
-
-
 					</div>
 
 				</div>
@@ -276,7 +274,7 @@
 
 					<script>
 						function ac() {
-							window.location.href = "/Home/Save";
+				window.location.href = "~/Views/Home/Index.cshtml";
 						}
 					</script>
 
@@ -296,7 +294,7 @@
 								var department = document.getelementbyıd('departmentname').value;
 					
 								//kullanıcı bilgilerini ikinci sayfaya gönder
-								window.location.href = "save.cshtml";
+								window.location.href = "Index.cshtml";
 							});
 				</script>
 

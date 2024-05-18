@@ -1,61 +1,64 @@
-﻿using DMBD_App.Models;
+﻿using DMBD.Kernel.DTOs;
+using DMBD_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace DMBD_App.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+	public class HomeController : Controller
+	{
+		private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+		public HomeController(ILogger<HomeController> logger)
+		{
+			_logger = logger;
+		}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+		public IActionResult Index()
+		{
+			var studentDto = new StudentDto();
+			// studentDto'yu uygun şekilde doldurun
+			return View("~/Views/Home/Index.cshtml", studentDto);
+		}
 
-        public IActionResult PdfScreen()
-        {                                                                 
-            return View();
-        }
-        public IActionResult AdminPanelLogin()
-        {
-            return View();
-        }
+		public IActionResult PdfScreen()
+		{                                                                 
+			return View();
+		}
+		public IActionResult AdminPanelLogin()
+		{
+			return View();
+		}
 
-        public IActionResult AdminPanel()
-        {
-            return View();
-        }
+		public IActionResult AdminPanel()
+		{
+			return View();
+		}
 
-        public IActionResult AddAdmin()
-        {
-            return View();
-        }
+		public IActionResult AddAdmin()
+		{
+			return View();
+		}
 
-        public IActionResult AdminList()
-        {
-            return View();
-        }
+		public IActionResult AdminList()
+		{
+			return View();
+		}
 
-        public IActionResult StudentApplication()
-        {
-            return View();
-        }
+		public IActionResult StudentApplication()
+		{
+			return View();
+		}
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+		public IActionResult Privacy()
+		{
+			return View();
+		}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Error()
+		{
+			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+	}
 }
