@@ -32,7 +32,9 @@ namespace DMBD.Types
 		public DbSet<AdminUser> AdminUsers { get; set; }
 		public DbSet<SubjectRepo> SubjectRepos { get; set; }
 
-		string connectionString = "Data Source=GALIPABAY;Initial Catalog=DMBD_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+		string connectionString = "Data Source=KUMSAL;Initial Catalog=DMBD_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+		//string connectionString = "Data Source=GALIPABAY;Initial Catalog=DMBD_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer(connectionString, builder =>

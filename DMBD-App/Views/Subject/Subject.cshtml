@@ -1,4 +1,4 @@
-﻿@using DMBD.Kernel.DTOs;
+﻿@using DMBD.Kernel.DTOs.SubjectDto
 @model DMBD.Kernel.DTOs.SubjectDto
 
 
@@ -29,12 +29,15 @@
 							<div class="container row g-2">
 								<div class="col-sm">
 									<label asp-for="SubjectCredit" class="form-label">Kredi</label>
+									<input asp-for="SubjectCredit" class="form-control" id="SubjectCredit" readonly />
 									<span asp-validation-for="SubjectCredit" class="text-danger"></span>
 									<br>
 
 									<label for="akts">AKTS:</label>
 									<br>
-									<input type="number" placeholder="00" name="SubjectAKTS" id="akts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+									<label asp-for="SubjectAkts" class="form-label">Kredi</label>
+									<input asp-for="SubjectAkts" class="form-control" id="SubjectAkts" readonly />
+									<span asp-validation-for="SubjectAkts" class="text-danger"></span>
 								</div>
 							</div>
 						</div>
@@ -42,10 +45,9 @@
 						<div class="right-container">
 							<h6>Muaf Olunması İstenen Dersin;</h6>
 							<div class="col-sm-7">
-								<label for="muafDersAdi">*Ders Adı:</label>
+								<label asp-for="ExemptSubjectName" class="form-label">Ders Adı</label>
 								<br>
-								<!--name=" " ve id=" " isimlendirmeleri değişecek-->
-								<select name="RegisterType2" id="muafDersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
+								<select asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
 									<option disabled selected value="">Seçiniz</option>
 									<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
 									<option value="ders2">Ders2 Örneği</option>
@@ -55,14 +57,14 @@
 							</div>
 							<div class="container row g-2">
 								<div class="col-sm">
-									<label for="kredi">Kredi:</label>
-									<br>
-									<input type="number" placeholder="00" name="SubjectCredit" id="muafKredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+									<label asp-for="ExemptSubjectCredit" class="form-label">Kredi</label>
+									<input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" readonly />
+									<span asp-validation-for="ExemptSubjectCredit" class="text-danger"></span>
 								</div>
 								<div class="col-sm">
-									<label for="akts">AKTS:</label>
-									<br>
-									<input type="number" placeholder="00" name="SubjectAKTS" id="muafAkts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
+									<label asp-for="ExemptSubjectAkts" class="form-label">AKTS</label>
+									<input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" readonly />
+									<span asp-validation-for="ExemptSubjectAkts" class="text-danger"></span>
 								</div>
 							</div>
 							<br>
@@ -93,27 +95,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th scope="row">1</th>
-								<td> kod veri tabanından gelecek </td>
-								<td id="muafDersAdi"> </td>
-								<td id="muafKredi"> </td>
-								<td id="muafAkts"> </td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td> kod veri tabanından gelecek </td>
-								<td id="muafDersAdi"> </td>
-								<td id="muafKredi"> </td>
-								<td id="muafAkts"> </td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td> kod veri tabanından gelecek </td>
-								<td id="muafDersAdi"> </td>
-								<td id="muafKredi"> </td>
-								<td id="muafAkts"> </td>
-							</tr>
+							@foreach (var course in SubjectDto)
+							{
+								<tr>
+									<th scope="row">@course.CourseId</th>
+									<td>@course.CourseCode</td>
+									<td>@course.CourseName</td>
+									<td>@course.Credit</td>
+									<td>@course.AKTS</td>
+								</tr>
+							}
 						</tbody>
 					</table>
 				</div>
