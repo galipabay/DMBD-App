@@ -23,7 +23,7 @@ namespace DMBD_App.Controllers
 
 		public async Task<IActionResult> Index()
 		{			
-			return View("~/Views/Home/Index.cshtml");
+			return View("~/Views/Subject/Subject.cshtml");
 		}
 
 		public async Task<IActionResult> Save()
