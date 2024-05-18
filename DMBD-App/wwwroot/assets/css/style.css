@@ -191,24 +191,29 @@ th, td {
 /*ADMIN PANEL*/
 
 .container-aside {
-    padding-left: 1rem;
-    /*padding-right: 50rem;*/
+    width: 100%;
+    box-sizing: border-box;
 }
 
-
-
-.aside-box { /*sol kutu*/
-    min-height: 37rem;
+/*.aside-box {*/ /*sol kutu*/
+    /*min-height: 37rem;
     max-height: 37rem;
     background-color: #cedde6;
     border: 2px solid #bad1da;
     border-radius: 10px;
 
+}*/
+
+.col-sm-3 {
+    min-height: 37rem;
+    max-height: 37rem;
+    background-color: #cedde6;
+    border: 2px solid #bad1da;
+    border-radius: 10px;
 }
 
 .box-main {
     min-height: 37rem;
-    min-width: 70rem;
 }
 
 .row {
