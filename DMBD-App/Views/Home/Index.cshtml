@@ -5,6 +5,7 @@
 			@using DMBD.Kernel.DTOs;
 			@model DMBD.Kernel.DTOs.StudentDto
 
+
 			<!--sayfa düzeni için container-->
 			<div class="container-fluid">
 				<div class="row">
@@ -14,8 +15,8 @@
 							<!--sol kutu-->
 							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
 							<div class="container">
-								<h5>Öğrenci Bilgileri</h5>
-								<br>
+							<h5>Öğrenci Bilgileri <span class="subtext">- Önce doldurulması gereken alan</span></h5>
+								<br><br>
 								<!--FORM BAŞLANGICI -->
 								<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
@@ -113,15 +114,37 @@
 							<label asp-for="Id" class="form-label" >Id</label>
 							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
 						</div>
+						@*<div class="col-12">
+							<button type="submit" href="@Url.Action("YazilimMuhendisligi", "Home")" class="btn btn-primary"> Kaydet </button>
+						</div>*@
+
+						<!--EKLER BAŞLANGIÇ-->
+
+						<div class="container">
+							<h5>Ekler</h5>
+							<div class="container row g-2">
+								<div class="col-sm">
+									<label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
+									<br>
+									<input type="file" accept=".pdf" required>
+								</div>
+								<div class="col-sm">
+									<label for="">*Ders İçerikleri (Onaylı PDF)</label>
+									<br>
+									<input type="file" accept=".pdf" required>
+								</div>
+								<br><br>
+							</div>
+							<br>
+						</div>
+						<!--EKLER BİTİŞ-->
 						<div class="col-12">
-							<button type="submit" class="btn btn-primary">Kaydet</button>
+							<button type="submit" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>
 					</form>
 								<!--FORM BİTİŞİ-->
-							</div>
 
-							<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
-							<!--EKLER BAŞLANGIÇ-->
+								@*<!--EKLER BAŞLANGIÇ-->
 
 							<div class="container">
 								<h5>Ekler</h5>
@@ -141,7 +164,14 @@
 								<br>
 							</div>
 							<!--EKLER BİTİŞ-->
+							<div class="col-12">
+							<button type="submit" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
+						</div>*@
+							</div>
 
+							<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
+							
+							
 						</div>
 					</div>
 				</div>
@@ -149,137 +179,18 @@
 				<!--SOL BLOK BİTİŞ-->
 				<!--SAĞ BLOK BAŞLANGIÇ-->
 
-				<div class="col">
-					<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-						<div class="container">
-							<h5>Ders Bilgileri</h5>
-							<!--BACK END DOSYASI-->
-							<!--<form action="action2.php">-->
-							<form id="userInfoForm" action="PdfScreen.cshtml" method="get">
-								<!--SOLUN SOLU DAHA ÖNCE ALINAN DERS BİLGİLERİ-->
-								<div class="container">
-									<div class="grid-container">
-										<div class="left-container">
-											<h6>Daha Önce Alınan Dersin;</h6>
-											<div class="col-sm-7">
-												<label for="dersAdi">*Ders Adı:</label>
-												<br>
-												<select name="RegisterType" placeholder="Seçiniz" id="dersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-													<option disabled selected value="">Seçiniz</option>
-													<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-													<option value="ders2">Ders2 Örneği</option>
-													<option value="ders3">Ders3 Örneği</option>
-													<option value="ders4">Ders4 Örneği</option>
-												</select>
-											</div>
-											<div class="container row g-2">
-												<div class="col-sm">
-													<label for="kredi">Kredi:</label>
-													<br>
-													<input type="number" placeholder="00" name="SubjectCredit" id="kredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-												</div>
-												<div class="col-sm">
-													<label for="akts">AKTS:</label>
-													<br>
-													<input type="number" placeholder="00" name="SubjectAKTS" id="akts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-												</div>
-											</div>
-										</div>
-
-										<div class="right-container">
-											<h6>Muaf Olunması İstenen Dersin;</h6>
-											<div class="col-sm-7">
-												<label for="muafDersAdi">*Ders Adı:</label>
-												<br>
-												<!--name=" " ve id=" " isimlendirmeleri değişecek-->
-												<select name="RegisterType2" placeholder="Seçiniz" id="muafDersAdi" required style="border: 2px solid #bad1da; border-radius: 10px; width: 15ch;">
-													<option disabled selected value="">Seçiniz</option>
-													<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-													<option value="ders2">Ders2 Örneği</option>
-													<option value="ders3">Ders3 Örneği</option>
-													<option value="ders4">Ders4 Örneği</option>
-												</select>
-											</div>
-											<div class="container row g-2">
-												<div class="col-sm">
-													<label for="kredi">Kredi:</label>
-													<br>
-													<input type="number" placeholder="00" name="SubjectCredit" id="muafKredi" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-												</div>
-												<div class="col-sm">
-													<label for="akts">AKTS:</label>
-													<br>
-													<input type="number" placeholder="00" name="SubjectAKTS" id="muafAkts" style="border: 2px solid #bad1da; border-radius: 10px; width: 6ch;" maxlength="6" disabled>
-												</div>
-											</div>
-											<br>
-											<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-												<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
-											</div>
-
-										</div>
-									</div>
-							</form>
-						</div>
-
-						<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
-						<div class="container">
-							<h5>Kaydedilen Ders Bilgileri</h5>
-							<div class="container" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
-
-								<div class="specific-container">
-
-									<table class="table table-light" id="registeredCourse">
-										<thead>
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">Ders Kodu</th>
-												<th scope="col">Muaf Olunmak İstenen Ders</th>
-												<th scope="col">Kredi</th>
-												<th scope="col">AKTS</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td> kod veri tabanından gelecek </td>
-												<td id="muafDersAdi"> </td>
-												<td id="muafKredi"> </td>
-												<td id="muafAkts"> </td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td> kod veri tabanından gelecek </td>
-												<td id="muafDersAdi"> </td>
-												<td id="muafKredi"> </td>
-												<td id="muafAkts"> </td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td> kod veri tabanından gelecek </td>
-												<td id="muafDersAdi"> </td>
-												<td id="muafKredi"> </td>
-												<td id="muafAkts"> </td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				
+				@*<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
 
 					<script>
-						function ac() {
-				window.location.href = "~/Views/Home/Index.cshtml";
-						}
+					function ac() {
+						window.location.href = "/Subject/Subject";
+					}
 					</script>
 
 
-				</div>
+				</div>*@
 				<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
 
 				<script>
@@ -299,22 +210,6 @@
 				</script>
 
 				<!--FORM BİTİŞİ-->
-			</div>
-						</div>
-					</div>
-				</div
-			<div class="d-grid gap-6 d-md-flex justify-content-md-end">
-				<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
+</div> <!--container-fluid-->
 
-				<script> 
-					function ac() {
-						window.location.href = "/Home/PdfScreen";
-					}
-				</script>
-
-				<script>
-					function admin() {
-						window.location.href = "/Home/AdminPanelLogin";
-					}
-				</script>
-			</div>
+			

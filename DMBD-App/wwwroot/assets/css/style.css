@@ -51,6 +51,15 @@ body {
     padding: 20px;
 }
 
+h5 {
+    display: inline;
+}
+
+.subtext {
+    font-size: 16px; /* Bu, paragraf boyutuna yakın bir boyuttur */
+    font-weight: normal;
+    color: gray;
+}
 
 input[type="text"],
 input[type="email"] {
@@ -159,7 +168,6 @@ p {
 
 .container-yonetmelik {
     table
-
 {
     width: 100%;
     border-collapse: collapse;
@@ -242,9 +250,11 @@ th, td {
     color: #456097;
 }
 
-.text-center {
+/*.text-center {
     text-align: -webkit-right;
 }
+*/
+
 
 /*addAdmin */
 
