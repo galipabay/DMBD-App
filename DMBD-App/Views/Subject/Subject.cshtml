@@ -42,6 +42,13 @@
 							</div>
 						</div>
 
+						@if (TempData["SuccessMessage"] != null)
+						{
+							<div class="alert alert-success" role="alert">
+								@TempData["SuccessMessage"]
+							</div>
+						}
+
 						<div class="right-container">
 							<h6>Muaf Olunması İstenen Dersin;</h6>
 							<div class="col-sm-7">
