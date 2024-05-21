@@ -27,7 +27,7 @@ body {
 
 .container {
     padding-right: 0%;
-    padding-top: 1rem;
+    padding-top: 0rem;
 }
 
 .container-fluid {
@@ -48,7 +48,9 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 5px; /* İsteğe bağlı: Sütunlar arasındaki boşluk */
     overflow-y: scroll; /* Dikey kaydırma*/
-    max-height: 240px; /* Container'ın maksimum yüksekliği*/
+    /*max-height: 240px;*/ /* Container'ın maksimum yüksekliği*/
+    min-height: 200px;
+    max-height: 240px;
     padding: 20px;
 }
 
@@ -330,4 +332,13 @@ th, td {
 
 .box-subject {
     /*min-height: 37rem;*/
+}
+
+.table-subject {
+    background-color: #d1e4f2;
+    border: 1px solid #456097;
+}
+
+.container-kayitliders {
+    padding: 5px;
 }

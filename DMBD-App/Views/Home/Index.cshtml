@@ -21,23 +21,21 @@
 								<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
-							@*<div class="form-group col-md-6">*@
+		
 							<label asp-for="Name" class="form-label">Adı</label>
-							@*<input asp-for="Name" class="form-control responsive-input" />*@
-							<input asp-for="Name" class="form-control" />
+							<input asp-for="Name" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							@*<div class="form-group col-md-6">*@
+							
 							<label asp-for="Surname" class="form-label">Soyadı</label>
-							<input asp-for="Surname" class="form-control" />
-							@*<input asp-for="Surname" class="form-control responsive-input" />*@
+							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
 							<span asp-validation-for="Surname" class="text-danger"></span>
 						</div>
 
 						<div class="col-md-6">
 							<label asp-for="TcNo" class="form-label">TcNo</label>
-							<input asp-for="TcNo" class="form-control" id="TcNoInput" onchange="setStudentId()" />
+							<input asp-for="TcNo" class="form-control" id="TcNoInput" onchange="setStudentId()" required maxlength="11" pattern="\d{11}"  />
 							<span asp-validation-for="TcNo" class="text-danger"></span>
 						</div>
 
@@ -57,12 +55,12 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="MailAddress" class="form-label">E-Posta Adresi</label>
-							<input asp-for="MailAddress" class="form-control" />
+							<input asp-for="MailAddress" class="form-control" required"/>
 							<span asp-validation-for="MailAddress" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
-							<input asp-for="PhoneNumber" class="form-control" />
+							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+"/>
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -78,22 +76,22 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreSchoolName" class="form-label">Eski Okul Adı</label>
-							<input asp-for="PreSchoolName" class="form-control" />
+							<input asp-for="PreSchoolName" class="form-control" required />
 							<span asp-validation-for="PreSchoolName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreFacultyName" class="form-label">Eski Fakülte Adı</label>
-							<input asp-for="PreFacultyName" class="form-control" />
+							<input asp-for="PreFacultyName" class="form-control" required placeholder="Mühendislik" />
 							<span asp-validation-for="PreFacultyName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreDepartmentName" class="form-label">Eski Departman Adı</label>
-							<input asp-for="PreDepartmentName" class="form-control" />
+							<input asp-for="PreDepartmentName" class="form-control" required placeholder="Bilgisayar"/>
 							<span asp-validation-for="PreDepartmentName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="DepartmentName" class="form-label">Departman Adı</label>
-							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()">
+							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()" required>
 								<option value="1">Makine Mühendisliği</option>
 								<option value="2">Bilgisayar Mühendisliği</option>
 							</select>
@@ -177,6 +175,28 @@
 								//kullanıcı bilgilerini ikinci sayfaya gönder
 								window.location.href = "Index.cshtml";
 							});
+
+							//OTOMATİK DOLDURMA
+		// JavaScript ile varsayılan değerlerin ayarlanması
+		document.addEventListener("DOMContentLoaded", function () {
+			// Örneğin Name ve Surname alanları için varsayılan değerler
+			document.getElementById("Name").value = "Örnek İsim";
+			document.getElementById("Surname").value = "Örnek Soyisim";
+			document.getElementById("TcNo").value = "12345678912";
+			document.getElementById("MailAddress").value = "kdskdk@gdömfö.com";
+			document.getElementById("PhoneNumber").value = "1111222121";
+			document.getElementById("PreSchoolName").value = "ETÜ";
+			document.getElementById("Surname").value = "Örnek Soyisim";
+			document.getElementById("Surname").value = "Örnek Soyisim";
+
+			// Diğer alanlar için aynı şekilde ayarlamalar yapılabilir
+		});
+
+		// Form gönderildiğinde alanların doldurulmuş gibi görünmesi
+		document.querySelector("form").addEventListener("submit", function () {
+			// Form submit edildiğinde, input alanları zaten doldurulmuş gibi görünecek
+			// Ancak bu, sunucudan geri dönen verilere bağlı olarak değişebilir
+		});
 				</script>
 
 				<!--FORM BİTİŞİ-->
