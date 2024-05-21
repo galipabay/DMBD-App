@@ -1,4 +1,4 @@
-﻿			@{
+﻿	@{
 				ViewData["Title"] = "ETÜ";
 			}
 			
@@ -7,10 +7,10 @@
 
 
 			<!--sayfa düzeni için container-->
-			<div class="container-fluid">
-				<div class="row">
+<div class="container-fluid d-flex justify-content-center align-items-center">
+	<div class="row justify-content-center">
 					<!--SOL BLOK BAŞLANGIÇ-->
-					<div class="col">
+		<div class="col-12 col-md-8">
 						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 							<!--sol kutu-->
 							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
@@ -21,13 +21,17 @@
 								<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
+							@*<div class="form-group col-md-6">*@
 							<label asp-for="Name" class="form-label">Adı</label>
+							@*<input asp-for="Name" class="form-control responsive-input" />*@
 							<input asp-for="Name" class="form-control" />
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
+							@*<div class="form-group col-md-6">*@
 							<label asp-for="Surname" class="form-label">Soyadı</label>
 							<input asp-for="Surname" class="form-control" />
+							@*<input asp-for="Surname" class="form-control responsive-input" />*@
 							<span asp-validation-for="Surname" class="text-danger"></span>
 						</div>
 
@@ -177,5 +181,3 @@
 
 				<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->
-
-			

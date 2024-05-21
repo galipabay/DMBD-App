@@ -1,7 +1,8 @@
 ﻿<!--A4 sayfa düzeni-->
 <div class="container-a4 container-sm">
 
-    <div class="box" style="background-color: #ffffff; ">
+    @*<div class="box" style="background-color: #ffffff; ">*@
+        <div class="box">
 
         <!--Ana Başlık ve Logo Kısmı Başlangıç-->
 
@@ -125,22 +126,21 @@
         <br>
     </div> <!--box-->
     <!--Önceki Butonu-->
-    <div class="d-grid gap-2 d-md-flex justify-content-md-first">
-        <button class="btn btn-primary me-md-2" onclick="don()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Önceki Sayfa</button>
-        <button class="btn btn-primary me-md-2" onclick="yazdir()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
-        <script>
-            function don() {
-                window.location.href = "/Home/Index";
-            }
-            function yazdir() {
-                window.location.href = "/Home/Index"; //değişecek 
-            }
-            
-        </script>
-    </div>
-
-
+    
 </div><!--container-a4-->
+<div class="d-grid gap-2 d-md-flex justify-content-md-first">
+    <button class="btn btn-primary me-md-2" onclick="don()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Önceki Sayfa</button>
+    <button class="btn btn-primary me-md-2" onclick="yazdir()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
+    <script>
+        function don() {
+            window.location.href = "/Home/Index";
+        }
+        function yazdir() {
+            window.location.href = "/Home/Index"; //değişecek
+        }
+
+    </script>
+</div>
 
 
 

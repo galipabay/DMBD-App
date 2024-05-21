@@ -37,9 +37,10 @@ body {
 }
 
 .box {
-    background-color: lightblue;
     min-height: 37rem;
 }
+
+
 
 
 .specific-container {
@@ -124,6 +125,7 @@ select {
     width: 21cm;
     height: 29.7cm;
     font-family: 'Times New Roman', Times, serif;
+    background-color: #ffffff;
 }
 
 .container-padding {
@@ -225,7 +227,7 @@ th, td {
 }
 
 .row {
-    display: flex; /* Inline-flex yerine flex kullanın */
+    display: flex; 
     flex-wrap: wrap;
 }
 
@@ -297,4 +299,35 @@ th, td {
     border: 2px solid #bad1da;
     border-radius: 10px;
     padding: 10px;
+}
+
+
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Alanlar arasında boşluk bırakmak için */
+}
+
+.responsive-input {
+    flex: 1 1 6ch; /* flex-grow: 1, flex-shrink: 1, flex-basis: 6ch */
+    min-width: 6ch; /* Minimum genişlik */
+    max-width: 100%; /* Maksimum genişlik */
+    box-sizing: border-box; /* İçerik kutusunu sınırlar */
+}
+
+@media (max-width: 768px) {
+    .responsive-input {
+        flex-basis: 50%; /* Orta büyüklükteki ekranlar için genişlik ayarı */
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-input {
+        flex-basis: 100%; /* Küçük ekranlar için genişlik ayarı */
+    }
+}
+
+.box-subject {
+    /*min-height: 37rem;*/
 }
