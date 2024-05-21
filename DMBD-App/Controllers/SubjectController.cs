@@ -2,8 +2,10 @@
 using DMBD.Kernel.DTOs;
 using DMBD.Kernel.Model;
 using DMBD.Kernel.Service;
+using DMBD.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace DMBD_App.Controllers
 {
@@ -14,16 +16,33 @@ namespace DMBD_App.Controllers
 
 		private readonly IMapper _mapper;
 
+		private readonly AppDbContext _context;
 
-		public SubjectController(IService<Subject> services,IMapper mapper)
+
+		public SubjectController(IService<Subject> services,IMapper mapper,AppDbContext context)
 		{
 			_services = services;
 			_mapper = mapper;
+			_context = context;
+		}
+
+		public IActionResult Create()
+		{
+			var subjects = _context.SubjectRepos
+				.Select(s => new SubjectDto
+				{
+					SubjectName = s.SubjectName,
+					SubjectCredit = s.Credit,
+					SubjectAkts = s.Akts
+				}).ToList();
+
+			ViewBag.Subjects = subjects;
+			return View();
 		}
 
 		public async Task<IActionResult> Index()
 		{			
-			return View("~/Views/Home/Index.cshtml");
+			return View("~/Views/Home/Subject.cshtml");
 		}
 
 		public async Task<IActionResult> Save()
@@ -32,7 +51,7 @@ namespace DMBD_App.Controllers
 
 			var subjectDto = _mapper.Map<List<SubjectDto>>(subjects.ToList());
 
-			ViewBag.subjects = new SelectList(subjectDto, "Id", "TcNo");
+			ViewBag.subjects = new SelectList(subjectDto, "Id", "Name");
 
 			return View(subjectDto);
 		}
@@ -43,7 +62,7 @@ namespace DMBD_App.Controllers
 			if (ModelState.IsValid)
 			{
 				await _services.AddAsync(_mapper.Map<Subject>(subjectDto));
-				return RedirectToAction(nameof(Index));
+				return RedirectToAction("Create");
 			}
 			 
 			var subjects = await _services.GetAllAsync();
