@@ -1,5 +1,6 @@
-﻿@using DMBD.Kernel.DTOs.SubjectDto
+﻿@using DMBD.Kernel.DTOs
 @model DMBD.Kernel.DTOs.SubjectDto
+
 
 
 <!--SAĞ BLOK BAŞLANGIÇ-->
@@ -101,8 +102,9 @@
 								<th scope="col">AKTS</th>
 							</tr>
 						</thead>
+
 						<tbody>
-							@foreach (var course in SubjectDto)
+							@* @foreach (var course in )
 							{
 								<tr>
 									<th scope="row">@course.CourseId</th>
@@ -111,7 +113,7 @@
 									<td>@course.Credit</td>
 									<td>@course.AKTS</td>
 								</tr>
-							}
+							} *@
 						</tbody>
 					</table>
 				</div>
