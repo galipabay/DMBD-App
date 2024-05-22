@@ -16,7 +16,7 @@
     <div class="row-middle">
         <div class="box-admin" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 
-            <form asp-action="Login" method="post" class="px-4 py-3" id="yonetimPaneli">
+            <form asp-action="Login" method="post" asp-controller="AdminPanel" class="px-4 py-3" id="yonetimPaneli">
                 <div class="col-md-6">
                     <label asp-for="MailAddres" class="form-label">E-mail</label>
                     <input asp-for="MailAddres" class="form-control" required maxlength="50" placeholder="name@erzurum.edu.tr" />
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="submit" href="@Url.Action("AdminPanel", "AdminPanel")" class="btn btn-outline-primary">Giriş Yap</button>
+                    <button type="submit" href="@Url.Action("Login", "AdminPanel")" class="btn btn-outline-primary">Giriş Yap</button>
                 </div>
 
                 @* <script>

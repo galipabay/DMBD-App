@@ -23,12 +23,7 @@ namespace DMBD_App.Controllers
 			_context = context;
 		}
 
-		public async Task<IActionResult> Index(AdminUser adminUser)
-		{
-			return View();
-		}
-
-		public IActionResult AdminPanel(AdminUser adminUser)
+		public async Task<IActionResult> Index()
 		{
 			return View();
 		}
@@ -36,17 +31,17 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Login(AdminUser adminUser)
 		{
-			var user = await _services.AnyAsync(x => x.MailAddres == adminUser.Password);
+			var user = await _services.AnyAsync(x => x.MailAddres == adminUser.MailAddres && x.Password == adminUser.Password );
 			 
 			if (user == false)
 			{
 				// Giriş başarısız, hata mesajı döndür
 				ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya şifre.");
-				return View(adminUser);
+				return View("AdminPanelLogin", adminUser);
 			}
 
-			// Giriş başarılı, yönlendirme yap
-			return View("AdminPanel");
+			// Giriş başarılı, yönlendirme yap	
+			return RedirectToAction("AdminPanel","Home");
 		}
 
 		//public async Task<AdminUser> AuthenticateAsync(string username, string password)
