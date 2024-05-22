@@ -12,6 +12,9 @@
 <h3 class="text-mainpanel" id="welcomeMessage">Yönetici Ekle</h3>
 <div class="container-addAdmin">
 	<form asp-action="Save" method="post" asp-controller="AdminUser" class="row g-3">
+
+		
+
 		<div class="col-md-6">
 			<label asp-for="Name" class="form-label">Adı</label>
 			<input asp-for="Name" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
@@ -37,7 +40,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<label asp-for="Password" class="form-label">Soyadı</label>
+			<label asp-for="Password" class="form-label">Şifre</label>
 			<input asp-for="Password" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
 			<span asp-validation-for="Surname" class="text-danger"></span>
 		</div>

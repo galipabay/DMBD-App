@@ -2,6 +2,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model DMBD.Kernel.DTOs.StudentDto
+
 @section HeaderContent {
     <p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
@@ -12,8 +14,9 @@
     <h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
     <div class="container-split">
         <div class="row">
+            <form asp-action="List" method="post" asp-controller="Student">
             <div class="col-sm-7">
-                <div class=""></div>
+                <div class="detail"></div>
                 <table class="table-student">
                     <thead>
                         <tr>
@@ -26,10 +29,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><input asp-for="Name" class="form-control" readonly disabled /></td>
+                            <td><input asp-for="Surname" class="form-control" readonly disabled /></td>
+                            <td><input asp-for="MailAddress" class="form-control" readonly disabled /></td>
+                            <td><input asp-for="PhoneNumber" class="form-control" readonly disabled /></td>
                             <td>
                                 <button type="submit" onclick="detail()" class="btn btn-primary">
                                     Detay
@@ -44,17 +47,18 @@
                 <div class="detail">
                     <h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
                     <table class="table-student">
+                        
                         <tr>
                             <th scope="col">Adı</th>
-                            <td></td>
+                                <td><input asp-for="Name" class="form-control" readonly disabled /></td>
                         </tr>
                         <tr>
                             <th scope="col">Soyadı</th>
-                            <td></td>
+                                <td><input asp-for="Surname" class="form-control" readonly disabled /></td>
                         </tr>
                         <tr>
                             <th scope="col">E-Mail</th>
-                            <td></td>
+                                <td><input asp-for="MailAddress" class="form-control" readonly disabled /></td>
                         </tr>
                         <tr>
                             <th scope="col">Kayıtlanma Şekli</th>
@@ -62,15 +66,15 @@
                         </tr>
                         <tr>
                             <th scope="col">Önceden Okuduğu Üniversite</th>
-                            <td></td>
+                                <td><input asp-for="PreSchoolName" class="form-control" readonly disabled/></td>
                         </tr>
                         <tr>
                             <th scope="col">Fakülte</th>
-                            <td></td>
+                                <td><input asp-for="PreFacultyName" class="form-control" readonly disabled /></td>
                         </tr>
                         <tr>
                             <th scope="col">Bölüm</th>
-                            <td></td>
+                                <td><input asp-for="PreDepartmentName" class="form-control" readonly disabled /></td>
                         </tr>
                         <tr>
                             <th scope="col">Not Döküm Belgesi</th>
@@ -90,33 +94,21 @@
                         </tr>
                         <tr>
                             <th scope="col">Kredi</th>
-                            <td></td>
+                             @*<td><input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" disabled readonly /></td>*@
                         </tr>
 
                         <tr>
                             <th scope="col">AKTS</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">ETÜ Karşılığı Ders Adı</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Kredi</th>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">AKTS</th>
-                            <td></td>
+                                @*<td><input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" disabled readonly /></td>*@
                         </tr>
 
                         <tr></tr>
-                    </table>
+                    </table>                
                 </div>
                 <!--detail-->
             </div>
             <!--col-->
+            </form>
         </div>
         <!--row-->
     </div>
