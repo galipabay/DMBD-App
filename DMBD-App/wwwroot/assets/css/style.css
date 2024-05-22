@@ -45,12 +45,6 @@ body {
 
 
 
-/*.container-fluid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;*/ /* İki sütun */
-    /*gap: 10px;*/ /* Boşluk */
-/*}*/
-
 .box {
     min-height: 37rem;
 }
@@ -65,7 +59,7 @@ body {
     overflow-y: scroll; 
     min-height: 200px;
     max-height: 240px;
-    padding: 20px;
+    padding:20px;
 }
 
 h5 {
@@ -221,14 +215,6 @@ th, td {
     box-sizing: border-box;
 }
 
-/*.aside-box {*/ /*sol kutu*/
-    /*min-height: 37rem;
-    max-height: 37rem;
-    background-color: #cedde6;
-    border: 2px solid #bad1da;
-    border-radius: 10px;
-
-}*/
 
 .col-sm-3 {
     min-height: 37rem;
@@ -243,10 +229,13 @@ th, td {
 }
 
 .row {
-    display: flex; 
-    flex-wrap: wrap;
+    display: flex; /*FLEXTİ DEĞİŞTİRDİM!!!!*/
+    flex-wrap: wrap;s
 }
 
+.row-subject{
+    display:contents;
+}
 
 .container-mainpanel {
     background-color: #f0f9ff;
@@ -268,10 +257,7 @@ th, td {
     color: #456097;
 }
 
-/*.text-center {
-    text-align: -webkit-right;
-}
-*/
+
 
 
 /*addAdmin */
@@ -345,6 +331,7 @@ th, td {
 
 .box-subject {
     margin-top: 5px;
+    padding:10px;
 }
 
 .container-pdfHeader{
@@ -353,4 +340,8 @@ th, td {
 
 .container-student{
     padding:1rem;
+}
+
+.col-md-6{
+    padding:5px;
 }

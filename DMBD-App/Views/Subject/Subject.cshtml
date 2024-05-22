@@ -9,15 +9,15 @@
 	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
 }
 
-<!--SAĞ BLOK BAŞLANGIÇ-->
+
 <!--sayfa düzeni için container-->
 <div class="container-fluid d-flex justify-content-center align-items-center">
 	<div class="row justify-content-center">
-		<div class="col-12 col-md-8">
+		<div class="col-12 col-md-8 ">
 			<div class="box-subject" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-				<div class="container">
+				
 					<h5>Ders Bilgileri</h5>
-					<form asp-action="Save" method="post" asp-controller="Subject" class="row g-3">
+					<form asp-action="Save" method="post" asp-controller="Subject" class="row g-1">
 						<div class="col-md-6">
 							<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
 							<span asp-validation-for="SubjectName" class="text-danger"></span>
@@ -41,6 +41,7 @@
 							</div>
 							
 							
+							
 					
 
 						@if (TempData["SuccessMessage"] != null)
@@ -50,8 +51,9 @@
 							</div>
 						}
 
-						<hr />
+					<hr />
 						<div class="col-md-6">
+						
 							<label asp-for="ExemptSubjectName" class="form-label">Muaf Olunması İstenen Ders Adı</label>
 							<br>
 							<select asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
@@ -85,7 +87,7 @@
 
 					
 
-			</div><!--container-->
+			
 			</div><!--box-->
 		</div><!--col-12 col-md-8-->
 	</div><!--row justify-content-center-->
@@ -94,16 +96,14 @@
 <!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
 
 <div class="container-fluid d-flex justify-content-center align-items-center">
-	<div class="row justify-content-center">
+	<div class="row-subject justify-content-center">
 		<div class="col-12 col-md-8 ">
 			<div class="box-subject" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
-				<div class="container">
-
-
-					
+			@*<div class="specific-container d-flex justify-content-center align-items-center">*@
+			
 					<h5>Kaydedilen Ders Bilgileri</h5>
-
-					<div class="specific-container text-center">
+				<div class="specific-container d-flex justify-content-center ">
+					
 
 						<table class="table-subject  mx-auto" id="registeredCourse">
 							<thead>
@@ -129,11 +129,11 @@
 							</tbody>
 						</table>
 
-					</div>
+					
+						
 
 
-
-				</div><!--container-->
+				</div>
 			</div><!--box-->
 		</div><!--col-12 col-md-8-->
 	</div><!--row justify-content-center-->
