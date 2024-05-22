@@ -41,6 +41,22 @@ namespace DMBD_App.Controllers
 		}
 
 		[HttpPost]
+		public async Task<IActionResult> AdminList(AdminUser adminUser)
+		{
+
+			var subjects = _context.AdminUsers;
+
+            ViewBag.Subjects = new SelectList(subjects, "Id", "Name");
+
+            if (ModelState.IsValid)
+			{
+				await _services.AddAsync(_mapper.Map<AdminUser>(adminUser));
+				return Redirect(nameof(Index));
+			}
+			return Redirect(nameof(Index));
+		}
+
+		[HttpPost]
 		public async Task<IActionResult> Login(AdminUser adminUser)
 		{
 			var user = await _services.AnyAsync(x => x.MailAddres == adminUser.MailAddres && x.Password == adminUser.Password );
@@ -54,6 +70,17 @@ namespace DMBD_App.Controllers
 
 			// Giriş başarılı, yönlendirme yap	
 			return RedirectToAction("AdminPanel","Home");
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete(int id)
+		{
+			var adminUser = await _services.GetByIdAsync(id);
+			if (adminUser != null)
+			{
+				await _services.RemoveAsync(adminUser);
+			}
+			return RedirectToAction(nameof(AdminList));
 		}
 
 		//public async Task<AdminUser> AuthenticateAsync(string username, string password)
