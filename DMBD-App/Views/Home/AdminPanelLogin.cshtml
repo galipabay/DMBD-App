@@ -30,7 +30,7 @@
                 <!--<button type="submit" class="btn btn-primary">Giriş Yap</button>-->
 
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="submit" onclick="login()" class="btn btn-outline-primary">Giriş Yap</button>
+                    <button type="submit" class="btn btn-outline-primary">Giriş Yap</button>
                 </div>
             </form>
 
@@ -63,6 +63,9 @@
 
         // Kullanıcıyı bilgilendir
         alert('Form verileri kaydedildi.');
+
+        // AdminPanel.cshtml sayfasına yönlendirme
+        window.location.href = "/Home/AdminPanel";
     });
 
     // Sayfa yüklendiğinde form verilerini kontrol et ve doldur
