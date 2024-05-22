@@ -23,26 +23,27 @@ namespace DMBD_App.Controllers
 			_context = context;
 		}
 
-		public Task<IActionResult> Create()
+		public async Task<IActionResult> Subject()
 		{
-			var subjects = _context.SubjectRepos
-				.Select(s => new SubjectDto
-				{
-					SubjectName = s.SubjectName,
-					SubjectCredit = s.Credit,
-					SubjectAkts = s.Akts
-				}).ToList();
+			//var subjects = _context.SubjectRepos
+			//	.Select(s => new SubjectDto
+			//	{
+			//		SubjectName = s.SubjectName,
+			//		SubjectCredit = s.Credit,
+			//		SubjectAkts = s.Akts
+			//	}).ToList();
 
-			ViewBag.Subjects = new SelectList(subjects, "SubjectName", "SubjectNam e");
+			var subjects = await _context.SubjectRepos.ToListAsync();
+			ViewBag.Subjects = subjects;
 
-			return View(ViewBag.Subject);
+			//ViewData["SubjectReposViewData"]  = new SelectList(subjects, "SubjectCode", "SubjectName");
+			return View();
 		}
 
 		public async Task<IActionResult> Index()
 		{
-			var subjects = await _context.SubjectRepos.ToListAsync();
-			ViewBag.Subjects = subjects;
-			return View();
+			
+			return RedirectToAction("Subject", "Subject");
 		}
 
 		public async Task<IActionResult> Save()
