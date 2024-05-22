@@ -28,7 +28,6 @@
 								<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
-		
 							<label asp-for="Name" class="form-label">Adı</label>
 							<input asp-for="Name" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
 							<span asp-validation-for="Name" class="text-danger"></span>
@@ -152,12 +151,6 @@
 							<button type="submit" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>
 
-						@if (TempData["SuccessMessage"] != null)
-						{
-							<div class="alert alert-success" role="alert">
-								@TempData["SuccessMessage"]
-							</div>
-						}
 					</form>
 								<!--FORM BİTİŞİ-->
 							</div>

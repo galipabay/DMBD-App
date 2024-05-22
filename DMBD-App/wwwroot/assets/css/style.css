@@ -229,7 +229,7 @@ th, td {
 }
 
 .row {
-    display: flex; /*FLEXTİ DEĞİŞTİRDİM!!!!*/
+    display: flex; 
     flex-wrap: wrap;s
 }
 
