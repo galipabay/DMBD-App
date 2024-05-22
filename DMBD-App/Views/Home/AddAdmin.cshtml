@@ -11,7 +11,7 @@
 <!--İÇERİK BAŞLANGICI-->
 <h3 class="text-mainpanel" id="welcomeMessage">Yönetici Ekle</h3>
 <div class="container-addAdmin">
-	<form asp-action="Save" method="post" asp-controller="AdminPanel" class="row g-3">
+	<form asp-action="Save" method="post" asp-controller="AdminUser" class="row g-3">
 		<div class="col-md-6">
 			<label asp-for="Name" class="form-label">Adı</label>
 			<input asp-for="Name" class="form-control" required maxlength="50"/>
@@ -37,12 +37,9 @@
 		</div>
 		 
 		<div class="col-md-6">
-			<label for="confirmPassword" class="form-label">Şifre Tekrar</label>
-			<input type="password" id="confirmPassword" class="form-control" required/>
-		</div>
-
-		<div class="btn-group" role="group" aria-label="Basic outlined example">
-			<button type="submit" href="@Url.Action("Save", "AdminPanel")" class="btn btn-outline-primary">Kaydet</button>
+			<label asp-for="Password" class="form-label">Soyadı</label>
+			<input asp-for="Password" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
+			<span asp-validation-for="Surname" class="text-danger"></span>
 		</div>
 	</form>
 	@* <form id="adminForm" onsubmit="return validateForm()">
