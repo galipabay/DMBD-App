@@ -243,12 +243,12 @@ th, td {
     border-radius: 10px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 0rem; /* Ayarlanan margin */
+    margin-bottom: 0rem; 
     padding-top: 30px;
-    padding-right: 0rem; /* Ayarlanan dolgu */
+    padding-right: 0rem; 
     padding-bottom: 10px;
     padding-left: 0px;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     max-height: 37rem;
 }
 
@@ -344,4 +344,8 @@ th, td {
 
 .col-md-6{
     padding:5px;
+}
+
+.container-application{
+    overflow-y:scroll;
 }
