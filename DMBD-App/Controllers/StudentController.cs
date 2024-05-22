@@ -25,17 +25,17 @@ namespace DMBD_App.Controllers
 
 		public async Task<IActionResult> Index()
 		{
-            //var subjectRepos = await _context.SubjectRepos.ToListAsync();
+			//var subjectRepos = await _context.SubjectRepos.ToListAsync();
 
-            //var subjects = _context.SubjectRepos
-            //    .Select(s => new SubjectDto
-            //    {
-            //        SubjectName = s.SubjectName,
-            //        SubjectCredit = s.Credit,
-            //        SubjectAkts = s.Akts
-            //    }).ToList();
-            return RedirectToAction("Index", "Subject");
-            //return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
+			//var subjects = _context.SubjectRepos
+			//    .Select(s => new SubjectDto
+			//    {
+			//        SubjectName = s.SubjectName,
+			//        SubjectCredit = s.Credit,
+			//        SubjectAkts = s.Akts
+			//    }).ToList();
+			return RedirectToAction("Index", "Subject");
+			//return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
 		}
 
 		public async Task<IActionResult> Save()
