@@ -2,6 +2,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model DMBD.Kernel.Model.AdminUser
+
 @section HeaderContent {
     <p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
@@ -13,45 +15,52 @@
     </div>
     <div class="row-middle">
         <div class="box-admin" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-            <form class="px-4 py-3" id="yonetimPaneli">
-                <div class="mb-3 row">
-                    <label for="formEmail" class="col-sm-2 col-form-label">E-mail</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="formEmail" placeholder="name@example.com">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Şifre</label>
-                    <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputPassword">
-                    </div>
+
+            <form asp-action="Login" method="post" asp-controller="AdminPanel" class="px-4 py-3" id="yonetimPaneli">
+                <div class="col-md-6">
+                    <label asp-for="MailAddres" class="form-label">E-mail</label>
+                    <input asp-for="MailAddres" class="form-control" required maxlength="50" placeholder="name@erzurum.edu.tr" />
+                    <span asp-validation-for="MailAddres" class="text-danger"></span>
                 </div>
 
-                <!--<button type="submit" class="btn btn-primary">Giriş Yap</button>-->
+                <div class="col-md-6">
+                    <label asp-for="Password" class="form-label">Şifre</label>
+                    <input asp-for="Password" class="form-control" required maxlength="50" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
 
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <button type="submit" class="btn btn-outline-primary">Giriş Yap</button>
+                    <button type="submit" href="@Url.Action("Login", "AdminPanel")" class="btn btn-outline-primary">Giriş Yap</button>
                 </div>
+
+                @* <script>
+                    function openAdminPanel() {
+                        window.location.href = '/Home/AdminPanel';
+                    }
+                </script> *@
             </form>
 
-
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="text-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                </div>
+            }
         </div>
     </div> <!--row-->
-
-
 </div> <!--container-middle-->
 
 <script>
     // Form elemanlarını seç
     const yonetimPaneli = document.getElementById('yonetimPaneli');
-    const emailInput = document.getElementById('formEmail');
-    const passwordInput = document.getElementById('inputPassword');
+    const emailInput = document.querySelector('input[name="MailAddres"]');
+    const passwordInput = document.querySelector('input[name="Password"]');
 
     // Form submit olduğunda çalışacak fonksiyon
     yonetimPaneli.addEventListener('submit', function (event) {
-        // Formun varsayılan davranışını engelle
-        event.preventDefault();
-
         // Form verilerini al
         const userData = {
             formEmail: emailInput.value,
@@ -60,12 +69,6 @@
 
         // Verileri localStorage'a kaydet
         localStorage.setItem('userData', JSON.stringify(userData));
-
-        // Kullanıcıyı bilgilendir
-        alert('Form verileri kaydedildi.');
-
-        // AdminPanel.cshtml sayfasına yönlendirme
-        window.location.href = "/Home/AdminPanel";
     });
 
     // Sayfa yüklendiğinde form verilerini kontrol et ve doldur
@@ -77,5 +80,4 @@
             passwordInput.value = userData.inputPassword;
         }
     });
-
 </script>

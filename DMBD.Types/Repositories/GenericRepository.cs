@@ -9,62 +9,76 @@ using System.Threading.Tasks;
 
 namespace DMBD.Types.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
-    {
-        protected readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
+	public class GenericRepository<T> : IGenericRepository<T> where T : class
+	{
+		protected readonly AppDbContext _context;
+		private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(AppDbContext context)
-        {
-            _context = context;
-            _dbSet = context.Set<T>();
-        }
+		public GenericRepository(AppDbContext context)
+		{
+			_context = context;
+			_dbSet = context.Set<T>();
+		}
 
-        public async Task AddAsync(T entity)
-        {
-            await _dbSet.AddAsync(entity);
-        }
+		public async Task AddAsync(T entity)
+		{
+			await _dbSet.AddAsync(entity);
+		}
 
-        public async Task AddRangeAsync(IEnumerable<T> entities)
-        {
-            await _dbSet.AddRangeAsync(entities);
-        }
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
-        {
-            return await _dbSet.AnyAsync(expression);
-        }
-        /// <summary>
-        /// AsNoTracking ef core cektigi datalari memory'e almayip ve daha optimize calismasini saglar.
-        /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        public IQueryable<T> GetAll()
-        {
-            return _dbSet.AsNoTracking().AsQueryable();
-        }
+		public async Task AddRangeAsync(IEnumerable<T> entities)
+		{
+			await _dbSet.AddRangeAsync(entities);
+		}
+		public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+		{
+			return await _dbSet.AnyAsync(expression);
+		}
 
-        public async Task<T> GetByIdAsync(int id)
-        {
-            return await _dbSet.FindAsync(id);
-        }
+		//public Task AuthenticateAsync(T entity,)
+		//{
+		//	// Şifreyi hashleyip karşılaştırmak daha güvenli bir yaklaşım olur
+		//	var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == username && x.Password == password);
 
-        public void Remove(T entity)
-        {
-            _dbSet.Remove(entity);
-        }
-        public void RemoveRange(IEnumerable<T> entities)
-        {
-            _dbSet.RemoveRange(entities);
-        }
+		//	if (user == null)
+		//	{
+		//		return null;
+		//	}
 
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-        }
+		//	return user;
+		//}
 
-        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
-        {
-            return _dbSet.Where(expression);
-        }
-    }
+		/// <summary>
+		/// AsNoTracking ef core cektigi datalari memory'e almayip ve daha optimize calismasini saglar.
+		/// </summary>
+		/// <param name="expression"></param>
+		/// <returns></returns>
+		public IQueryable<T> GetAll()
+		{
+			return _dbSet.AsNoTracking().AsQueryable();
+		}
+
+		public async Task<T> GetByIdAsync(int id)
+		{
+			return await _dbSet.FindAsync(id);
+		}
+
+		public void Remove(T entity)
+		{
+			_dbSet.Remove(entity);
+		}
+		public void RemoveRange(IEnumerable<T> entities)
+		{
+			_dbSet.RemoveRange(entities);
+		}
+
+		public void Update(T entity)
+		{
+			_dbSet.Update(entity);
+		}
+
+		public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+		{
+			return _dbSet.Where(expression);
+		}
+	}
 }
