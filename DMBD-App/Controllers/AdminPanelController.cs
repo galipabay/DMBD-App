@@ -23,9 +23,21 @@ namespace DMBD_App.Controllers
 			_context = context;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> AddAdmin()
 		{
 			return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Save(AdminUser adminUser)
+		{
+
+			if (ModelState.IsValid)
+			{
+				await _services.AddAsync(_mapper.Map<AdminUser>(adminUser));
+				return Redirect(nameof(Index));
+			}
+			return Redirect(nameof(Index));
 		}
 
 		[HttpPost]

@@ -3,6 +3,7 @@
 }
 
 @model DMBD.Kernel.Model.AdminUser
+
 @section HeaderContent {
     <p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
@@ -26,11 +27,16 @@
             </thead>
 <tbody>
     <tr>
-        <form asp-action="List" method="post" asp-controller="AdminUser">
-        <td><input asp-for="Name" class="form-control" readonly disabled /></td>
-        <td><input asp-for="Surname" class="form-control" readonly disabled /></td>
-        <td><input asp-for="MailAddres" class="form-control" readonly disabled /></td>
-        </form>
+        <td></td>
+        <td></td>
+        <td></td>
+        <!--butona silme işlevi atanacak-->
+        <td><button type="submit" onclick="deletee()" class="btn btn-primary">Sil</button></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
         <!--butona silme işlevi atanacak-->
         <td><button type="submit" onclick="deletee()" class="btn btn-primary">Sil</button></td>
     </tr>
