@@ -1,4 +1,12 @@
-﻿<!--İÇERİK BAŞLANGICI-->
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderContent {
+    <p style="font-size: large;">Yönetim Paneli Ekranı</p>
+}
+
+<!--İÇERİK BAŞLANGICI-->
 <h3 class="text-mainpanel" id="welcomeMessage">Yönetici Ekle</h3>
 <div class="container-addAdmin">
     <form id="adminForm" onsubmit="return validateForm()">

@@ -1,4 +1,12 @@
-﻿<!--A4 sayfa düzeni-->
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderContent {
+    <p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
+}
+
+<!--A4 sayfa düzeni-->
 <div class="container-a4 container-sm">
 
     @*<div class="box" style="background-color: #ffffff; ">*@
@@ -6,18 +14,19 @@
 
         <!--Ana Başlık ve Logo Kısmı Başlangıç-->
 
-        <div class="container text-center">
+        <div class="container-pdfHeader text-center">
             <div class="row">
                 <div class="col-2">
                     <img src="~/assets/images/logo2.jpg" alt="ETÜ Logo" style="width: 7rem" class="rounded-pill" />
                 </div>
-                <div class="col">
+                <div class="col align-self-center">
                     <strong>
                         ERZURUM TEKNİK ÜNİVERSİTESİ
                         <div class="col">
                             MÜHENDİSLİK VE MİMARLIK FAKÜLTESİ
                         </div>
-                </div></strong>
+                    </strong>
+                </div>
             </div>
         </div> <!--container text-center-->
 
@@ -154,12 +163,22 @@
     var preFaculty = urlParams.get('preFaculty');
     var department = urlParams.get('department');
 
+    // Mevcut tarihi almak
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // Aylar 0-11 arası olduğu için 1 ekliyoruz
+    var year = today.getFullYear();
+    var formattedDate = day + '/' + month + '/' + year;
+
     // Sonuç metnini oluştur
-    var resultText = "Erzurum Teknik Üniversitesi Lisans Eğitim-Öğretim ve Sınav Yönetmeliği ve Lisans Muafiyet ve İntibak Yönergesi kapsamında daha önce " + preSchool + " " + preFaculty + " Fakültesi/Meslek Yüksek Okulu " + department + " Bölümünde/Programında alarak başarılı olduğum aşağıda belirtmiş olduğum dersten/derslerden muaf olmak istiyorum.";
-    var resultDepartment = + department + " BÖLÜMÜ BAŞKANLIĞINA";
+    var resultText = `Erzurum Teknik Üniversitesi Lisans Eğitim-Öğretim ve Sınav Yönetmeliği ve Lisans Muafiyet ve İntibak Yönergesi kapsamında daha önce ${preSchool} ${preFaculty} Fakültesi/Meslek Yüksek Okulu ${department} Bölümünde/Programında alarak başarılı olduğum aşağıda belirtmiş olduğum dersten/derslerden muaf olmak istiyorum.
+
+    Bilgilerinizi ve gereğini arz ederim. (${formattedDate})`;
+    var resultDepartment = `${department} BÖLÜMÜ BAŞKANLIĞINA`;
 
     // Sonuç metnini ekrana yazdır
     document.getElementById('result').innerText = resultText;
     document.getElementById('resultDep').innerText = resultDepartment;
+    document.getElementById('tarih').innerText = formattedDate;
 
 </script>

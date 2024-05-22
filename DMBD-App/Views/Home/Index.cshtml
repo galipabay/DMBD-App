@@ -5,6 +5,13 @@
 			@using DMBD.Kernel.DTOs;
 			@model DMBD.Kernel.DTOs.StudentDto
 
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderContent {
+	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
+}
 
 			<!--sayfa düzeni için container-->
 <div class="container-fluid d-flex justify-content-center align-items-center">
@@ -14,8 +21,8 @@
 						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 							<!--sol kutu-->
 							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
-							<div class="container">
-							<h5>Öğrenci Bilgileri <span class="subtext">- Önce doldurulması gereken alan</span></h5>
+							<div class="container-student">
+							<h5>Öğrenci Bilgileri</h5>
 								<br><br>
 								<!--FORM BAŞLANGICI -->
 								<!--<form action="action1.php">-->
@@ -55,7 +62,7 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="MailAddress" class="form-label">E-Posta Adresi</label>
-							<input asp-for="MailAddress" class="form-control" required"/>
+							<input asp-for="MailAddress" class="form-control" required/>
 							<span asp-validation-for="MailAddress" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -81,12 +88,12 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreFacultyName" class="form-label">Eski Fakülte Adı</label>
-							<input asp-for="PreFacultyName" class="form-control" required placeholder="Mühendislik" />
+							<input asp-for="PreFacultyName" class="form-control" required  />
 							<span asp-validation-for="PreFacultyName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreDepartmentName" class="form-label">Eski Departman Adı</label>
-							<input asp-for="PreDepartmentName" class="form-control" required placeholder="Bilgisayar"/>
+							<input asp-for="PreDepartmentName" class="form-control" required />
 							<span asp-validation-for="PreDepartmentName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -115,29 +122,33 @@
 						<div class="col-md-6">
 							<label asp-for="Id" class="form-label" >Id</label>
 							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
+							<br>
 						</div>
 						
 						<!--EKLER BAŞLANGIÇ-->
-
+						
 						<div class="container">
 							<h5>Ekler</h5>
+							
 							<div class="container row g-2">
 								<div class="col-sm">
+									<br />
 									<label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
 									<br>
 									<input type="file" accept=".pdf" required>
 								</div>
 								<div class="col-sm">
+									<br />
 									<label for="">*Ders İçerikleri (Onaylı PDF)</label>
 									<br>
 									<input type="file" accept=".pdf" required>
 								</div>
 								<br><br>
 							</div>
-							<br>
+
 						</div>
 						<!--EKLER BİTİŞ-->
-						<div class="col-12">
+						<div class="col-12  text-end" >
 							<button type="submit" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>
 
@@ -176,28 +187,10 @@
 								window.location.href = "Index.cshtml";
 							});
 
-							//OTOMATİK DOLDURMA
-		// JavaScript ile varsayılan değerlerin ayarlanması
-		document.addEventListener("DOMContentLoaded", function () {
-			// Örneğin Name ve Surname alanları için varsayılan değerler
-			document.getElementById("Name").value = "Örnek İsim";
-			document.getElementById("Surname").value = "Örnek Soyisim";
-			document.getElementById("TcNo").value = "12345678912";
-			document.getElementById("MailAddress").value = "kdskdk@gdömfö.com";
-			document.getElementById("PhoneNumber").value = "1111222121";
-			document.getElementById("PreSchoolName").value = "ETÜ";
-			document.getElementById("Surname").value = "Örnek Soyisim";
-			document.getElementById("Surname").value = "Örnek Soyisim";
-
-			// Diğer alanlar için aynı şekilde ayarlamalar yapılabilir
-		});
-
-		// Form gönderildiğinde alanların doldurulmuş gibi görünmesi
-		document.querySelector("form").addEventListener("submit", function () {
-			// Form submit edildiğinde, input alanları zaten doldurulmuş gibi görünecek
-			// Ancak bu, sunucudan geri dönen verilere bağlı olarak değişebilir
-		});
+		
 				</script>
+
+				
 
 				<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->
