@@ -35,7 +35,7 @@ namespace DMBD_App.Controllers
             //        SubjectAkts = s.Akts
             //    }).ToList();
             return RedirectToAction("Index", "Subject");
-            return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
+            //return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
 		}
 
 		public async Task<IActionResult> Save()

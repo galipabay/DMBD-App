@@ -1,4 +1,8 @@
-﻿﻿@using DMBD.Kernel.DTOs
+﻿@{
+	ViewData["Title"] = "Subject";
+}
+
+﻿@using DMBD.Kernel.DTOs
 @model DMBD.Kernel.DTOs.SubjectDto
 
 @{
@@ -19,12 +23,16 @@
 					<h5>Ders Bilgileri</h5>
 					<form asp-action="Save" method="post" asp-controller="Subject" class="row g-1">
 						<div class="col-md-6">
-							<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
-							<span asp-validation-for="SubjectName" class="text-danger"></span>
-							<br>
-							<select asp-for="SubjectName" placeholder="Seçiniz" class="form-control" id="SubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
-								<option selected value="">Seçiniz</option>
-							</select>
+						<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
+						<span asp-validation-for="SubjectName" class="text-danger"></span>
+						<br>
+						<select asp-for="SubjectName" class="form-control" id="SubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
+							<option selected value="">Seçiniz</option>
+							@foreach (var course in ViewBag.Subjects)
+							{
+								<option value="@course.courseId">@course.coursename (@course.coursecode) - @course.credit AKTS: @course.akts</option>
+							}
+						</select>
 							</div>
 
 						<div class="col-md-6">
