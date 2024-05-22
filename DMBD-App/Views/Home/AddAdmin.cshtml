@@ -11,46 +11,59 @@
 <!--İÇERİK BAŞLANGICI-->
 <h3 class="text-mainpanel" id="welcomeMessage">Yönetici Ekle</h3>
 <div class="container-addAdmin">
-	<form asp-action="Save" method="post" asp-controller="AdminUser" class="row g-3">
+	<form asp-action="Save" method="post" asp-controller="AdminPanel" class="row g-3">
 		<div class="col-md-6">
 			<label asp-for="Name" class="form-label">Adı</label>
-			<input asp-for="Name" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
+			<input asp-for="Name" class="form-control" required maxlength="50"/>
 			<span asp-validation-for="Name" class="text-danger"></span>
 		</div>
 
 		<div class="col-md-6">
 			<label asp-for="Surname" class="form-label">Soyadı</label>
-			<input asp-for="Surname" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
+			<input asp-for="Surname" class="form-control" required maxlength="50"/>
 			<span asp-validation-for="Surname" class="text-danger"></span>
 		</div>
 
 		<div class="col-md-6">
 			<label asp-for="MailAddres" class="form-label">E-Mail</label>
-			<input asp-for="MailAddres" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
+			<input asp-for="MailAddres" class="form-control" required/>
 			<span asp-validation-for="MailAddres" class="text-danger"></span>
 		</div>
 
 		<div class="col-md-6">
-			<label asp-for="Password" class="form-label">Soyadı</label>
-			<input asp-for="Password" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
-			<span asp-validation-for="Surname" class="text-danger"></span>
+			<label asp-for="Password" class="form-label">Sifre</label>
+			<input asp-for="Password" type="password" class="form-control" required maxlength="16"/>
+			<span asp-validation-for="Password" class="text-danger"></span>
 		</div>
-
+		 
 		<div class="col-md-6">
-			<label asp-for="Password" class="form-label">Soyadı</label>
-			<input asp-for="Password" class="form-control" required maxlength="50" pattern="[A-Za-zğüşöçİĞÜŞÖÇ]+" />
-			<span asp-validation-for="Surname" class="text-danger"></span>
+			<label for="confirmPassword" class="form-label">Şifre Tekrar</label>
+			<input type="password" id="confirmPassword" class="form-control" required/>
+		</div>
+
+		<div class="btn-group" role="group" aria-label="Basic outlined example">
+			<button type="submit" href="@Url.Action("Save", "AdminPanel")" class="btn btn-outline-primary">Kaydet</button>
 		</div>
 	</form>
-	<form id="adminForm" onsubmit="return validateForm()">
-
+	@* <form id="adminForm" onsubmit="return validateForm()">
 		<button type="submit" class="btn btn-primary">Kaydet</button>
-	</form>
+	</form> *@
 </div>
 <!--container-addAdmin-->
 
+href="@Url.Action("Save", "AdminPanel")"
+
 <script>
 	function validateForm() {
+
+		var password = document.getElementById("password").value;
+		var confirmPassword = document.getElementById("confirmPassword").value;
+
+		if (password !== confirmPassword) {
+			alert("Şifreler uyuşmuyor!");
+			return false; // Formun gönderilmesini engelle
+		}
+
 		var password = document.getElementById("password").value;
 		var confirmPassword = document.getElementById("confirmPassword").value;
 
