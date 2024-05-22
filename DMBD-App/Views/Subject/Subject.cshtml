@@ -55,26 +55,22 @@
 						<br>
 						<select asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
 							<option selected value="">Seçiniz</option>
-							<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
-							<option value="ders2">Ders2 Örneği</option>
-							<option value="ders3">Ders3 Örneği</option>
-							<option value="ders4">Ders4 Örneği</option>
+							@foreach (var subject in ViewBag.Subjects)
+							{
+								<option value="@subject.SubjectName" data-credit="@subject.Credit" data-akts="@subject.Akts">@subject.SubjectName</option>
+							}
 						</select>
 					</div>
-
 
 					<div class="col-md-6">
 						<label asp-for="ExemptSubjectCredit" class="form-label">Kredi</label>
 						<input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" disabled readonly />
 						<span asp-validation-for="ExemptSubjectCredit" class="text-danger"></span>
-
 						<br />
-
 						<label asp-for="ExemptSubjectAkts" class="form-label">AKTS</label>
 						<input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" disabled readonly />
 						<span asp-validation-for="ExemptSubjectAkts" class="text-danger"></span>
 					</div>
-
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
@@ -143,8 +139,29 @@
 		function pdf() {
 			window.location.href = "/Home/PdfScreen";
 		}
-	</script>
+	</script> 
 
 
 </div>
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+<script>
+	document.getElementById('SubjectName').addEventListener('change', function () {
+		var selectedOption = this.options[this.selectedIndex];
+		var credit = selectedOption.getAttribute('data-credit');
+		var akts = selectedOption.getAttribute('data-akts');
+
+		document.getElementById('SubjectCredit').value = credit;
+		document.getElementById('SubjectAkts').value = akts;
+	});
+</script>
+
+<script>
+	document.getElementById('ExemptSubjectName').addEventListener('change', function () {
+		var selectedOption = this.options[this.selectedIndex];
+		var credit = selectedOption.getAttribute('data-credit');
+		var akts = selectedOption.getAttribute('data-akts');
+
+		document.getElementById('ExemptSubjectCredit').value = credit;
+		document.getElementById('ExemptSubjectAkts').value = akts;
+	});
+</script>
