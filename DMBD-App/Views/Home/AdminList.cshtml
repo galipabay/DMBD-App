@@ -1,45 +1,35 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model DMBD.Kernel.Model.AdminUser
+
+@{
+    ViewData["Title"] = "AdminUser";
 }
 
-@model DMBD.Kernel.Model.AdminUser
-
-@section HeaderContent {
-    <p style="font-size: large;">Yönetim Paneli Ekranı</p>
-}
-
-<!--İÇERİK BAŞLANGICI-->
 <div class="container-list">
     <h3 class="text-mainpanel">Yönetici Listele</h3>
     <table class="table-list text-center">
         <thead>
             <tr>
-                <div class="row ">
                 <th scope="col-sm-3">Ad</th>
-
                 <th scope="col-sm-3">Soyad</th>
-
                 <th scope="col-sm-3">E-mail</th>
-
                 <th scope="col-sm-3">Araç</th>
-</div><!--row-->
-              </tr>
-            </thead>
-<tbody>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <!--butona silme işlevi atanacak-->
-        <td><button type="submit" onclick="deletee()" class="btn btn-primary">Sil</button></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <!--butona silme işlevi atanacak-->
-        <td><button type="submit" onclick="deletee()" class="btn btn-primary">Sil</button></td>
-    </tr>
-</tbody>
-          </table>
-    </div><!--container-list-->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in ViewBag.AdminUsers)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Surname</td>
+                    <td>@user.MailAddres</td>
+                    <td>
+                        <form asp-action="Delete" asp-controller="AdminPanel" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

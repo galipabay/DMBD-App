@@ -1,6 +1,13 @@
 ﻿@{
+    ViewData["Title"] = "Student";
+}
+
+
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model List<DMBD.Kernel.DTOs.StudentDto>
 
 @section HeaderContent {
     <p style="font-size: large;">Yönetim Paneli Ekranı</p>
@@ -13,99 +20,100 @@
     <div class="container-split">
         <div class="row">
             <form asp-action="List" method="post" asp-controller="Student">
-            <div class="col-sm-7">
-                <div class="detail"></div>
-                <table class="table-student">
-                    <thead>
-                        <tr>
-                            <th scope="col">Adı</th>
-                            <th scope="col">Soyadı</th>
-                            <th scope="col">E-Mail</th>
-                            <th scope="col">Telefon</th>
-                            <th scope="col">Araçlar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input asp-for="Name" class="form-control" readonly disabled /></td>
-                            <td><input asp-for="Surname" class="form-control" readonly disabled /></td>
-                            <td><input asp-for="MailAddress" class="form-control" readonly disabled /></td>
-                            <td><input asp-for="PhoneNumber" class="form-control" readonly disabled /></td>
-                            <td>
-                                <button type="submit" onclick="detail()" class="btn btn-primary">
-                                    Detay
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!--col-->
-            <div class="col-sm-5">
-                <div class="detail">
-                    <h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
+                <div class="col-sm-7">
+                    <div class="detail"></div>
                     <table class="table-student">
-                        
-                        <tr>
-                            <th scope="col">Adı</th>
-                                <td><input asp-for="Name" class="form-control" readonly disabled /></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Soyadı</th>
-                                <td><input asp-for="Surname" class="form-control" readonly disabled /></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">E-Mail</th>
-                                <td><input asp-for="MailAddress" class="form-control" readonly disabled /></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Kayıtlanma Şekli</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Önceden Okuduğu Üniversite</th>
-                                <td><input asp-for="PreSchoolName" class="form-control" readonly disabled/></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Fakülte</th>
-                                <td><input asp-for="PreFacultyName" class="form-control" readonly disabled /></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Bölüm</th>
-                                <td><input asp-for="PreDepartmentName" class="form-control" readonly disabled /></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Not Döküm Belgesi</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Ders İçerikleri</th>
-                            <td></td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th scope="col">Sıra</th>
+                                <th scope="col">Adı</th>
+                                <th scope="col">Soyadı</th>
+                                <th scope="col">E-Mail</th>
+                                <th scope="col">Telefon</th>
+                                <th scope="col">Araçlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td><input asp-for="@Model[i].Name" class="form-control" readonly disabled /></td>
+                                    <td><input asp-for="@Model[i].Surname" class="form-control" readonly disabled /></td>
+                                    <td><input asp-for="@Model[i].MailAddress" class="form-control" readonly disabled /></td>
+                                    <td><input asp-for="@Model[i].PhoneNumber" class="form-control" readonly disabled /></td>
+                                    <td>
+                                        <button type="submit" onclick="detail()" class="btn btn-primary">
+                                            Detay
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
-                    <br>
-                    <h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
-                    <table class="table-student">
-                        <tr>
-                            <th scope="col">Ders Adı</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Kredi</th>
-                             @*<td><input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" disabled readonly /></td>*@
-                        </tr>
-
-                        <tr>
-                            <th scope="col">AKTS</th>
-                                @*<td><input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" disabled readonly /></td>*@
-                        </tr>
-
-                        <tr></tr>
-                    </table>                
                 </div>
-                <!--detail-->
-            </div>
-            <!--col-->
+                <!--col-->
+                <div class="col-sm-5">
+                    <div class="detail">
+                        <h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
+                        <table class="table-student">
+                            <tr>
+                                <th scope="col">Adı</th>
+                                <td><input asp-for="@Model.First().Name" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Soyadı</th>
+                                <td><input asp-for="@Model.First().Surname" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">E-Mail</th>
+                                <td><input asp-for="@Model.First().MailAddress" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Kayıtlanma Şekli</th>
+                                @*<td><input asp-for="@Model.First().RegistrationType" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                            <tr>
+                                <th scope="col">Önceden Okuduğu Üniversite</th>
+                                <td><input asp-for="@Model.First().PreSchoolName" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Fakülte</th>
+                                <td><input asp-for="@Model.First().PreFacultyName" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Bölüm</th>
+                                <td><input asp-for="@Model.First().PreDepartmentName" class="form-control" readonly disabled /></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Not Döküm Belgesi</th>
+                                @*<td><input asp-for="@Model.First().Transcript" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                            <tr>
+                                <th scope="col">Ders İçerikleri</th>
+                                @*<td><input asp-for="@Model.First().CourseContents" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                        </table>
+                        <br>
+                        <h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
+                        <table class="table-student">
+                            <tr>
+                                <th scope="col">Ders Adı</th>
+                                @*<td><input asp-for="@Model.First().ExemptSubjectName" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                            <tr>
+                                <th scope="col">Kredi</th>
+                                @*<td><input asp-for="@Model.First().ExemptSubjectCredit" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                            <tr>
+                                <th scope="col">AKTS</th>
+                                @*<td><input asp-for="@Model.First().ExemptSubjectAkts" class="form-control" readonly disabled /></td>*@
+                            </tr>
+                        </table>
+                    </div>
+                    <!--detail-->
+                </div>
+                <!--col-->
             </form>
         </div>
         <!--row-->

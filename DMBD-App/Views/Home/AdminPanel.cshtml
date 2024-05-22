@@ -1,99 +1,99 @@
 ﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model DMBD.Kernel.Model.AdminUser
 
 @section HeaderContent {
-    <p style="font-size: large;">Yönetim Paneli Ekranı</p>
+	<p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
 
 
-    <!--İÇERİK BAŞLANGICI-->
-    <div class="container-aside">
-        <div class="row">
-            <div class="col-sm-3 " >
-            @*<div class="aside-box">*@
-                    <div class="container-margin text-center">
-                        <h4 class="text-admin-h5">Yönetici Paneli İşlemleri</h4>
-                        <br>
-                        <a class="nav-link" onclick="startPage" href="@Url.Action("AdminPanel", "Home")">Başlangıç</a>
-                        <hr>
-                        <br>
-                        <h5>Yönetici İşlemleri</h5>
-                        <nav class="nav flex-column">
-                            <a class="nav-link active" onclick="loadAddAdminPage()" href="#">Yönetici Ekle</a>
-                            <a class="nav-link" onclick="listAddAdminPage()" href="#">Yönetici Listele</a>
-                            <br>
-                            <h5>Öğrenci İşlemleri</h5>
-                            <a class="nav-link" onclick="studentApplicationPage()" href="#">Başvurular</a>
-                        </nav>
-                    </div><!--container-margin-->
-            @*</div><!--aside-box-->*@
-            </div><!--col-sm-4 aside-->
-            <!--İçerik Başlangıç-->
-            <div class="col-sm-9">
-                <div class="box-main">
-                    <div class="container-mainpanel">
-                        <h3 class="text-mainpanel" id="welcomeMessage">Yönetici Paneline Hoş Geldiniz</h3>
-                        <div id="addAdminContainer"></div>
-                    </div><!--container-mainpanel-->
-                </div>
-            </div><!--col-sm-8 alan-->
-            <!--İçerik Bitiş-->
-        </div><!--row-->
+<!--İÇERİK BAŞLANGICI-->
+<div class="container-aside">
+	<div class="row">
+		<div class="col-sm-3 ">
+			@<div class="aside-box">@
+			<div class="container-margin text-center">
+				<h4 class="text-admin-h5">Yönetici Paneli İşlemleri</h4>
+				<br>
+				<a class="nav-link" onclick="startPage" href="#">Başlangıç</a>
+				<hr>
+				<br>
+				<h5>Yönetici İşlemleri</h5>
+				<nav class="nav flex-column">
+					<a class="nav-link active" onclick="loadAddAdminPage()" href="#">Yönetici Ekle</a>
+					<a class="nav-link" onclick="listAdminPage()" href="#">Yönetici Listele</a>
+					<br>
+					<h5>Öğrenci İşlemleri</h5>
+					<a class="nav-link" onclick="studentApplicationPage()" href="#">Başvurular</a>
+				</nav>
+			</div><!--container-margin-->
+			@</div><!--aside-box-->@
+		</div><!--col-sm-4 aside-->
+		<!--İçerik Başlangıç-->
+		<div class="col-sm-9">
+			<div class="box-main">
+				<div class="container-mainpanel">
+					<h3 class="text-mainpanel" id="welcomeMessage">Yönetici Paneline Hoş Geldiniz</h3>
+					<div id="addAdminContainer"></div>
+				</div><!--container-mainpanel-->
+			</div>
+		</div><!--col-sm-8 alan-->
+		<!--İçerik Bitiş-->
+	</div><!--row-->
 
-    </div> <!--container-aside-->
-    <!--İÇERİK BİTİŞİ-->
-
-
-
-    <script>
-        function startPage() {
-        window.location.href = "/Home/AdminPanel";
-        }
-        function loadAddAdminPage() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("addAdminContainer").innerHTML = this.responseText;
-                    hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
-                }
-            };
-            xhttp.open("GET", "/Home/AddAdmin", true);
-            xhttp.send();
-            }
-
-        function listAddAdminPage() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("addAdminContainer").innerHTML = this.responseText;
-                    hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
-                }
-            };
-        xhttp.open("GET", "/Home/AdminList", true);
-            xhttp.send();
-        }
-
-        function studentApplicationPage() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("addAdminContainer").innerHTML = this.responseText;
-                    hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
-                }
-            };
-        xhttp.open("GET", "/Home/StudentApplication", true);
-            xhttp.send();
-        }
+</div> <!--container-aside-->
+<!--İÇERİK BİTİŞİ-->
 
 
-        //karşılama yazısını gizleme
-        function hideWelcomeMessage() {
-            var welcomeMessage = document.getElementById("welcomeMessage");
-            welcomeMessage.style.display = "none";
-        }
+
+<script>
+	function startPage() {
+		window.location.href = "/Home/AdminPanel";
+	}
+	function loadAddAdminPage() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("addAdminContainer").innerHTML = this.responseText;
+				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+			}
+		};
+		xhttp.open("GET", "/Home/AddAdmin", true);
+		xhttp.send();
+	}
+
+	function listAdminPage() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("addAdminContainer").innerHTML = this.responseText;
+				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+			}
+		};
+		xhttp.open("GET", "/AdminPanel/AdminList", true); // Yönlendirme AdminPanelController'a yapıldı
+		xhttp.send();
+	}
+
+	function studentApplicationPage() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("addAdminContainer").innerHTML = this.responseText;
+				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+			}
+		};
+		xhttp.open("GET", "/Home/StudentApplication", true);
+		xhttp.send();
+	}
 
 
-    </script>
+	//karşılama yazısını gizleme
+	function hideWelcomeMessage() {
+		var welcomeMessage = document.getElementById("welcomeMessage");
+		welcomeMessage.style.display = "none";
+	}
+
+
+</script>
