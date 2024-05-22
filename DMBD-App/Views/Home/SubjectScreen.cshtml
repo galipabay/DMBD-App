@@ -1,0 +1,123 @@
+﻿﻿@using DMBD.Kernel.DTOs
+@model DMBD.Kernel.DTOs.SubjectDto
+
+
+<!--SAĞ BLOK BAŞLANGIÇ-->
+<!--sayfa düzeni için container-->
+<div class="container-fluid d-flex justify-content-center align-items-center">
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8">
+			<div class="box-subject" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+				<div class="container">
+					<h5>Ders Bilgileri</h5>
+					<form asp-action="Save" method="post" asp-controller="Subject" class="row g-3">
+						<div class="col-md-6">
+							<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
+							<span asp-validation-for="SubjectName" class="text-danger"></span>
+							<br>
+							<select asp-for="SubjectName" placeholder="Seçiniz" class="form-control" id="SubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
+								<option disabled selected value="">Seçiniz</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="SubjectCredit" class="form-label">Kredisi</label>
+							<input asp-for="SubjectCredit" class="form-control" id="SubjectCredit" readonly />
+							<span asp-validation-for="SubjectCredit" class="text-danger"></span>
+						</div>
+						<div class="col-md-6">
+							<label asp-for="SubjectAkts" class="form-label">AKTS Bilgisi</label>
+							<input asp-for="SubjectAkts" class="form-control" id="SubjectAkts" readonly />
+							<span asp-validation-for="SubjectAkts" class="text-danger"></span>
+						</div>
+						@if (TempData["SuccessMessage"] != null)
+						{
+							<div class="alert alert-success" role="alert">
+								@TempData["SuccessMessage"]
+							</div>
+						}
+
+						<div class="col-md-6">
+							<label asp-for="ExemptSubjectName" class="form-label">Muaf Olunması İstenen Ders Adı</label>
+							<br>
+							<select asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
+								<option disabled selected value="">Seçiniz</option>
+								<option value="ders1">Ders1 Örneği fsdmfnösdmnfmösdnfömsdnfödsnfmsdnfmndfmdmöfndsöfnömdsnff</option>
+								<option value="ders2">Ders2 Örneği</option>
+								<option value="ders3">Ders3 Örneği</option>
+								<option value="ders4">Ders4 Örneği</option>
+							</select>
+						</div>
+
+						<div class="col-md-6">
+							<label asp-for="ExemptSubjectCredit" class="form-label">Kredi</label>
+							<input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" readonly />
+							<span asp-validation-for="ExemptSubjectCredit" class="text-danger"></span>
+						</div>
+
+						<div class="col-md-6">
+							<label asp-for="ExemptSubjectAkts" class="form-label">AKTS</label>
+							<input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" readonly />
+							<span asp-validation-for="ExemptSubjectAkts" class="text-danger"></span>
+						</div>
+
+
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
+						</div>
+
+					</form>
+
+				</div><!--container-->
+			</div><!--box-->
+		</div><!--col-12 col-md-8-->
+	</div><!--row justify-content-center-->
+</div><!--container-fluid d-flex justify-content-center align-items-center-->
+<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
+<div class="container">
+	<h5>Kaydedilen Ders Bilgileri</h5>
+	<div class="container" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
+
+		<div class="specific-container">
+
+			<table class="table table-light" id="registeredCourse">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Ders Kodu</th>
+						<th scope="col">Muaf Olunmak İstenen Ders</th>
+						<th scope="col">Kredi</th>
+						<th scope="col">AKTS</th>
+					</tr>
+				</thead>
+				<tbody>
+					@*@foreach (var course in SubjectDto)
+					{
+					<tr>
+					<th scope="row">@course.CourseId</th>
+					<td>@course.CourseCode</td>
+					<td>@course.CourseName</td>
+					<td>@course.Credit</td>
+					<td>@course.AKTS</td>
+					</tr>
+					}*@
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+	</div>
+
+</div>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<button class="btn btn-primary me-md-2" onclick="ac()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
+
+	<script>
+		function ac() {
+			window.location.href = "/Home/PdfScreen";
+		}
+	</script>
+
+
+</div>
+<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->

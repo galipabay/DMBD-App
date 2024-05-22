@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DMBD.Kernel.Model
+namespace DMBD.Kernel.DTOs
 {
-	public class SubjectRepo : BaseEntity
+	public class SubjectRepoDto : BaseDto
 	{
 		private int id;
 
@@ -47,6 +47,5 @@ namespace DMBD.Kernel.Model
 			get { return credit; }
 			set { credit = value; }
 		}
-
 	}
 }

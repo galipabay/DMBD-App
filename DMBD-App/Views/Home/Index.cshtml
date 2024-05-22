@@ -1,24 +1,24 @@
-﻿	@{
-				ViewData["Title"] = "ETÜ";
-			}
-			
+﻿@{
+	ViewData["Title"] = "ETÜ";
+}
+
 			@using DMBD.Kernel.DTOs;
 			@model DMBD.Kernel.DTOs.StudentDto
 
 
-			<!--sayfa düzeni için container-->
+<!--sayfa düzeni için container-->
 <div class="container-fluid d-flex justify-content-center align-items-center">
 	<div class="row justify-content-center">
-					<!--SOL BLOK BAŞLANGIÇ-->
+		<!--SOL BLOK BAŞLANGIÇ-->
 		<div class="col-12 col-md-8">
-						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-							<!--sol kutu-->
-							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
-							<div class="container">
-							<h5>Öğrenci Bilgileri <span class="subtext">- Önce doldurulması gereken alan</span></h5>
-								<br><br>
-								<!--FORM BAŞLANGICI -->
-								<!--<form action="action1.php">-->
+			<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+				<!--sol kutu-->
+				<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
+				<div class="container">
+					<h5>Öğrenci Bilgileri <span class="subtext">- Önce doldurulması gereken alan</span></h5>
+					<br><br>
+					<!--FORM BAŞLANGICI -->
+					<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
 							@*<div class="form-group col-md-6">*@
@@ -97,7 +97,7 @@
 								<option value="1">Makine Mühendisliği</option>
 								<option value="2">Bilgisayar Mühendisliği</option>
 							</select>
-							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1"/>
+							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1" />
 							<input type="hidden" asp-for="DepartmentName" id="DepartmentNameInput" value="Makine Mühendisliği" />
 							<span asp-validation-for="DepartmentId" class="text-danger"></span>
 						</div>
@@ -115,10 +115,10 @@
 						</script>
 
 						<div class="col-md-6">
-							<label asp-for="Id" class="form-label" >Id</label>
+							<label asp-for="Id" class="form-label">Id</label>
 							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
 						</div>
-						
+
 						<!--EKLER BAŞLANGIÇ-->
 
 						<div class="container">
@@ -150,34 +150,34 @@
 							</div>
 						}
 					</form>
-								<!--FORM BİTİŞİ-->
-							</div>
-
-							<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
-							
-							
-						</div>
-					</div>
+					<!--FORM BİTİŞİ-->
 				</div>
 
-				<!--SOL BLOK BİTİŞ-->
-				<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+				<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
 
 
-				<script>
-					document.getElementById('userInfoForm').addEventListener('submit', function (event) {
-						event.preventDefault(); // Formun submit işlemini durdur
+			</div>
+		</div>
+	</div>
 
-								//kullanıcı bilgilerini al
-					
-								var preschool = document.getelementbyıd('preschool').value;
-								var prefaculty = document.getelementbyıd('prefac').value;
-								var department = document.getelementbyıd('departmentname').value;
-					
-								//kullanıcı bilgilerini ikinci sayfaya gönder
-								window.location.href = "Index.cshtml";
-							});
-				</script>
+	<!--SOL BLOK BİTİŞ-->
+	<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
 
-				<!--FORM BİTİŞİ-->
+
+	<script>
+		document.getElementById('userInfoForm').addEventListener('submit', function (event) {
+			event.preventDefault(); // Formun submit işlemini durdur
+
+			//kullanıcı bilgilerini al
+
+			var preschool = document.getelementbyıd('preschool').value;
+			var prefaculty = document.getelementbyıd('prefac').value;
+			var department = document.getelementbyıd('departmentname').value;
+
+			//kullanıcı bilgilerini ikinci sayfaya gönder
+			window.location.href = "Index.cshtml";
+		});
+	</script>
+
+	<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->
