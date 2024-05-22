@@ -3,21 +3,39 @@
     /* Özel stil kuralları */
     body {
         font-size: 14px;
+        
+    }
+    .container {
+        padding-top: 10rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .col-md-8 {
+        padding-top: 8rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .responsive-input {
+        padding-top: 6rem;
     }
 }
 
 body {
-    padding-top: 6rem;
+    padding-top: 8rem;
     background-color: rgb(243, 250, 250);
 }
 
 .navbar {
-    flex-wrap: nowrap;
+/    flex-wrap: nowrap;
     --bs-navbar-padding-y: 0rem;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1000; /* Diğer elementlerin üzerinde olacak şekilde */
 }
 .navbar-text {
     font-size: 18px;
@@ -25,16 +43,7 @@ body {
     padding-bottom: 0rem;
 }
 
-.container {
-    padding-right: 0%;
-    padding-top: 1rem;
-}
 
-.container-fluid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* İki sütun */
-    gap: 10px; /* Boşluk */
-}
 
 .box {
     min-height: 37rem;
@@ -46,10 +55,11 @@ body {
 .specific-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 5px; /* İsteğe bağlı: Sütunlar arasındaki boşluk */
-    overflow-y: scroll; /* Dikey kaydırma*/
-    max-height: 240px; /* Container'ın maksimum yüksekliği*/
-    padding: 20px;
+    gap: 5px; /* Sütunlar arasındaki boşluk */
+    overflow-y: scroll; 
+    min-height: 200px;
+    max-height: 240px;
+    padding:20px;
 }
 
 h5 {
@@ -62,10 +72,10 @@ h5 {
     color: gray;
 }
 
-input[type="text"],
+/*input[type="text"],
 input[type="email"] {
-    width: 15rem; /* input alanı genişlik ayarı */
-}
+    width: 15rem;*/ /* input alanı genişlik ayarı */
+/*}*/
 
 select {
     width: 15rem; /* Genişlik ayarı */
@@ -205,14 +215,6 @@ th, td {
     box-sizing: border-box;
 }
 
-/*.aside-box {*/ /*sol kutu*/
-    /*min-height: 37rem;
-    max-height: 37rem;
-    background-color: #cedde6;
-    border: 2px solid #bad1da;
-    border-radius: 10px;
-
-}*/
 
 .col-sm-3 {
     min-height: 37rem;
@@ -227,10 +229,13 @@ th, td {
 }
 
 .row {
-    display: flex; 
-    flex-wrap: wrap;
+    display: flex; /*FLEXTİ DEĞİŞTİRDİM!!!!*/
+    flex-wrap: wrap;s
 }
 
+.row-subject{
+    display:contents;
+}
 
 .container-mainpanel {
     background-color: #f0f9ff;
@@ -252,10 +257,7 @@ th, td {
     color: #456097;
 }
 
-/*.text-center {
-    text-align: -webkit-right;
-}
-*/
+
 
 
 /*addAdmin */
@@ -316,18 +318,30 @@ th, td {
     box-sizing: border-box; /* İçerik kutusunu sınırlar */
 }
 
-@media (max-width: 768px) {
-    .responsive-input {
-        flex-basis: 50%; /* Orta büyüklükteki ekranlar için genişlik ayarı */
-    }
-}
 
-@media (max-width: 480px) {
-    .responsive-input {
-        flex-basis: 100%; /* Küçük ekranlar için genişlik ayarı */
-    }
+
+
+
+.table-subject {
+    background-color: #d1e4f2;
+    border: 1px solid #456097;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .box-subject {
-    /*min-height: 37rem;*/
+    margin-top: 5px;
+    padding:10px;
+}
+
+.container-pdfHeader{
+    padding:10px;
+}
+
+.container-student{
+    padding:1rem;
+}
+
+.col-md-6{
+    padding:5px;
 }
