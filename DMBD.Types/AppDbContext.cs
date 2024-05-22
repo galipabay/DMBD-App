@@ -30,7 +30,7 @@ namespace DMBD.Types
 		public DbSet<Subject> Subjects { get; set; }
 		public DbSet<Files> Files { get; set; }
 		public DbSet<AdminUser> AdminUsers { get; set; }
-		public DbSet<SubjectRepo> SubjectRepos { get; set; }
+		public DbSet<SubjectRepos> SubjectRepos { get; set; }
 
 		string connectionString = "Data Source=KUMSAL;Initial Catalog=DMBD_DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 

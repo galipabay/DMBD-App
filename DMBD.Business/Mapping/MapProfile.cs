@@ -21,6 +21,9 @@ namespace DMBD.Business.Mapping
 
             CreateMap<Files, FilesDto>();
             CreateMap<Files, FilesDto>().ReverseMap();
+
+            CreateMap<SubjectRepos, SubjectRepoDto>();
+            CreateMap<SubjectRepos, SubjectRepoDto>().ReverseMap();
         }
     }
 }
