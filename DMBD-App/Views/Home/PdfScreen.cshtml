@@ -7,7 +7,7 @@
 }
 
 <!--A4 sayfa düzeni-->
-<div class="container-a4 container-sm">
+<div id="containerPDF" class="container-a4 container-sm">
 
     @*<div class="box" style="background-color: #ffffff; ">*@
         <div class="box">
@@ -139,21 +139,28 @@
 </div><!--container-a4-->
 <div class="d-grid gap-2 d-md-flex justify-content-md-first">
     <button class="btn btn-primary me-md-2" onclick="don()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Önceki Sayfa</button>
-    <button class="btn btn-primary me-md-2" onclick="yazdir()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
+    <button id="btn-print" class="btn btn-primary me-md-2" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+
+        $(document).ready(function () {
+            jQuery('#btn-print').click(function () {
+                var printContents = $("#containerPDF").html();
+                var originalContents = $("body").html();
+
+                $("body").html(printContents);
+                window.print();,
+                $("body").html(originalContents);
+            });
+        });
+    </script>
+    
     <script>
         function don() {
             window.location.href = "/Home/Index";
         }
-        function yazdir() {
-            window.location.href = "/Home/Index"; //değişecek
-        }
-
     </script>
 </div>
-
-
-
-
 
 
 <script>
