@@ -32,35 +32,69 @@
     <!--NAVBAR-HEADER-->
     <nav class="navbar navbar-expand-xxl navbar-light" style="background-color: #456097">
       <div class="container-fluid">
-        <a class="navbar-brand">
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand">
                 <img src="~/assets/images/etuLogo.png" alt="ETÜ Logo" style="width: 5rem" class="rounded-pill" />
         </a>
         <div class="navbar-text mx-auto text-center">
           <h4>ERZURUM TEKNİK ÜNİVERSİTESİ MÜHENDİSLİK VE MİMARLIK FAKÜLTESİ<h4>
-          <p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
+                        @RenderSection("HeaderContent", required: false)
         </div>
+            <!--Yönetici Paneli Giriş Butonu-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md">
+                <button class="btn btn-primary me-md-2" onclick="admin()" type="button" >Yönetim Paneli</button>
+            </div>
+            <script>
+                function admin() {
+                    window.location.href = "/Home/AdminPanelLogin";
+                }
+            </script>
+
+            <!--Kolay Ulaşım Amaçlı Yönetici Paneli Anasayfası-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md">
+                <button class="btn btn-primary me-md-2" onclick="adminSil()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yönetim Paneli Anasayfa</button>
+            </div>
+            <script>
+                function adminSil() {
+                    window.location.href = "/Home/AdminPanel";
+                }
+            </script>
+
+            <!--Kolay Ulaşım Amaçlı Subject-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button class="btn btn-primary me-md-2" onclick="redirectToSubject()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Subject</button>
+            </div>
+            <script>
+                function redirectToSubject() {
+                    window.location.href = '@Url.Action("Index", "Student")';
+                }
+            </script>
+
+
+            <!--Kolay Ulaşım Amaçlı PDF Ekranı-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md">
+                <button class="btn btn-primary me-md-2" onclick="pdfkisayol()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">PDF Kısayol</button>
+            </div>
+            <script>
+                function pdfkisayol() {
+                    window.location.href = "/Home/PdfScreen";
+                }
+            </script>
+
+            <!--Kolay Ulaşım Amaçlı Index Ekranı-->
+            <div class="d-grid gap-2 d-md-flex justify-content-md">
+                <button class="btn btn-primary me-md-2" onclick="index()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Index Kısayol</button>
+            </div>
+            <script>
+                function index() {
+                    window.location.href = "/Home/Index";
+                }
+            </script>
+
       </div>
 
-      <!--Yönetici Paneli Giriş Butonu-->
-    <div class="d-grid gap-2 d-md-flex justify-content-md">
-        <button class="btn btn-primary me-md-2" onclick="admin()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yönetim Paneli</button>
-    </div>
-        <script>
-            function admin() {
-                window.location.href = "/Home/AdminPanelLogin";
-            }
-        </script>
+      
 
-        <!--Kolay Ulaşım Amaçlı Yönetici Paneli Anasayfası-->
-        <div class="d-grid gap-2 d-md-flex justify-content-md">
-            <button class="btn btn-primary me-md-2" onclick="adminSil()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yönetim Paneli Anasayfa</button>
-        </div>
-        <script>
-            function adminSil() {
-                window.location.href = "/Home/AdminPanel";
-            }
-        </script>
-
+       
 
     </nav>
     <!--NAVBAR-HEADER BİTİŞ-->

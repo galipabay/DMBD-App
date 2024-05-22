@@ -2,8 +2,10 @@
 using DMBD.Kernel.DTOs;
 using DMBD.Kernel.Model;
 using DMBD.Kernel.Service;
+using DMBD.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace DMBD_App.Controllers
 {
@@ -11,19 +13,29 @@ namespace DMBD_App.Controllers
 	{
 
 		private readonly IService<Student> _services;
-
 		private readonly IMapper _mapper;
+		private readonly AppDbContext _context;
 
-
-		public StudentController(IService<Student> services,IMapper mapper)
+		public StudentController(IService<Student> services, IMapper mapper, AppDbContext context)
 		{
 			_services = services;
 			_mapper = mapper;
+			_context = context;
 		}
 
 		public async Task<IActionResult> Index()
-		{			
-			return View("~/Views/Subject/Subject.cshtml");
+		{
+			//var subjectRepos = await _context.SubjectRepos.ToListAsync();
+
+			//var subjects = _context.SubjectRepos
+			//    .Select(s => new SubjectDto
+			//    {
+			//        SubjectName = s.SubjectName,
+			//        SubjectCredit = s.Credit,
+			//        SubjectAkts = s.Akts
+			//    }).ToList();
+			return RedirectToAction("Index", "Subject");
+			//return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
 		}
 
 		public async Task<IActionResult> Save()
@@ -43,9 +55,7 @@ namespace DMBD_App.Controllers
 			if (ModelState.IsValid)
 			{
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
-				return RedirectToAction(nameof(Index));
-
-				TempData["SuccessMessage"] = "Kaydetme işlemi başarıyla gerçekleştirildi.";
+				return Redirect(nameof(Index));
 			}
 			 
 			var students = await _services.GetAllAsync();

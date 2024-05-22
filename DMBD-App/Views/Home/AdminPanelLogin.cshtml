@@ -1,4 +1,12 @@
-﻿<!--Login ekranı başlangıç-->
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderContent {
+    <p style="font-size: large;">Yönetim Paneli Ekranı</p>
+}
+
+<!--Login ekranı başlangıç-->
 <div class="container-middle">
     <div class="container-baslik">
         <h3 class="baslik">YÖNETİCİ PANELİ GİRİŞ EKRANI</h3>
@@ -23,8 +31,6 @@
 
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <button type="submit" onclick="login()" class="btn btn-outline-primary">Giriş Yap</button>
-
-                    <button type="button" class="btn btn-outline-primary">Yeni Kayıt</button>
                 </div>
             </form>
 
