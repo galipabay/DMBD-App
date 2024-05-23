@@ -1,35 +1,35 @@
-﻿@model DMBD.Kernel.Model.AdminUser
-
-@{
-    ViewData["Title"] = "AdminUser";
+﻿@{
+	ViewData["Title"] = "AdminUser";
 }
 
+@model DMBD.Kernel.Model.AdminUser
+
 <div class="container-list">
-    <h3 class="text-mainpanel">Yönetici Listele</h3>
-    <table class="table-list text-center">
-        <thead>
-            <tr>
-                <th scope="col-sm-3">Ad</th>
-                <th scope="col-sm-3">Soyad</th>
-                <th scope="col-sm-3">E-mail</th>
-                <th scope="col-sm-3">Araç</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in ViewBag.AdminUsers)
-            {
-                <tr>
-                    <td>@user.Name</td>
-                    <td>@user.Surname</td>
-                    <td>@user.MailAddres</td>
-                    <td>
-                        <form asp-action="Delete" asp-controller="AdminPanel" method="post">
-                            <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit" class="btn btn-danger">Sil</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+	<h3 class="text-mainpanel">Yönetici Listele</h3>
+	<table class="table-list text-center">
+		<thead>
+			<tr>
+				<th scope="col">Ad</th>
+				<th scope="col">Soyad</th>
+				<th scope="col">E-mail</th>
+				<th scope="col">Araç</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var user in ViewBag.AdminUsers)
+			{
+				<tr>
+					<td>@user.Name</td>
+					<td>@user.Surname</td>
+					<td>@user.MailAddres</td>
+					<td>
+						<form asp-action="Delete" asp-controller="AdminPanel" method="post">
+							<input type="hidden" name="id" value="@user.Id" />
+							<button type="submit" class="btn btn-danger">Sil</button>
+						</form>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>

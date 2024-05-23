@@ -45,19 +45,17 @@
 
 </div> <!--container-aside-->
 <!--İÇERİK BİTİŞİ-->
-
-
-
 <script>
 	function startPage() {
 		window.location.href = "/Home/AdminPanel";
 	}
+
 	function loadAddAdminPage() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("addAdminContainer").innerHTML = this.responseText;
-				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+				hideWelcomeMessage();
 			}
 		};
 		xhttp.open("GET", "/Home/AddAdmin", true);
@@ -69,10 +67,10 @@
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("addAdminContainer").innerHTML = this.responseText;
-				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+				hideWelcomeMessage();
 			}
 		};
-		xhttp.open("GET", "/AdminPanel/AdminList", true); // Yönlendirme AdminPanelController'a yapıldı
+		xhttp.open("GET", "/AdminPanel/AdminList", true);
 		xhttp.send();
 	}
 
@@ -81,19 +79,15 @@
 		xhttp.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("addAdminContainer").innerHTML = this.responseText;
-				hideWelcomeMessage(); // Yükleme tamamlandığında hoş geldiniz mesajını gizle
+				hideWelcomeMessage();
 			}
 		};
-		xhttp.open("GET", "/Home/StudentApplication", true);
+		xhttp.open("GET", "/Student/StudentApplicationList", true);
 		xhttp.send();
 	}
 
-
-	//karşılama yazısını gizleme
 	function hideWelcomeMessage() {
 		var welcomeMessage = document.getElementById("welcomeMessage");
 		welcomeMessage.style.display = "none";
 	}
-
-
 </script>
