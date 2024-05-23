@@ -70,7 +70,7 @@
 							</tr>
 							<tr>
 								<th scope="col">Kayıtlanma Şekli</th>
-								<td></td>
+								<td><input id="RegisterType" class="form-control" readonly disabled /></td>
 							</tr>
 							<tr>
 								<th scope="col">Önceden Okuduğu Üniversite</th>
@@ -84,14 +84,7 @@
 								<th scope="col">Bölüm</th>
 								<td><input asp-for="PreDepartmentName" class="form-control" readonly disabled /></td>
 							</tr>
-							<tr>
-								<th scope="col">Not Döküm Belgesi</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="col">Ders İçerikleri</th>
-								<td></td>
-							</tr>
+							
 						</table>
 						<br>
 						<h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
@@ -125,25 +118,29 @@
 <!--container-application-->
 
 <script>
-	function detail(studentId) {
-		// Öğrenci detaylarını getirmek için AJAX isteği yapabilirsiniz
-		// Örneğin:
-		$.ajax({
-			url: '/AdminPanel/Detail',
-			type: 'GET',
-			data: { id: studentId },
-			success: function (data) {
-				// Başarılı cevap geldiğinde yapılacak işlemler
-				// Örneğin, gelen verileri ekranda göstermek
-				$('#Name').val(data.Name);
-				$('#Surname').val(data.Surname);
-				$('#MailAddress').val(data.MailAddress);
-				// Diğer alanları da benzer şekilde doldurabilirsiniz
-			},
-			error: function (xhr, status, error) {
-				// Hata durumunda yapılacak işlemler
-				console.error(error);
-			}
-		});
-	}
+    function detail(studentId) {
+        // Öğrenci detaylarını getirmek için AJAX isteği yapabilirsiniz
+        $.ajax({
+            url: '@Url.Action("Detail", "AdminPanel")',
+            type: 'GET',
+            data: { id: studentId },
+            success: function (data) {
+                // Başarılı cevap geldiğinde yapılacak işlemler
+                $('#Name').val(data.Name);
+                $('#Surname').val(data.Surname);
+                $('#MailAddress').val(data.MailAddress);   
+                $('#RegisterType').val(data.EnrollmentType);
+                $('#PreSchoolName').val(data.PreSchoolName);
+                $('#PreFacultyName').val(data.PreFacultyName);
+                $('#PreDepartmentName').val(data.PreDepartmentName);
+                $('#ExemptSubjectName').val(data.ExemptSubjectName);
+                $('#ExemptSubjectCredit').val(data.ExemptSubjectCredit);
+                $('#ExemptSubjectAkts').val(data.ExemptSubjectAkts);
+            },
+            error: function (xhr, status, error) {
+                // Hata durumunda yapılacak işlemler
+                console.error(error);
+            }
+        });
+    }
 </script>
