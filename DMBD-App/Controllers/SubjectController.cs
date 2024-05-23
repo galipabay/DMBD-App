@@ -40,9 +40,9 @@ namespace DMBD_App.Controllers
 			return View();
 		}
 
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
-			
+
 			return RedirectToAction("Subject", "Subject");
 		}
 

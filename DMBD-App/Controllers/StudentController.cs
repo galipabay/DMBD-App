@@ -23,7 +23,7 @@ namespace DMBD_App.Controllers
 			_context = context;
 		}
 
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
 			//var subjectRepos = await _context.SubjectRepos.ToListAsync();
 
@@ -57,13 +57,13 @@ namespace DMBD_App.Controllers
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
 				return Redirect(nameof(Index));
 			}
-			 
+
 			var students = await _services.GetAllAsync();
 
 			var studentsDto = _mapper.Map<List<StudentDto>>(students.ToList());
 
 			ViewBag.students = new SelectList(studentsDto, "Id", "Name");
-			return View("~/Views/Home/Index.cshtml",studentDto);}
+			return View("~/Views/Home/Index.cshtml", studentDto); }
 
 		[ServiceFilter(typeof(NotFoundFilter<Student>))]
 		public async Task<IActionResult> Update(int id)
@@ -80,6 +80,16 @@ namespace DMBD_App.Controllers
 			return View(_mapper.Map<StudentDto>(student));
 
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> StudentApplicationList()
+		{
+            var applications = await _services.GetAllAsync();
+            var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
+            ViewBag.Applications = applicationDtos;
+            return View("~/Views/Home/StudentApplication.cshtml", applicationDtos);
+        }
+
 		[HttpPost]
 		public async Task<IActionResult> Update(StudentDto studentDto)
 		{
