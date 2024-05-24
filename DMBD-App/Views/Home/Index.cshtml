@@ -45,14 +45,14 @@
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
 							<label asp-for="Name" class="form-label">Ad</label>
-							<input asp-for="Name" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ]{2,}$" title="Ad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
+							<input asp-for="Name" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ\s]{2,}$" title="Ad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
 
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 
 							<label asp-for="Surname" class="form-label">Soyad</label>
-							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ]{2,}$" title="Soyad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
+							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ\s]{2,}$" title="Ad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
 							<span asp-validation-for="Surname" class="text-danger"></span>
 						</div>
 
@@ -85,19 +85,6 @@
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
 							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+"/>
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
-							<script>
-								$("#PhoneNumber").inputmask({ "mask": "0(999) 999 99 99" });
-								$(function () {
-									$("#PhoneNumber").on("keyup", function (e) {
-										if ($(this).val().substr(2, 1) == 0) {
-											if (e.key == 0) {
-												$(this).val("");
-											}
-										}
-									})
-								})
-							</script>
-							
 						</div>
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
@@ -171,6 +158,41 @@
 
 						</div>
 						<!--EKLER BİTİŞ-->
+
+						<!--Checkbox-->
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+							<label class="form-check-label" for="flexCheckDefault">
+								Yukarıdaki bilgileri okudum ve onaylıyorum.
+							</label>
+						</div>
+
+						<script>
+							// Sayfa yüklendiğinde checkbox durumunu kontrol et
+							$(document).ready(function () {
+								// Checkbox durumunu dinle
+								$('#flexCheckDefault').change(function () {
+									// Checkbox seçili ise
+									if ($(this).is(':checked')) {
+										// Kaydet butonunu etkinleştir
+										$('#showPopup').prop('disabled', false);
+									} else {
+										// Checkbox seçili değilse, kaydet butonunu devre dışı bırak
+										$('#showPopup').prop('disabled', true);
+									}
+								});
+
+								// Sayfa yüklendiğinde checkbox durumunu ilk kez kontrol et
+								if ($('#flexCheckDefault').is(':checked')) {
+									$('#showPopup').prop('disabled', false);
+								} else {
+									$('#showPopup').prop('disabled', true);
+								}
+							});
+						</script>
+						<!--Checkbox bitiş-->
+
+
 						<div class="col-12  text-end">
 							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>

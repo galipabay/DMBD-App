@@ -31,9 +31,11 @@
 
 
 <!--sayfa düzeni için container-->
-<div class="container-fluid d-flex justify-content-center align-items-center">
-	<div class="row justify-content-center">
-		<div class="col-12 col-md-8 ">
+<div class="container-layout d-flex justify-content-center align-items-center">
+	@*<div class="row"><!--divleri 2ye bölmek için-->
+		<div class="col"><!--divleri 2ye bölmek için-->*@
+	@*<div class="row justify-content-center">
+		<div class="col-6">*@
 			<div class="box-subject" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 
 				<h5>Ders Bilgileri</h5>
@@ -98,14 +100,18 @@
 
 
 			</div><!--box-->
-		</div><!--col-12 col-md-8-->
-	</div><!--row justify-content-center-->
-</div><!--container-fluid d-flex justify-content-center align-items-center-->
+		@*</div><!--col-6-->
+	</div><!--row justify-content-center-->*@
+	@*</div><!--col: divleri 2ye bölmek için-->
+	</div><!--row: divleri 2ye bölmek için-->*@
+@*</div><!--container-fluid d-flex justify-content-center align-items-center-->*@
 <!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
 
-<div class="container-fluid d-flex justify-content-center align-items-center">
+@*<div class="container-fluid d-flex justify-content-center align-items-center">*@
+	@*<div class="row"><!--divleri 2ye bölmek için-->
+		<div class="col"><!--divleri 2ye bölmek için-->*@
 	<div class="row-subject justify-content-center">
-		<div class="col-12 col-md-8 ">
+		<div class="col-6">
 			<div class="box-subject" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
 				@*<div class="specific-container d-flex justify-content-center align-items-center">*@
 
@@ -116,35 +122,38 @@
 					<table class="table-subject  mx-auto" id="registeredCourse">
 						<thead>
 							<tr>
-								<th scope="col">#</th>
+								<th scope="col">TCNO</th>
+								<th scope="col">Daha  Önce Alınan Ders</th>
+								<th scope="col" style="width: 5ch">KREDİ</th>
+								<th scope="col" style="width: 5ch">AKTS</th>
+								<th scope="col">ETÜ KARŞILIĞI DERS</th>
 								<th scope="col">Ders Kodu</th>
-								<th scope="col">Muaf Olunmak İstenen Ders</th>
-								<th scope="col">Kredi</th>
-								<th scope="col">AKTS</th>
+								<th scope="col" style="width: 5ch">KREDİ</th>
+								<th scope="col" style="width: 5ch">AKTS</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach (var course in ViewBag.SubjectList)
 							{
 								<tr>
-									<th scope="row">@course.SubjectId</th>
-									<th scope="row">@course.SubjectId</th>
+									<td>@course.TcNo</td>
 									<td>@course.SubjectName</td>
 									<td>@course.SubjectCredit</td>
 									<td>@course.SubjectAkts</td>
+									<td>@course.ExemptSubjectName</td>
+									<th scope="row">@course.SubjectId</th><!--ders kodu Exempt olacak-->
+									<td>@course.ExemptSubjectCredit</td>
+									<td>@course.ExemptSubjectAkts</td>
 								</tr>
 							}
 						</tbody>
 					</table>
-
-
-
-
-
 				</div>
 			</div><!--box-->
-		</div><!--col-12 col-md-8-->
+		</div><!--col-6-->
 	</div><!--row justify-content-center-->
+	@*</div><!--col: divleri 2ye bölmek için-->
+	</div><!--row: divleri 2ye bölmek için-->*@
 </div><!--container-fluid d-flex justify-content-center align-items-center-->
 
 
