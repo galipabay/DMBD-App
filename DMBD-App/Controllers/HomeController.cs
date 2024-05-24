@@ -1,4 +1,5 @@
 ﻿using DMBD.Kernel.DTOs;
+using DMBD.Kernel.Model;
 using DMBD_App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -16,13 +17,11 @@ namespace DMBD_App.Controllers
 
 		public IActionResult Index()
 		{
-			var studentDto = new StudentDto();
-			// studentDto'yu uygun şekilde doldurun
-			return View("~/Views/Home/Index.cshtml", studentDto);
+			return RedirectToAction("GetDepartments","Student");
 		}
 
 		public IActionResult PdfScreen()
-		{                                                                 
+		{
 			return View();
 		}
 		public IActionResult AdminPanelLogin()

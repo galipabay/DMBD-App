@@ -13,11 +13,13 @@ namespace DMBD_App.Controllers
 	{
 
 		private readonly IService<Student> _services;
+		private readonly IService<Department> _departmentService;
 		private readonly IMapper _mapper;
 		private readonly AppDbContext _context;
 
-		public StudentController(IService<Student> services, IMapper mapper, AppDbContext context)
+		public StudentController(IService<Department> departmentServices, IService<Student> services, IMapper mapper, AppDbContext context)
 		{
+			_departmentService = departmentServices;
 			_services = services;
 			_mapper = mapper;
 			_context = context;
@@ -52,12 +54,17 @@ namespace DMBD_App.Controllers
 
 			if (ModelState.IsValid)
 			{
+				studentDto.CreatedDate = DateTime.Now;
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
 				TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
 				return Redirect(nameof(Index));
 			}
 
 			TempData["ErrorMessage"] = "İşlem başarısız oldu!";
+
+			//Departments icin geri yukleme alani
+			var departments = await _departmentService.GetAllAsync();
+			ViewBag.Departments = departments;
 			var students = await _services.GetAllAsync();
 			var studentsDto = _mapper.Map<List<StudentDto>>(students.ToList());
 			ViewBag.students = new SelectList(studentsDto, "Id", "Name");
@@ -107,7 +114,13 @@ namespace DMBD_App.Controllers
 
 		}
 
-
+		[HttpGet]
+		public async Task<IActionResult> GetDepartments()
+		{
+			var departments = await _departmentService.GetAllAsync();
+			ViewBag.Departments = departments;
+			return View("~/Views/Home/Index.cshtml");
+		}
 		public async Task<IActionResult> Remove(int id)
 		{
 			var student = await _services.GetByIdAsync(id);

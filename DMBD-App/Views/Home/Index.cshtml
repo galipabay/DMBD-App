@@ -73,19 +73,30 @@
 
 						<div class="col-md-6">
 							<label asp-for="StudentNo" class="form-label">Öğrenci Numarası</label>
-							<input asp-for="StudentNo" class="form-control" minlength="2" pattern="^[0-9]{2,}$" title="Öğrenci numarası en az 2 rakamdan oluşmalı ve negatif veya özel karakter içermemelidir." />
+							<input asp-for="StudentNo" class="form-control" minlength="2" />
 							<span asp-validation-for="StudentNo" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="MailAddress" class="form-label">E-Posta Adresi</label>
-							<input asp-for="MailAddress" class="form-control" required />
+							<input asp-for="MailAddress" class="form-control" required placeholder="isim.soyisimSayi@erzurum.edu.tr" />
 							<span asp-validation-for="MailAddress" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
-							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+"/>
+							<input asp-for="PhoneNumber" id="phoneNumberInput" class="form-control" required pattern="\d+" onchange="formatPhoneNumber(this)" />
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
+
+						<script>
+							function formatPhoneNumber(input) {
+								var phoneNumber = input.value.replace(/\D/g, '');
+								if (phoneNumber.length === 10) {
+									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
+								} else if (phoneNumber.length === 11) {
+									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2) + ' ' + phoneNumber.substr(10, 1);
+								}
+							}
+						</script>
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
 							<select asp-for="RegisterType" class="form-control" id="RegisterType" required style="border: 2px solid #bad1da; border-radius: 10px;">
@@ -115,25 +126,50 @@
 						<div class="col-md-6">
 							<label asp-for="DepartmentName" class="form-label">Başvurulacak Departman Bilgisi</label>
 							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()" required>
-								<option value="1">Makine Mühendisliği</option>
-								<option value="2">Bilgisayar Mühendisliği</option>
+								@foreach (var var in ViewBag.Departments)
+								{
+									<option value="@var.DepartmentName">@var.DepartmentName</option>
+								}
 							</select>
-							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1" />
-							<input type="hidden" asp-for="DepartmentName" id="DepartmentNameInput" value="Makine Mühendisliği" />
-							<span asp-validation-for="DepartmentId" class="text-danger"></span>
+							<input type="hidden" id="DepartmentIdInput" name="DepartmentId" />
+							<input type="hidden" id="DepartmentNameInput" name="DepartmentName" />
 						</div>
 
 						<script>
+
 							function setDepartmentDetails() {
 								var select = document.getElementById("DepartmentSelect");
 								var selectedOption = select.options[select.selectedIndex];
-								var departmentId = selectedOption.value;
-								var departmentName = selectedOption.text;
+								var departmentName = selectedOption.value; // option elementinin value attribute'undan departmentName'i al
 
-								document.getElementById("DepartmentIdInput").value = departmentId;
+								// Seçilen departmentName'e karşılık gelen ID'yi bulmak için, ViewBag.Departments listesinde döngü yapabilirsiniz
+								var departmentId;
+							@foreach (var department in ViewBag.Departments)
+							{
+								<text>
+																										if ("@department.DepartmentName" === departmentName) {
+										departmentId = "@department.Id";
+									}
+								</text>
+							}
+
+									document.getElementById("DepartmentIdInput").value = departmentId;
 								document.getElementById("DepartmentNameInput").value = departmentName;
 							}
+
 						</script>
+
+						@* <script>
+						function setDepartmentDetails() {
+						var select = document.getElementById("DepartmentSelect");
+						var selectedOption = select.options[select.selectedIndex];
+						var departmentId = selectedOption.value;
+						var departmentName = selectedOption.text;
+
+						document.getElementById("DepartmentIdInput").value = departmentId;
+
+						}
+						</script> *@
 
 						<!--EKLER BAŞLANGIÇ-->
 
@@ -207,7 +243,7 @@
 	<!--SOL BLOK BİTİŞ-->
 	<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
 	@* SCRIPTS *@
-	
+
 	<script>
 		$(document).ready(function () {
 			var message = '@TempData["ErrorMessage"]'; // TempData'dan mesajı al
@@ -235,10 +271,8 @@
 			window.location.href = "Index.cshtml";
 		});
 
-		
-				</script>
+	</script>
 
-				
-
-				<!--FORM BİTİŞİ-->
+	@* TempData PopUp Mesajlari *@
+	<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->
