@@ -57,7 +57,7 @@
 
 						<div class="col-md-6">
 							<label asp-for="StudentNo" class="form-label">Öğrenci Numarası</label>
-							<input asp-for="StudentNo" class="form-control" minlength="2" pattern="^[0-9]{2,}$" title="Öğrenci numarası en az 2 rakamdan oluşmalı ve negatif veya özel karakter içermemelidir." />
+							<input asp-for="StudentNo" class="form-control"/>
 							<span asp-validation-for="StudentNo" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -67,8 +67,21 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
-							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+"/>
+							<input asp-for="PhoneNumber" class="form-control" id="PhoneNumber" required pattern="\d+" title="Lütfen geçerli bir telefon numarası girin.">
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+							<script>
+								$("#PhoneNumber").inputmask({ "mask": "0(999) 999 99 99" });
+								$(function () {
+									$("#PhoneNumber").on("keyup", function (e) {
+										if ($(this).val().substr(2, 1) == 0) {
+											if (e.key == 0) {
+												$(this).val("");
+											}
+										}
+									})
+								})
+							</script>
+							
 						</div>
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
@@ -181,10 +194,6 @@
 								window.location.href = "Index.cshtml";
 							});
 
-		
 				</script>
 
-				
-
-				<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->
