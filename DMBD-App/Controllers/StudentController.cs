@@ -25,17 +25,8 @@ namespace DMBD_App.Controllers
 
 		public IActionResult Index()
 		{
-			//var subjectRepos = await _context.SubjectRepos.ToListAsync();
 
-			//var subjects = _context.SubjectRepos
-			//    .Select(s => new SubjectDto
-			//    {
-			//        SubjectName = s.SubjectName,
-			//        SubjectCredit = s.Credit,
-			//        SubjectAkts = s.Akts
-			//    }).ToList();
 			return RedirectToAction("Index", "Subject");
-			//return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
 		}
 
 		public async Task<IActionResult> Save()
@@ -81,13 +72,13 @@ namespace DMBD_App.Controllers
 
 		}
 
-		[HttpGet]
+		[HttpGet]	
 		public async Task<IActionResult> StudentApplicationList()
 		{
             var applications = await _services.GetAllAsync();
             var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
             ViewBag.Applications = applicationDtos;
-            return View("~/Views/Home/StudentApplication.cshtml", applicationDtos);
+            return View("~/Views/Home/StudentApplication.cshtml");
         }
 
 		[HttpPost]

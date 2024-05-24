@@ -2,7 +2,7 @@
 @model DMBD.Kernel.DTOs.SubjectDto
 
 @{
-	ViewData["Title"] = "Subject";
+	ViewData["Title"] = "SubjectDto";//degisti
 }
 
 @{
@@ -108,16 +108,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							@*@foreach (var course in SubjectDto)
+							@foreach (var course in ViewBag.SubjectList)
 							{
-							<tr>
-							<th scope="row">@course.CourseId</th>
-							<td>@course.CourseCode</td>
-							<td>@course.CourseName</td>
-							<td>@course.Credit</td>
-							<td>@course.AKTS</td>
-							</tr>
-							}*@
+								<tr>
+									<th scope="row">@course.SubjectId</th>
+									<th scope="row">@course.SubjectId</th>
+									<td>@course.SubjectName</td>
+									<td>@course.SubjectCredit</td>
+									<td>@course.SubjectAkts</td>
+								</tr>
+							}
 						</tbody>
 					</table>
 
@@ -139,7 +139,7 @@
 		function pdf() {
 			window.location.href = "/Home/PdfScreen";
 		}
-	</script> 
+	</script>
 
 
 </div>
@@ -149,19 +149,21 @@
 		var selectedOption = this.options[this.selectedIndex];
 		var credit = selectedOption.getAttribute('data-credit');
 		var akts = selectedOption.getAttribute('data-akts');
+		var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
 
 		document.getElementById('SubjectCredit').value = credit;
 		document.getElementById('SubjectAkts').value = akts;
+		document.getElementById('SubjectId').value = subjectId;
 	});
-</script>
 
-<script>
 	document.getElementById('ExemptSubjectName').addEventListener('change', function () {
 		var selectedOption = this.options[this.selectedIndex];
 		var credit = selectedOption.getAttribute('data-credit');
 		var akts = selectedOption.getAttribute('data-akts');
+		var exemptSubjectId = selectedOption.value; // Assuming ExemptSubjectId is the value of the selected option
 
 		document.getElementById('ExemptSubjectCredit').value = credit;
 		document.getElementById('ExemptSubjectAkts').value = akts;
+		document.getElementById('ExemptSubjectId').value = exemptSubjectId;
 	});
 </script>

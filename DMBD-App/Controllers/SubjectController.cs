@@ -34,6 +34,9 @@ namespace DMBD_App.Controllers
 			//	}).ToList();
 
 			var subjects = await _context.SubjectRepos.ToListAsync();
+
+			var subjectList = await _context.Subjects.ToListAsync();
+			ViewBag.SubjectList = subjectList;
 			ViewBag.Subjects = subjects;
 
 			//ViewData["SubjectReposViewData"]  = new SelectList(subjects, "SubjectCode", "SubjectName");
@@ -83,12 +86,12 @@ namespace DMBD_App.Controllers
 			}
 
 			var subjects = _context.Subjects
-				.Select(s => new SubjectDto
-				{
-					SubjectName = s.SubjectName,
-					SubjectCredit = s.SubjectCredit,
-					SubjectAkts = s.SubjectAkts
-				}).ToList();
+		.Select(s => new SubjectDto
+		{
+			SubjectName = s.SubjectName,
+			SubjectCredit = s.SubjectCredit,
+			SubjectAkts = s.SubjectAkts,
+		}).ToList();
 
 			ViewBag.Subjects = new SelectList(subjects, "SubjectName", "SubjectName", model.SubjectName);
 
@@ -108,7 +111,7 @@ namespace DMBD_App.Controllers
 				{
 					SubjectName = model.SubjectName,
 					SubjectCredit = model.SubjectCredit,
-					SubjectAkts = model.SubjectAkts
+					SubjectAkts = model.SubjectAkts,
 				};
 
 				_context.Subjects.Add(subject);
@@ -121,6 +124,23 @@ namespace DMBD_App.Controllers
 			var subjects = await _context.SubjectRepos.ToListAsync();
 			ViewBag.Subjects = subjects;
 			return View("Index", model);
+		}
+
+		[HttpGet] // GET olarak değiştirildi
+		public async Task<IActionResult> SubjectList()
+		{
+			var subjects = await _services.GetAllAsync();
+			ViewBag.Subjects = subjects;
+			return View("~/Views/Subject/Subject.cshtml");
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> StudentApplication(int id)
+		{
+			var subjects = await _services.GetByIdAsync(id);
+			var subjectDtos = _mapper.Map<List<SubjectDto>>(subjects);
+			ViewBag.Subjects = subjectDtos;
+			return View("~/Views/Home/StudentApplication.cshtml",subjectDtos);
 		}
 
 		[ServiceFilter(typeof(NotFoundFilter<Subject>))]

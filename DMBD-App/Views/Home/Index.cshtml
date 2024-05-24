@@ -57,7 +57,7 @@
 
 						<div class="col-md-6">
 							<label asp-for="StudentNo" class="form-label">Öğrenci Numarası</label>
-							<input asp-for="StudentNo" class="form-control" minlength="2" pattern="^[0-9]{2,}$" title="Öğrenci numarası en az 2 rakamdan oluşmalı ve negatif veya özel karakter içermemelidir." />
+							<input asp-for="StudentNo" class="form-control" minlength="2"/>
 							<span asp-validation-for="StudentNo" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">

@@ -149,7 +149,7 @@
                 var originalContents = $("body").html();
 
                 $("body").html(printContents);
-                window.print();,
+                window.print();
                 $("body").html(originalContents);
             });
         });
@@ -180,7 +180,7 @@
     // Sonuç metnini oluştur
     var resultText = `Erzurum Teknik Üniversitesi Lisans Eğitim-Öğretim ve Sınav Yönetmeliği ve Lisans Muafiyet ve İntibak Yönergesi kapsamında daha önce ${preSchool} ${preFaculty} Fakültesi/Meslek Yüksek Okulu ${department} Bölümünde/Programında alarak başarılı olduğum aşağıda belirtmiş olduğum dersten/derslerden muaf olmak istiyorum.
 
-    Bilgilerinizi ve gereğini arz ederim. (${formattedDate})`;
+    Bilgilerinizi ve gereğini arz ederim. (${formattedDate})`
     var resultDepartment = `${department} BÖLÜMÜ BAŞKANLIĞINA`;
 
     // Sonuç metnini ekrana yazdır
