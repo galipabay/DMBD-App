@@ -2,7 +2,7 @@
 @model DMBD.Kernel.DTOs.SubjectDto
 
 @{
-	ViewData["Title"] = "Subject";
+	ViewData["Title"] = "SubjectDto";//degisti
 }
 
 @{
@@ -12,6 +12,22 @@
 @section HeaderContent {
 	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
 }
+
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popup Example</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
 
 
 <!--sayfa düzeni için container-->
@@ -108,16 +124,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							@*@foreach (var course in SubjectDto)
+							@foreach (var course in ViewBag.SubjectList)
 							{
-							<tr>
-							<th scope="row">@course.CourseId</th>
-							<td>@course.CourseCode</td>
-							<td>@course.CourseName</td>
-							<td>@course.Credit</td>
-							<td>@course.AKTS</td>
-							</tr>
-							}*@
+								<tr>
+									<th scope="row">@course.SubjectId</th>
+									<th scope="row">@course.SubjectId</th>
+									<td>@course.SubjectName</td>
+									<td>@course.SubjectCredit</td>
+									<td>@course.SubjectAkts</td>
+								</tr>
+							}
 						</tbody>
 					</table>
 
@@ -139,29 +155,47 @@
 		function pdf() {
 			window.location.href = "/Home/PdfScreen";
 		}
-	</script> 
+	</script>
 
 
 </div>
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+
+@* SCRIPTS *@
+
+<script>
+	$(document).ready(function () {
+		var message = '@TempData["SuccessMessage"]'; // TempData'dan mesajı al
+
+		if (message) {
+			$.alert({
+				title: 'Kayıt Durumu!',
+				content: message,
+			});
+		}
+	});
+</script>
+
 <script>
 	document.getElementById('SubjectName').addEventListener('change', function () {
 		var selectedOption = this.options[this.selectedIndex];
 		var credit = selectedOption.getAttribute('data-credit');
 		var akts = selectedOption.getAttribute('data-akts');
+		var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
 
 		document.getElementById('SubjectCredit').value = credit;
 		document.getElementById('SubjectAkts').value = akts;
+		document.getElementById('SubjectId').value = subjectId;
 	});
-</script>
 
-<script>
 	document.getElementById('ExemptSubjectName').addEventListener('change', function () {
 		var selectedOption = this.options[this.selectedIndex];
 		var credit = selectedOption.getAttribute('data-credit');
 		var akts = selectedOption.getAttribute('data-akts');
+		var exemptSubjectId = selectedOption.value; // Assuming ExemptSubjectId is the value of the selected option
 
 		document.getElementById('ExemptSubjectCredit').value = credit;
 		document.getElementById('ExemptSubjectAkts').value = akts;
+		document.getElementById('ExemptSubjectId').value = exemptSubjectId;
 	});
 </script>

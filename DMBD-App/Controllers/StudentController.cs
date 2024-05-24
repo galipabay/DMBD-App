@@ -25,17 +25,7 @@ namespace DMBD_App.Controllers
 
 		public IActionResult Index()
 		{
-			//var subjectRepos = await _context.SubjectRepos.ToListAsync();
-
-			//var subjects = _context.SubjectRepos
-			//    .Select(s => new SubjectDto
-			//    {
-			//        SubjectName = s.SubjectName,
-			//        SubjectCredit = s.Credit,
-			//        SubjectAkts = s.Akts
-			//    }).ToList();
-			return RedirectToAction("Index", "Subject");
-			//return View("~/Views/Subject/Subject.cshtml"/*, subjects*/);
+			return RedirectToAction("Subject", "Subject");
 		}
 
 		public async Task<IActionResult> Save()
@@ -52,16 +42,24 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Save(StudentDto studentDto)
 		{
+			var tempData = new TempDataAttribute();
+			
+			if (string.IsNullOrEmpty(studentDto.StudentNo))
+			{
+				// StudentNo alanı boşsa, validasyon hatalarını kaldır
+				ModelState.Remove("StudentNo");
+			}
+
 			if (ModelState.IsValid)
 			{
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
+				TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
 				return Redirect(nameof(Index));
 			}
 
+			TempData["ErrorMessage"] = "İşlem başarısız oldu!";
 			var students = await _services.GetAllAsync();
-
 			var studentsDto = _mapper.Map<List<StudentDto>>(students.ToList());
-
 			ViewBag.students = new SelectList(studentsDto, "Id", "Name");
 			return View("~/Views/Home/Index.cshtml", studentDto); }
 
@@ -81,13 +79,13 @@ namespace DMBD_App.Controllers
 
 		}
 
-		[HttpGet]
+		[HttpGet]	
 		public async Task<IActionResult> StudentApplicationList()
 		{
             var applications = await _services.GetAllAsync();
             var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
             ViewBag.Applications = applicationDtos;
-            return View("~/Views/Home/StudentApplication.cshtml", applicationDtos);
+            return View("~/Views/Home/StudentApplication.cshtml");
         }
 
 		[HttpPost]

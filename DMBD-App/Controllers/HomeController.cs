@@ -55,6 +55,17 @@ namespace DMBD_App.Controllers
 			return View();
 		}
 
+		public string OpenPopup()
+		{
+			return "<h1> TempData</h1>";
+		}
+
+		[HttpGet]
+		public PartialViewResult SomeAction()
+		{
+			return PartialView();
+		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

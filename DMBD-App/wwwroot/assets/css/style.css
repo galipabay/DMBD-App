@@ -3,8 +3,8 @@
     /* Özel stil kuralları */
     body {
         font-size: 14px;
-        
     }
+
     .container {
         padding-top: 10rem;
     }
@@ -15,7 +15,6 @@
         padding-top: 8rem;
     }
 }
-
 
 @media (max-width: 480px) {
     .responsive-input {
@@ -29,7 +28,7 @@ body {
 }
 
 .navbar {
-/    flex-wrap: nowrap;
+    /* flex-wrap: nowrap; */ /* Burayı comment (yorum) olarak ekledim çünkü belirtmek istemediğinizi düşündüm. */
     --bs-navbar-padding-y: 0rem;
     position: fixed;
     top: 0;
@@ -37,29 +36,25 @@ body {
     width: 100%;
     z-index: 1000; /* Diğer elementlerin üzerinde olacak şekilde */
 }
+
 .navbar-text {
     font-size: 18px;
     color: white;
     padding-bottom: 0rem;
 }
 
-
-
 .box {
     min-height: 37rem;
 }
-
-
-
 
 .specific-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px; /* Sütunlar arasındaki boşluk */
-    overflow-y: scroll; 
+    overflow-y: scroll;
     min-height: 200px;
     max-height: 240px;
-    padding:20px;
+    padding: 20px;
 }
 
 h5 {
@@ -94,8 +89,6 @@ select {
             width: 10%;
         }
 
-
-
 /*yonetici.css içeriği*/
 .container-middle {
     margin-left: 30%;
@@ -110,7 +103,7 @@ select {
 
 .baslik {
     text-align: center;
-    color: #456097
+    color: #456097;
 }
 
 .btn {
@@ -120,16 +113,15 @@ select {
     border-radius: 10px;
 }
 
-.btn-group, .btn-group-vertical {
+.btn-group,
+.btn-group-vertical {
     position: relative;
     display: inline-flex;
     vertical-align: middle;
     flex-wrap: wrap;
 }
 
-
 /*pdfStyle.css içeriği*/
-
 .container-a4 {
     padding-top: 1rem;
     width: 21cm;
@@ -143,14 +135,13 @@ select {
     padding-right: 4em;
 }
 
-
-
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
@@ -178,26 +169,18 @@ p {
     font-size: 17px;
 }
 
-.container-yonetmelik {
-    table
-{
+.container-yonetmelik table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.baslik {
-    font-weight: bold;
-}
-
-th, td {
+.container-yonetmelik th,
+.container-yonetmelik td {
     border: 1px solid black;
     padding: 8px;
     text-align: left;
     font-size: 11px;
 }
-
-}
-
 
 .result-department {
     font-size: 14px;
@@ -209,12 +192,10 @@ th, td {
 }
 
 /*ADMIN PANEL*/
-
 .container-aside {
     width: 100%;
     box-sizing: border-box;
 }
-
 
 .col-sm-3 {
     min-height: 37rem;
@@ -229,12 +210,12 @@ th, td {
 }
 
 .row {
-    display: flex; 
-    flex-wrap: wrap;s
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.row-subject{
-    display:contents;
+.row-subject {
+    display: contents;
 }
 
 .container-mainpanel {
@@ -243,9 +224,9 @@ th, td {
     border-radius: 10px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 0rem; 
+    margin-bottom: 0rem;
     padding-top: 30px;
-    padding-right: 0rem; 
+    padding-right: 0rem;
     padding-bottom: 10px;
     padding-left: 0px;
     /*overflow-y: scroll;*/
@@ -257,19 +238,15 @@ th, td {
     color: #456097;
 }
 
-
-
-
 /*addAdmin */
-
 .container-addAdmin {
     margin: 0%;
     padding-left: 50px;
 }
 
-
 /*adminList GÜNCELLEŞTİRMELERİ BURADA*/
-.table-list th, .table-list td {
+.table-list th,
+.table-list td {
     width: 25%; /* kolonlar arası eşit mesafe */
 }
 
@@ -303,8 +280,6 @@ th, td {
     padding: 10px;
 }
 
-
-
 .form-group {
     display: flex;
     flex-wrap: wrap;
@@ -318,10 +293,6 @@ th, td {
     box-sizing: border-box; /* İçerik kutusunu sınırlar */
 }
 
-
-
-
-
 .table-subject {
     background-color: #d1e4f2;
     border: 1px solid #456097;
@@ -331,21 +302,23 @@ th, td {
 
 .box-subject {
     margin-top: 5px;
-    padding:10px;
+    padding: 10px;
 }
 
-.container-pdfHeader{
-    padding:10px;
+.container-pdfHeader {
+    padding: 10px;
 }
 
-.container-student{
-    padding:1rem;
+.container-student {
+    padding: 1rem;
 }
 
-.col-md-6{
-    padding:5px;
+.col-md-6 {
+    padding: 5px;
 }
 
-.container-application{
-    overflow-y:scroll;
+.container-application {
+    overflow-y: scroll;
 }
+
+

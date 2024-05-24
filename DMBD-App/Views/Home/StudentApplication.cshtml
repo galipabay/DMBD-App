@@ -39,9 +39,7 @@
 									<td>@student.Name</td>
 									<td>@student.Surname</td>
 									<td>@student.MailAddress</td>
-									<td>
-										<a href="@Url.Action("Detail", "AdminPanel", new { id = student.Id })" class="btn btn-danger">Detay</a>
-									</td>
+									<td>@student.PhoneNumber</td>
 									<td>
 										<button type="button" onclick="detail(@student.Id)" class="btn btn-primary">Detay</button>
 									</td>
@@ -118,29 +116,29 @@
 <!--container-application-->
 
 <script>
-    function detail(studentId) {
-        // Öğrenci detaylarını getirmek için AJAX isteği yapabilirsiniz
-        $.ajax({
-            url: '@Url.Action("Detail", "AdminPanel")',
-            type: 'GET',
-            data: { id: studentId },
-            success: function (data) {
-                // Başarılı cevap geldiğinde yapılacak işlemler
-                $('#Name').val(data.Name);
-                $('#Surname').val(data.Surname);
-                $('#MailAddress').val(data.MailAddress);   
-                $('#RegisterType').val(data.EnrollmentType);
-                $('#PreSchoolName').val(data.PreSchoolName);
-                $('#PreFacultyName').val(data.PreFacultyName);
-                $('#PreDepartmentName').val(data.PreDepartmentName);
-                $('#ExemptSubjectName').val(data.ExemptSubjectName);
-                $('#ExemptSubjectCredit').val(data.ExemptSubjectCredit);
-                $('#ExemptSubjectAkts').val(data.ExemptSubjectAkts);
-            },
-            error: function (xhr, status, error) {
-                // Hata durumunda yapılacak işlemler
-                console.error(error);
-            }
-        });
-    }
+	function detail(studentId) {
+		// Öğrenci detaylarını getirmek için AJAX isteği yapabilirsiniz
+		$.ajax({
+			url: '@Url.Action("StudentApplication", "Subject")',
+			type: 'GET',
+			data: { id: studentId },
+			success: function (data) {
+				// Başarılı cevap geldiğinde yapılacak işlemler
+				$('#Name').val(data.Name);
+				$('#Surname').val(data.Surname);
+				$('#MailAddress').val(data.MailAddress);
+				$('#RegisterType').val(data.EnrollmentType);
+				$('#PreSchoolName').val(data.PreSchoolName);
+				$('#PreFacultyName').val(data.PreFacultyName);
+				$('#PreDepartmentName').val(data.PreDepartmentName);
+				$('#ExemptSubjectName').val(data.ExemptSubjectName);
+				$('#ExemptSubjectCredit').val(data.ExemptSubjectCredit);
+				$('#ExemptSubjectAkts').val(data.ExemptSubjectAkts);
+			},
+			error: function (xhr, status, error) {
+				// Hata durumunda yapılacak işlemler
+				console.error(error);
+			}
+		});
+	}
 </script>
