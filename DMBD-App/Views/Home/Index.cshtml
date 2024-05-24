@@ -90,28 +90,27 @@
 						<script>
 							function formatPhoneNumber(input) {
 								var phoneNumber = input.value.replace(/\D/g, '');
+
 								if (phoneNumber.length > 11) {
 									alert('Telefon numarası 11 haneden fazla olamaz.');
 									phoneNumber = phoneNumber.substr(0, 11);
 								}
+
+								if (phoneNumber.charAt(0) === '0') {
+									alert('Telefon numarası başında sıfır olmamalıdır.');
+									phoneNumber = phoneNumber.substr(1);
+								}
+
 								if (phoneNumber.length === 10) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
 								} else if (phoneNumber.length === 11) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
+								} else {
+									input.value = phoneNumber; // Eğer tam 10 veya 11 haneye ulaşmamışsa, formata uygun değilse değiştirmeyin.
 								}
 							}
 						</script>
 
-						<@* script>
-							function formatPhoneNumber(input) {
-								var phoneNumber = input.value.replace(/\D/g, '');
-								if (phoneNumber.length === 10) {
-									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
-								} else if (phoneNumber.length === 11) {
-									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2) + ' ' + phoneNumber.substr(10, 1);
-								}
-							}
-						</script> *@
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
 							<select asp-for="RegisterType" class="form-control" id="RegisterType" required style="border: 2px solid #bad1da; border-radius: 10px;">
