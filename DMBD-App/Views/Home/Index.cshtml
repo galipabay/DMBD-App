@@ -1,31 +1,47 @@
-﻿	@{
-				ViewData["Title"] = "ETÜ";
-			}
-			
+﻿@{
+	ViewData["Title"] = "ETÜ";
+}
 			@using DMBD.Kernel.DTOs;
 			@model DMBD.Kernel.DTOs.StudentDto
-
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section HeaderContent {
+
 	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
 }
 
-			<!--sayfa düzeni için container-->
+@* POPUP icin onemli*@
+
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popup Example</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
+
+<!--sayfa düzeni için container-->
 <div class="container-fluid d-flex justify-content-center align-items-center">
 	<div class="row justify-content-center">
-					<!--SOL BLOK BAŞLANGIÇ-->
+		<!--SOL BLOK BAŞLANGIÇ-->
 		<div class="col-12 col-md-8">
-						<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
-							<!--sol kutu-->
-							<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
-							<div class="container-student">
-							<h5>Öğrenci Bilgileri</h5>
-								<br><br>
-								<!--FORM BAŞLANGICI -->
-								<!--<form action="action1.php">-->
+			<div class="box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
+				<!--ÖĞRENCİ BİLGİLERİ BAŞLANGICI-->
+				<div class="container-student">
+					<h5>Öğrenci Bilgileri</h5>
+					<br><br>
+					<!--FORM BAŞLANGICI -->
+					<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
 							<label asp-for="Name" class="form-label">Ad</label>
@@ -34,7 +50,7 @@
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
-							
+
 							<label asp-for="Surname" class="form-label">Soyad</label>
 							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ]{2,}$" title="Soyad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
 							<span asp-validation-for="Surname" class="text-danger"></span>
@@ -57,17 +73,17 @@
 
 						<div class="col-md-6">
 							<label asp-for="StudentNo" class="form-label">Öğrenci Numarası</label>
-							<input asp-for="StudentNo" class="form-control" minlength="2"/>
+							<input asp-for="StudentNo" class="form-control" minlength="2" />
 							<span asp-validation-for="StudentNo" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="MailAddress" class="form-label">E-Posta Adresi</label>
-							<input asp-for="MailAddress" class="form-control" required/>
+							<input asp-for="MailAddress" class="form-control" required />
 							<span asp-validation-for="MailAddress" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
-							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+"/>
+							<input asp-for="PhoneNumber" class="form-control" required pattern="\d+" />
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -88,7 +104,7 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PreFacultyName" class="form-label">Önceki Fakülte Bilgisi</label>
-							<input asp-for="PreFacultyName" class="form-control" required  />
+							<input asp-for="PreFacultyName" class="form-control" required />
 							<span asp-validation-for="PreFacultyName" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
@@ -102,7 +118,7 @@
 								<option value="1">Makine Mühendisliği</option>
 								<option value="2">Bilgisayar Mühendisliği</option>
 							</select>
-							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1"/>
+							<input type="hidden" asp-for="DepartmentId" id="DepartmentIdInput" value="1" />
 							<input type="hidden" asp-for="DepartmentName" id="DepartmentNameInput" value="Makine Mühendisliği" />
 							<span asp-validation-for="DepartmentId" class="text-danger"></span>
 						</div>
@@ -119,17 +135,11 @@
 							}
 						</script>
 
-						<div class="col-md-6">
-							<label asp-for="Id" class="form-label" >Id</label>
-							<select asp-for="Id" asp-items="ViewBag.students" class="form-control"></select>
-							<br>
-						</div>
-						
 						<!--EKLER BAŞLANGIÇ-->
-						
+
 						<div class="container">
 							<h5>Ekler</h5>
-							
+
 							<div class="container row g-2">
 								<div class="col-sm">
 									<br />
@@ -148,43 +158,50 @@
 
 						</div>
 						<!--EKLER BİTİŞ-->
-						<div class="col-12  text-end" >
-							<button type="submit" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
+						<div class="col-12  text-end">
+							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>
 
 					</form>
-								<!--FORM BİTİŞİ-->
-							</div>
-
-							<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
-							
-							
-						</div>
-					</div>
+					<!--FORM BİTİŞİ-->
 				</div>
+				<!--ÖĞRENCİ BİLGİLERİ BİTİŞİ-->
+			</div>
+		</div>
+	</div>
+	<!--SOL BLOK BİTİŞ-->
+	<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+	@* SCRIPTS *@
+	
+	<script>
+		$(document).ready(function () {
+			var message = '@TempData["ErrorMessage"]'; // TempData'dan mesajı al
 
-				<!--SOL BLOK BİTİŞ-->
-				<!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+			if (message) {
+				$.alert({
+					title: 'Kayıt Durumu!',
+					content: message,
+				});
+			}
+		});
+	</script>
 
+	<script>
+		document.getElementById('userInfoForm').addEventListener('submit', function (event) {
+			event.preventDefault(); // Formun submit işlemini durdur
 
-				<script>
-					document.getElementById('userInfoForm').addEventListener('submit', function (event) {
-						event.preventDefault(); // Formun submit işlemini durdur
+			//kullanıcı bilgilerini al
 
-								//kullanıcı bilgilerini al
-					
-								var preschool = document.getelementbyıd('preschool').value;
-								var prefaculty = document.getelementbyıd('prefac').value;
-								var department = document.getelementbyıd('departmentname').value;
-					
-								//kullanıcı bilgilerini ikinci sayfaya gönder
-								window.location.href = "Index.cshtml";
-							});
+			var preschool = document.getelementbyıd('preschool').value;
+			var prefaculty = document.getelementbyıd('prefac').value;
+			var department = document.getelementbyıd('departmentname').value;
 
-		
-				</script>
+			//kullanıcı bilgilerini ikinci sayfaya gönder
+			window.location.href = "Index.cshtml";
+		});
 
-				
+	</script>
 
-				<!--FORM BİTİŞİ-->
+	@* TempData PopUp Mesajlari *@
+	<!--FORM BİTİŞİ-->
 </div> <!--container-fluid-->

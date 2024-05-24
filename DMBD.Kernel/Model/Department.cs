@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DMBD.Kernel.Model
 {
-	public class Department
+	public class Department : BaseEntity
 	{
 		private int id;
 
@@ -16,17 +16,13 @@ namespace DMBD.Kernel.Model
 			set { id = value; }
 		}
 
-		private int departmentName;
+		private string departmentName;
 
-		public int DepartmentName
+		public string DepartmentName
 		{
 			get { return departmentName; }
 			set { departmentName = value; }
 		}
-
-
-
-
 
 	}
 }

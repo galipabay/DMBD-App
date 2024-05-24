@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DMBD.Kernel.Model
 {
-	public class AdminUser
+	public class AdminUser: BaseEntity
 	{
 		private int id;
 

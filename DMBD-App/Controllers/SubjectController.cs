@@ -25,28 +25,12 @@ namespace DMBD_App.Controllers
 
 		public async Task<IActionResult> Subject()
 		{
-			//var subjects = _context.SubjectRepos
-			//	.Select(s => new SubjectDto
-			//	{
-			//		SubjectName = s.SubjectName,
-			//		SubjectCredit = s.Credit,
-			//		SubjectAkts = s.Akts
-			//	}).ToList();
-
+			TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
 			var subjects = await _context.SubjectRepos.ToListAsync();
-
 			var subjectList = await _context.Subjects.ToListAsync();
 			ViewBag.SubjectList = subjectList;
 			ViewBag.Subjects = subjects;
-
-			//ViewData["SubjectReposViewData"]  = new SelectList(subjects, "SubjectCode", "SubjectName");
 			return View();
-		}
-
-		public IActionResult Index()
-		{
-
-			return RedirectToAction("Subject", "Subject");
 		}
 
 		public async Task<IActionResult> Save()
@@ -76,7 +60,7 @@ namespace DMBD_App.Controllers
 					SubjectName = model.SubjectName,
 					SubjectCredit = model.SubjectCredit,
 					SubjectAkts = model.SubjectAkts
-				}; 
+				};
 
 				_context.Subjects.Add(subject);
 				await _context.SaveChangesAsync();
@@ -140,7 +124,7 @@ namespace DMBD_App.Controllers
 			var subjects = await _services.GetByIdAsync(id);
 			var subjectDtos = _mapper.Map<List<SubjectDto>>(subjects);
 			ViewBag.Subjects = subjectDtos;
-			return View("~/Views/Home/StudentApplication.cshtml",subjectDtos);
+			return View("~/Views/Home/StudentApplication.cshtml", subjectDtos);
 		}
 
 		[ServiceFilter(typeof(NotFoundFilter<Subject>))]

@@ -50,9 +50,9 @@ namespace DMBD.Kernel.Model
             set { surname = value; }
         }
 
-        private string studentNo;
+        private string? studentNo;
 
-        public string StudentNo
+        public string? StudentNo
         {
             get { return studentNo; }
             set { studentNo = value; }

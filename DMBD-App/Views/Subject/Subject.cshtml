@@ -13,6 +13,22 @@
 	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
 }
 
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Popup Example</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
+
 
 <!--sayfa düzeni için container-->
 <div class="container-fluid d-flex justify-content-center align-items-center">
@@ -144,6 +160,22 @@
 
 </div>
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
+
+@* SCRIPTS *@
+
+<script>
+	$(document).ready(function () {
+		var message = '@TempData["SuccessMessage"]'; // TempData'dan mesajı al
+
+		if (message) {
+			$.alert({
+				title: 'Kayıt Durumu!',
+				content: message,
+			});
+		}
+	});
+</script>
+
 <script>
 	document.getElementById('SubjectName').addEventListener('change', function () {
 		var selectedOption = this.options[this.selectedIndex];
