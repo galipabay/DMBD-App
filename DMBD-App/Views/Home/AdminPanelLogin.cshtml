@@ -8,6 +8,22 @@
     <p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
 
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
+
 <!--Login ekranı başlangıç-->
 <div class="container-middle">
     <div class="container-baslik">
@@ -19,13 +35,13 @@
             <form asp-action="Login" method="post" asp-controller="AdminPanel" class="px-4 py-3" id="yonetimPaneli">
                 <div class="col-md-6">
                     <label asp-for="MailAddres" class="form-label">E-mail</label>
-                    <input asp-for="MailAddres" class="form-control" required maxlength="50" placeholder="name@erzurum.edu.tr" />
+                    <input asp-for="MailAddres" class="form-control" maxlength="50" placeholder="name@erzurum.edu.tr" />
                     <span asp-validation-for="MailAddres" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-6">
                     <label asp-for="Password" class="form-label">Şifre</label>
-                    <input asp-for="Password" type="password" class="form-control" required maxlength="50" placeholder="Password" />
+                    <input asp-for="Password" type="password" class="form-control" maxlength="50" placeholder="Password" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
 
@@ -73,6 +89,19 @@
             const userData = JSON.parse(storedUserData);
             emailInput.value = userData.formEmail;
             passwordInput.value = userData.inputPassword;
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var message = '@TempData["ErrorMessage"]'; // TempData'dan mesajı al
+
+        if (message) {
+            $.alert({
+                title: 'Kayıt Durumu!',
+                content: message,
+            });
         }
     });
 </script>

@@ -87,29 +87,20 @@
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 
-						<script>
+						@* <script>
 							function formatPhoneNumber(input) {
 								var phoneNumber = input.value.replace(/\D/g, '');
-
 								if (phoneNumber.length > 11) {
 									alert('Telefon numarası 11 haneden fazla olamaz.');
 									phoneNumber = phoneNumber.substr(0, 11);
 								}
-
-								if (phoneNumber.charAt(0) === '0') {
-									alert('Telefon numarası başında sıfır olmamalıdır.');
-									phoneNumber = phoneNumber.substr(1);
-								}
-
 								if (phoneNumber.length === 10) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
 								} else if (phoneNumber.length === 11) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
-								} else {
-									input.value = phoneNumber; // Eğer tam 10 veya 11 haneye ulaşmamışsa, formata uygun değilse değiştirmeyin.
 								}
 							}
-						</script>
+						</script> *@
 
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
@@ -161,7 +152,7 @@
 							@foreach (var department in ViewBag.Departments)
 							{
 								<text>
-																										if ("@department.DepartmentName" === departmentName) {
+																																		if ("@department.DepartmentName" === departmentName) {
 										departmentId = "@department.Id";
 									}
 								</text>
