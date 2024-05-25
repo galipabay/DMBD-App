@@ -44,16 +44,15 @@
 					<!--<form action="action1.php">-->
 					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
 						<div class="col-md-6">
-							<label asp-for="Name" class="form-label">İsim</label>
-							<input asp-for="Name" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ\s]+$" title="İsim bilgisi sadece harf ve boşluk karakterlerinden oluşmalıdır." />
-
+							<label asp-for="Name" class="form-label">Ad</label>
+							<input asp-for="Name" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ]{2,}$" title="Ad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
 
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-md-6">
 
-							<label asp-for="Surname" class="form-label">Soyisim</label>
-							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ\s]+$" title="Soyisim bilgisi sadece harf ve boşluk karakterlerinden oluşmalıdır." />
+							<label asp-for="Surname" class="form-label">Soyad</label>
+							<input asp-for="Surname" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ]{2,}$" title="Soyad bilgisi en az 2 karakter olmalı ve özel karakterler veya rakamlar içermemelidir." />
 							<span asp-validation-for="Surname" class="text-danger"></span>
 						</div>
 
@@ -88,29 +87,20 @@
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 
-						@*<script>
+						@* <script>
 							function formatPhoneNumber(input) {
 								var phoneNumber = input.value.replace(/\D/g, '');
-
 								if (phoneNumber.length > 11) {
 									alert('Telefon numarası 11 haneden fazla olamaz.');
 									phoneNumber = phoneNumber.substr(0, 11);
 								}
-
-								if (phoneNumber.charAt(0) === '0') {
-									alert('Telefon numarası başında sıfır olmamalıdır.');
-									phoneNumber = phoneNumber.substr(1);
-								}
-
 								if (phoneNumber.length === 10) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
 								} else if (phoneNumber.length === 11) {
 									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
-								} else {
-									input.value = phoneNumber; // Eğer tam 10 veya 11 haneye ulaşmamışsa, formata uygun değilse değiştirmeyin.
 								}
 							}
-						</script>*@
+						</script> *@
 
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
@@ -162,7 +152,7 @@
 							@foreach (var department in ViewBag.Departments)
 							{
 								<text>
-																										if ("@department.DepartmentName" === departmentName) {
+																																		if ("@department.DepartmentName" === departmentName) {
 										departmentId = "@department.Id";
 									}
 								</text>
@@ -209,41 +199,6 @@
 
 						</div>
 						<!--EKLER BİTİŞ-->
-
-						<!--Checkbox-->
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-							<label class="form-check-label" for="flexCheckDefault">
-								Yukarıdaki bilgileri okudum ve onaylıyorum.
-							</label>
-						</div>
-
-						<script>
-							// Sayfa yüklendiğinde checkbox durumunu kontrol et
-							$(document).ready(function () {
-								// Checkbox durumunu dinle
-								$('#flexCheckDefault').change(function () {
-									// Checkbox seçili ise
-									if ($(this).is(':checked')) {
-										// Kaydet butonunu etkinleştir
-										$('#showPopup').prop('disabled', false);
-									} else {
-										// Checkbox seçili değilse, kaydet butonunu devre dışı bırak
-										$('#showPopup').prop('disabled', true);
-									}
-								});
-
-								// Sayfa yüklendiğinde checkbox durumunu ilk kez kontrol et
-								if ($('#flexCheckDefault').is(':checked')) {
-									$('#showPopup').prop('disabled', false);
-								} else {
-									$('#showPopup').prop('disabled', true);
-								}
-							});
-						</script>
-						<!--Checkbox bitiş-->
-
-
 						<div class="col-12  text-end">
 							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject")" class="btn btn-primary"> Kaydet </button>
 						</div>

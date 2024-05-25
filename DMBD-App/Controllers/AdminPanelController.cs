@@ -56,7 +56,7 @@ namespace DMBD_App.Controllers
             if (user == false)
             {
                 // Giriş başarısız, hata mesajı döndür
-                ModelState.AddModelError(string.Empty, "Geçersiz kullanıcı adı veya şifre.");
+                TempData["ErrorMessage"] = "Login Islemi Basarisiz oldu!";
                 return View("~/Views/Home/AdminPanelLogin.cshtml",adminUser);
             }
 
