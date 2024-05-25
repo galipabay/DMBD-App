@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,16 +34,18 @@ namespace DMBD.Kernel.Model
 		}
 
 		private string mailAddres;
-
-		public string MailAddres
+        [Required(ErrorMessage = "E-mail alanı gereklidir.")]
+        [EmailAddress(ErrorMessage = "Geçerli bir e-mail adresi giriniz.")]
+        public string MailAddres
 		{
 			get { return mailAddres; }
 			set { mailAddres = value; }
 		}
 
 		private string password;
-
-		public string Password
+        [Required(ErrorMessage = "Şifre alanı gereklidir.")]
+        [StringLength(50, ErrorMessage = "Şifre en fazla 50 karakter olabilir.")]
+        public string Password
 		{
 			get { return password; }
 			set { password = value; }

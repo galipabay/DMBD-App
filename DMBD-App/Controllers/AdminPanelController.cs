@@ -55,7 +55,28 @@ namespace DMBD_App.Controllers
 
             if (user == false)
             {
-                // Giriş başarısız, hata mesajı döndür
+                //if (!ModelState.IsValid)
+                //{
+                //    // Belirli hata mesajlarını çıkartabilirsiniz
+                //    ModelState.Remove("MailAddres");
+                //    ModelState.Remove("Password");
+
+                //    // Hata mesajlarını kendiniz ekleyebilirsiniz
+                //    if (string.IsNullOrEmpty(model.MailAddres))
+                //    {
+                //        ModelState.AddModelError(string.Empty, "Lütfen e-mail adresinizi giriniz.");
+                //    }
+                //    if (string.IsNullOrEmpty(model.Password))
+                //    {
+                //        ModelState.AddModelError(string.Empty, "Lütfen şifrenizi giriniz.");
+                //    }
+
+
+                    // Giriş başarısız, hata mesajı döndür
+                    ModelState.Remove("MailAddress");
+                ModelState.Remove("Password");
+
+
                 TempData["ErrorMessage"] = "Login Islemi Basarisiz oldu!";
                 return View("~/Views/Home/AdminPanelLogin.cshtml",adminUser);
             }
