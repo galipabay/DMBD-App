@@ -58,7 +58,6 @@
 						<input asp-for="SubjectCredit" class="form-control" id="SubjectCredit" disabled readonly />
 						<span asp-validation-for="SubjectCredit" class="text-danger"></span>
 
-
 						<br />
 
 						<label asp-for="SubjectAkts" class="form-label">AKTS Bilgisi</label>
@@ -148,6 +147,11 @@
 							}
 						</tbody>
 					</table>
+
+
+
+
+
 				</div>
 			</div><!--box-->
 		@*</div><!--col-6-->*@
@@ -155,7 +159,6 @@
 	@*</div><!--col: divleri 2ye bölmek için-->
 	</div><!--row: divleri 2ye bölmek için-->*@
 </div><!--container-fluid d-flex justify-content-center align-items-center-->
-
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	<button class="btn btn-primary me-md-2" onclick="pdf()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
@@ -165,7 +168,6 @@
 			window.location.href = "/Home/PdfScreen";
 		}
 	</script>
-
 
 </div>
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
