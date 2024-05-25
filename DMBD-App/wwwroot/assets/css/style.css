@@ -51,7 +51,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px; /* Sütunlar arasındaki boşluk */
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     min-height: 200px;
     max-height: 240px;
     padding: 20px;
@@ -302,7 +302,7 @@ p {
 
 .box-subject {
     margin-top: 5px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .container-pdfHeader {
@@ -324,4 +324,17 @@ p {
 .container-layout {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+}
+
+.left-box {
+    flex: 0 0 40%; /* Genişliği yüzde olarak ayarlayabilirsiniz. Örneğin, %40 */
+}
+
+.right-box {
+    flex: 1; /* Geri kalan alanı sağ tarafa bırakır */
+    overflow-y: scroll;
+}
+
+.col-md-3 {
+    flex: 1 0 auto;
 }
