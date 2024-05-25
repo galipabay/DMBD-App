@@ -34,8 +34,7 @@ namespace DMBD.Kernel.Model
 		}
 
 		private string mailAddres;
-        [Required(ErrorMessage = "E-mail alanı gereklidir.")]
-        [EmailAddress(ErrorMessage = "Geçerli bir e-mail adresi giriniz.")]
+       
         public string MailAddres
 		{
 			get { return mailAddres; }
@@ -43,8 +42,7 @@ namespace DMBD.Kernel.Model
 		}
 
 		private string password;
-        [Required(ErrorMessage = "Şifre alanı gereklidir.")]
-        [StringLength(50, ErrorMessage = "Şifre en fazla 50 karakter olabilir.")]
+
         public string Password
 		{
 			get { return password; }
