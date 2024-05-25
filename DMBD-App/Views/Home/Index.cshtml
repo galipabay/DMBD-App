@@ -87,20 +87,20 @@
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 
-						@* <script>
-							function formatPhoneNumber(input) {
-								var phoneNumber = input.value.replace(/\D/g, '');
-								if (phoneNumber.length > 11) {
-									alert('Telefon numarası 11 haneden fazla olamaz.');
-									phoneNumber = phoneNumber.substr(0, 11);
+						<script>
+							function formatphonenumber(input) {
+								var phonenumber = input.value.replace(/\d/g, '');
+								if (phonenumber.length > 11) {
+									alert('telefon numarası 11 haneden fazla olamaz.');
+									phonenumber = phonenumber.substr(0, 11);
 								}
-								if (phoneNumber.length === 10) {
-									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
-								} else if (phoneNumber.length === 11) {
-									input.value = '0(' + phoneNumber.substr(0, 3) + ') ' + phoneNumber.substr(3, 3) + ' ' + phoneNumber.substr(6, 2) + ' ' + phoneNumber.substr(8, 2);
+								if (phonenumber.length === 10) {
+									input.value = '0(' + phonenumber.substr(0, 3) + ') ' + phonenumber.substr(3, 3) + ' ' + phonenumber.substr(6, 2) + ' ' + phonenumber.substr(8, 2);
+								} else if (phonenumber.length === 11) {
+									input.value = '0(' + phonenumber.substr(0, 3) + ') ' + phonenumber.substr(3, 3) + ' ' + phonenumber.substr(6, 2) + ' ' + phonenumber.substr(8, 2);
 								}
 							}
-						</script> *@
+						</script>
 
 						<div class="col-md-6">
 							<label asp-for="RegisterType" class="form-label">Kayıtlanma Şekli</label>
@@ -152,7 +152,7 @@
 							@foreach (var department in ViewBag.Departments)
 							{
 								<text>
-																																		if ("@department.DepartmentName" === departmentName) {
+									if ("@department.DepartmentName" === departmentName) {
 										departmentId = "@department.Id";
 									}
 								</text>
