@@ -8,12 +8,27 @@
 	<p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
 
+
 <!--İÇERİK BAŞLANGICI-->
 <div class="container-aside">
 	<div class="row">
-		<div class="col-sm-3 ">
+		<div class="col-sm-2 ">
+
+		<!--Menü-->
+		<button class="btn btn-primary drawer-toggle" onclick="toggleDrawer()">İşlemler</button>
+		<div class="drawer-menu">
+			<!-- Drawer menü içeriği buraya gelecek -->
+			<nav class="nav flex-column">
+				<a class="nav-link active" onclick="loadAddAdminPage()" href="#">Yönetici Ekle</a>
+				<a class="nav-link" onclick="listAdminPage()" href="#">Yönetici Listele</a>
+				<a class="nav-link" onclick="studentApplicationPage()" href="#">Öğrenci Başvuruları</a>
+			</nav>
+		</div>
+		</div>
+
+		@*<div class="col-sm-1 ">*@
 			@*<div class="aside-box">*@
-			<div class="container-margin text-center">
+			@*<div class="container-margin text-center">
 				<h4 class="text-admin-h5">Yönetici Paneli İşlemleri</h4>
 				<br>
 				<a class="nav-link" onclick="startPage" href="#">Başlangıç</a>
@@ -27,11 +42,11 @@
 					<h5>Öğrenci İşlemleri</h5>
 					<a class="nav-link" onclick="studentApplicationPage()" href="#">Başvurular</a>
 				</nav>
-			</div><!--container-margin-->
+			</div><!--container-margin-->*@
 			@*</div><!--aside-box-->*@
 		</div><!--col-sm-4 aside-->
 		<!--İçerik Başlangıç-->
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 			<div class="box-main">
 				<div class="container-mainpanel">
 					<h3 class="text-mainpanel" id="welcomeMessage">Yönetici Paneline Hoş Geldiniz</h3>
@@ -89,4 +104,11 @@
 		var welcomeMessage = document.getElementById("welcomeMessage");
 		welcomeMessage.style.display = "none";
 	}
+
+	//Menü ekranı
+	function toggleDrawer() {
+		var drawerMenu = document.querySelector('.drawer-menu');
+		drawerMenu.style.display = drawerMenu.style.display === 'block' ? 'none' : 'block';
+	}
+
 </script>

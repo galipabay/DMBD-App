@@ -10,9 +10,25 @@
     }
 }
 
+@media (min-width: 1024px) {
+    body {
+        padding-top: 8rem;
+    }
+}
+@media (max-width: 1024px){
+    body {
+        padding-top: 8rem;
+    }
+}
+
 @media (max-width: 768px) {
     .col-md-8 {
         padding-top: 8rem;
+    } 
+}
+@media (max-width: 768px) {
+    body {
+        padding-top: 18rem;
     }
 }
 
@@ -23,7 +39,7 @@
 }
 
 body {
-    padding-top: 8rem;
+    /*padding-top: 8rem;*/
     background-color: rgb(243, 250, 250);
 }
 
@@ -337,4 +353,13 @@ p {
 
 .col-md-3 {
     flex: 1 0 auto;
+}
+
+.drawer-menu {
+    display: none; /* Başlangıçta gizli */
+    position: absolute;
+    background-color: #cedde6;
+    border: 2px solid #bad1da;
+    padding: 10px;
+    z-index: 1000;
 }
