@@ -14,12 +14,14 @@ namespace DMBD_App.Controllers
 
 		private readonly IService<Student> _services;
 		private readonly IService<Department> _departmentService;
+		private readonly IService<Subject> _subjectService;
 		private readonly IMapper _mapper;
 		private readonly AppDbContext _context;
 
-		public StudentController(IService<Department> departmentServices, IService<Student> services, IMapper mapper, AppDbContext context)
+		public StudentController(IService<Subject> subjectService,IService<Department> departmentServices, IService<Student> services, IMapper mapper, AppDbContext context)
 		{
 			_departmentService = departmentServices;
+			_subjectService = subjectService;
 			_services = services;
 			_mapper = mapper;
 			_context = context;
@@ -149,6 +151,14 @@ namespace DMBD_App.Controllers
 			await _services.RemoveAsync(student);
 
 			return RedirectToAction(nameof(Index));
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> GetSubject(Student student)
+		{
+			var subjectList = await _context.Subjects.Where(s => s.TcNo == student.TcNo).ToListAsync();
+			ViewBag.SubjectList = subjectList;
+			return View("~/Views/Home/StudentApplication.cshtml");
 		}
 	}
 }
