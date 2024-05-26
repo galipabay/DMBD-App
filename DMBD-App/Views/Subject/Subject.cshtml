@@ -31,7 +31,9 @@
 
 
 <!--sayfa düzeni için container-->
+<p><mark>ÖNEMLİ UYARI:</mark> Bilgilerinizi doldurduktan sonra çıktı almanız ve imzalamanız gerekmektedir. Ders kaydetme işleminiz bittiğinde "Yazdır" butonuna tıklayınız. </p>
 <div class="container-layout d-flex justify-content-center">
+	
 	<div class="box-subject left-box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 		<h5>Ders Bilgileri</h5>
 
@@ -56,79 +58,31 @@
 			<hr />
 			<div class="col-md-6">
 				<label asp-for="ExemptSubjectName" class="form-label">Muaf Olunması İstenen Ders Adı</label>
-				<input asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required />
-				<span asp-validation-for="ExemptSubjectName" class="text-danger"></span>
+				<br>
+				<select asp-for="ExemptSubjectName" class="form-control" id="ExemptSubjectName" required style="border: 2px solid #bad1da; border-radius: 10px;">
+					<option selected value="">Seçiniz</option>
+					@foreach (var subject in ViewBag.Subjects)
+					{
+						<option value="@subject.SubjectName" data-credit="@subject.Credit" data-akts="@subject.Akts">@subject.SubjectName</option>
+					}
+				</select>
 			</div>
 
 			<div class="col-md-3">
 				<label asp-for="ExemptSubjectCredit" class="form-label">Kredi</label>
-				<input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" required />
+				<input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" disabled readonly />
 				<span asp-validation-for="ExemptSubjectCredit" class="text-danger"></span>
 
 				<label asp-for="ExemptSubjectAkts" class="form-label">AKTS</label>
-				<input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" required />
+				<input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" disabled readonly />
 				<span asp-validation-for="ExemptSubjectAkts" class="text-danger"></span>
 			</div>
 
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
 			</div>
+
 		</form>
-
-		<script>
-			document.getElementById('SubjectName').addEventListener('change', function () {
-				var selectedOption = this.options[this.selectedIndex];
-				var credit = selectedOption.getAttribute('data-credit');
-				var akts = selectedOption.getAttribute('data-akts');
-				var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
-
-				document.getElementById('SubjectCredit').value = credit;
-				document.getElementById('SubjectAkts').value = akts;
-				document.getElementById('SubjectId').value = subjectId;
-			});
-
-			document.getElementById('ExemptSubjectName').addEventListener('change', function () {
-				var selectedOption = this.options[this.selectedIndex];
-				var credit = selectedOption.getAttribute('data-credit');
-				var akts = selectedOption.getAttribute('data-akts');
-				var exemptSubjectId = selectedOption.value; // Assuming ExemptSubjectId is the value of the selected option
-
-				document.getElementById('ExemptSubjectCredit').value = credit;
-				document.getElementById('ExemptSubjectAkts').value = akts;
-				document.getElementById('ExemptSubjectId').value = exemptSubjectId;
-			});
-		</script>
-			
-
-		<script>
-			$(document).ready(function () {
-				$('#SubjectName, #ExemptSubjectName').on('change', function () {
-					var selectedOption = $(this).find('option:selected');
-					var credit = selectedOption.data('credit');
-					var akts = selectedOption.data('akts');
-					var id = selectedOption.val();
-
-					$(this).closest('form').find('.subject-credit').val(credit);
-					$(this).closest('form').find('.subject-akts').val(akts);
-					$(this).closest('form').find('.subject-id').val(id);
-				});
-			});
-		</script>
-
-		<script>
-			$(document).ready(function () {
-				var message = '@TempData["SuccessMessage"]'; // TempData'dan mesajı al
-
-				if (message) {
-					$.alert({
-						title: 'Kayıt Durumu!',
-						content: message,
-					});
-				}
-			});
-		</script>
-
-
 	</div><!--box-->
 	<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
 
@@ -149,7 +103,7 @@
 						<th scope="col">Ders Kodu</th>
 						<th scope="col" style="width: 5ch">KREDİ</th>
 						<th scope="col" style="width: 5ch">AKTS</th>
-						<th scope="col">Araclar</th>
+						<th scope="col">SİL</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -174,12 +128,19 @@
 					}
 				</tbody>
 			</table>
+
+
+
+
+
 		</div>
 	</div><!--box-->
+
 </div><!--container-fluid d-flex justify-content-center align-items-center-->
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	<button class="btn btn-primary me-md-2" onclick="pdf()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Sonraki Sayfa</button>
+
+	<button class="btn btn-primary me-md-2" onclick="pdf()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
 
 	<script>
 		function pdf() {
@@ -191,4 +152,39 @@
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
 @* SCRIPTS *@
 
+<script>
+	$(document).ready(function () {
+		var message = '@TempData["SuccessMessage"]'; // TempData'dan mesajı al
 
+		if (message) {
+			$.alert({
+				title: 'Kayıt Durumu!',
+				content: message,
+			});
+		}
+	});
+</script>
+
+<script>
+	document.getElementById('SubjectName').addEventListener('change', function () {
+		var selectedOption = this.options[this.selectedIndex];
+		var credit = selectedOption.getAttribute('data-credit');
+		var akts = selectedOption.getAttribute('data-akts');
+		var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
+
+		document.getElementById('SubjectCredit').value = credit;
+		document.getElementById('SubjectAkts').value = akts;
+		document.getElementById('SubjectId').value = subjectId;
+	});
+
+	document.getElementById('ExemptSubjectName').addEventListener('change', function () {
+		var selectedOption = this.options[this.selectedIndex];
+		var credit = selectedOption.getAttribute('data-credit');
+		var akts = selectedOption.getAttribute('data-akts');
+		var exemptSubjectId = selectedOption.value; // Assuming ExemptSubjectId is the value of the selected option
+
+		document.getElementById('ExemptSubjectCredit').value = credit;
+		document.getElementById('ExemptSubjectAkts').value = akts;
+		document.getElementById('ExemptSubjectId').value = exemptSubjectId;
+	});
+</script>
