@@ -363,3 +363,10 @@ p {
     padding: 10px;
     z-index: 1000;
 }
+
+@media print {
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12pt;
+    }
+}

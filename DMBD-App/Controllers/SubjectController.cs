@@ -26,11 +26,36 @@ namespace DMBD_App.Controllers
 		public async Task<IActionResult> Subject()
 		{
 			TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
+
+			//Subject Repos cekmek icin
 			var subjects = await _context.SubjectRepos.ToListAsync();
-			var subjectList = await _context.Subjects.ToListAsync();
-			ViewBag.SubjectList = subjectList;
 			ViewBag.Subjects = subjects;
+			var tcNo = HttpContext.Session.GetString("TcNo");
+			//var tcNo = TempData["TcNo"] as string;
+			ViewBag.TcNo = tcNo;
+
+			//Subject listi cagirmak icin
+			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
+			ViewBag.SubjectList = subjectList;
+
 			return View();
+		}
+
+		public async Task<IActionResult> GetSubject(Subject model)
+		{
+			//TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
+
+			//Subject Repos cekmek icin
+			var subjects = await _context.SubjectRepos.ToListAsync();
+			ViewBag.Subjects = subjects; 
+
+			//Eklenen bilgileri gorebilmek icin.
+
+			var tcNo = HttpContext.Session.GetString("TcNo");
+			ViewBag.TcNo = tcNo;
+			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
+			ViewBag.SubjectList = subjectList;
+			return View("~/Views/Subject/Subject.cshtml");
 		}
 
 		public async Task<IActionResult> Save()
@@ -89,20 +114,22 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Save(SubjectDto model)
 		{
-			if (ModelState.IsValid)
+			if (!string.IsNullOrEmpty(model.ExemptSubjectName))
 			{
-				var subject = new Subject
+				var exemptSubject = await _context.SubjectRepos.FirstOrDefaultAsync(s => s.SubjectName == model.ExemptSubjectName);
+				if (exemptSubject != null)
 				{
-					SubjectName = model.SubjectName,
-					SubjectCredit = model.SubjectCredit,
-					SubjectAkts = model.SubjectAkts,
-				};
+					model.CreatedDate = DateTime.Now;
+					model.ExemptSubjectId = exemptSubject.SubjectCode;
+					model.ExemptSubjectName = exemptSubject.SubjectName;
+					model.ExemptSubjectAkts = exemptSubject.Akts;
+					model.ExemptSubjectCredit = exemptSubject.Credit;
 
-				_context.Subjects.Add(subject);
-				await _context.SaveChangesAsync();
-
-				TempData["SuccessMessage"] = "Ders başarıyla eklendi!";
-				return RedirectToAction(nameof(Index));
+					await _services.AddAsync(_mapper.Map<Subject>(model));
+					await _context.SaveChangesAsync();
+					TempData["SuccessMessage"] = "Ders başarıyla eklendi!";
+					return RedirectToAction("GetSubject", "Subject");
+				}
 			}
 
 			var subjects = await _context.SubjectRepos.ToListAsync();
@@ -161,15 +188,31 @@ namespace DMBD_App.Controllers
 
 		}
 
+		public async Task<IActionResult> PrintToPdf()
+		{
+			
+			var tcNo = HttpContext.Session.GetString("TcNo");
+			ViewBag.TcNo = tcNo;
+			ViewBag.Name = HttpContext.Session.GetString("Name");
+			ViewBag.Surname = HttpContext.Session.GetString("Surname");
+			ViewBag.StudentNo = HttpContext.Session.GetString("StudentNo");
+			ViewBag.PhoneNumber = HttpContext.Session.GetString("PhoneNumber");
+			ViewBag.MailAddress = HttpContext.Session.GetString("MailAddress");
+			ViewBag.RegisterType = HttpContext.Session.GetString("RegisterType");
+
+			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
+			ViewBag.SubjectList = subjectList;
+			return RedirectToAction("PdfScreen","PdfScreen");
+		}
+
 
 		public async Task<IActionResult> Remove(int id)
 		{
+			
 			var subject = await _services.GetByIdAsync(id);
-
-
 			await _services.RemoveAsync(subject);
-
-			return RedirectToAction(nameof(Index));
+			TempData["SuccessMessage"] = "Ders başarıyla Silindi!";
+			return RedirectToAction("GetSubject","Subject");
 		}
 	}
 }

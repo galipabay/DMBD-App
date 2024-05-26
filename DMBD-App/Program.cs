@@ -34,15 +34,23 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 	});
 });
 
-
 builder.Services.AddRazorPages()
 	.AddRazorRuntimeCompilation();
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 
-builder.Host.UseServiceProviderFactory
-	(new AutofacServiceProviderFactory());
+// Add Session and Memory Cache services
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromMinutes(30);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -57,6 +65,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Use Session middleware
+app.UseSession();
 
 app.UseAuthorization();
 

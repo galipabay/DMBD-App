@@ -33,25 +33,25 @@
 <!--sayfa düzeni için container-->
 <p><mark>ÖNEMLİ UYARI:</mark> Bilgilerinizi doldurduktan sonra çıktı almanız ve imzalamanız gerekmektedir. Ders kaydetme işleminiz bittiğinde "Yazdır" butonuna tıklayınız. </p>
 <div class="container-layout d-flex justify-content-center">
-	
+
 	<div class="box-subject left-box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 		<h5>Ders Bilgileri</h5>
 
 		<form asp-action="Save" method="post" asp-controller="Subject" class="row g-2">
 			<div class="col-md-6">
 				<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
-				<input asp-for="SubjectName" class="form-control" id="SubjectName" required />
+				<input asp-for="SubjectName" class="form-control" id="SubjectName" />
 				<span asp-validation-for="SubjectName" class="text-danger"></span>
 			</div>
 
 			<div class="col-md-3">
 				<!--Kredi-->
 				<label asp-for="SubjectCredit" class="form-label">Kredisi</label>
-				<input asp-for="SubjectCredit" class="form-control" id="SubjectCredit" required />
+				<input asp-for="SubjectCredit" class="form-control" id="SubjectCredit" />
 				<span asp-validation-for="SubjectCredit" class="text-danger"></span>
 				<!--akts-->
 				<label asp-for="SubjectAkts" class="form-label">AKTS Bilgisi</label>
-				<input asp-for="SubjectAkts" class="form-control" id="SubjectAkts" required />
+				<input asp-for="SubjectAkts" class="form-control" id="SubjectAkts" />
 				<span asp-validation-for="SubjectAkts" class="text-danger"></span>
 			</div>
 
@@ -63,7 +63,7 @@
 					<option selected value="">Seçiniz</option>
 					@foreach (var subject in ViewBag.Subjects)
 					{
-						<option value="@subject.SubjectName" data-credit="@subject.Credit" data-akts="@subject.Akts">@subject.SubjectName</option>
+						<option value="@subject.SubjectName" data-credit="@subject.Credit" data-akts="@subject.Akts" data-subjectCode="@subject.SubjectCode">@subject.SubjectName</option>
 					}
 				</select>
 			</div>
@@ -78,9 +78,46 @@
 				<span asp-validation-for="ExemptSubjectAkts" class="text-danger"></span>
 			</div>
 
+			<div class="col-md-6" style="display: none;">
+				<label asp-for="TcNo" class="form-label">Tc Kimlik Numarası</label>
+				<input asp-for="TcNo" class="form-control" id="TcNoInput" value="@ViewBag.TcNo" readonly />
+				<span asp-validation-for="TcNo" class="text-danger"></span>
+			</div>
+			<div class="col-md-6">
+				<input asp-for="TcNo" type="hidden" value="@ViewBag.TcNo" />
+			</div>
+
+			<script>
+				document.getElementById('SubjectName').addEventListener('change', function () {
+					var selectedOption = this.options[this.selectedIndex];
+					var credit = selectedOption.getAttribute('data-credit');
+					var akts = selectedOption.getAttribute('data-akts');
+					var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
+
+					document.getElementById('SubjectCredit').value = credit;
+					document.getElementById('SubjectAkts').value = akts;
+					document.getElementById('SubjectId').value = subjectId;
+				});
+
+				document.getElementById('ExemptSubjectName').addEventListener('change', function () {
+					var selectedOption = this.options[this.selectedIndex];
+					var credit = selectedOption.getAttribute('data-credit');
+					var akts = selectedOption.getAttribute('data-akts');
+					var subjectCode = selectedOption.getAttribute('data-subjectCode');
+
+					console.log("SubjectCode: " + subjectCode); // Debugging için
+
+					document.getElementById('ExemptSubjectCredit').value = credit;
+					document.getElementById('ExemptSubjectAkts').value = akts;
+					document.getElementById('ExemptSubjectId').value = subjectCode;
+				});
+
+			</script>
+
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
 			</div>
+
 
 		</form>
 	</div><!--box-->
@@ -90,8 +127,6 @@
 
 		<h5>Kaydedilen Ders Bilgileri</h5>
 		<div class="specific-container d-flex justify-content-center ">
-
-
 			<table class="table-subject  mx-auto" id="registeredCourse">
 				<thead>
 					<tr>
@@ -119,19 +154,24 @@
 							<td>@course.ExemptSubjectCredit</td>
 							<td>@course.ExemptSubjectAkts</td>
 							<td>
-								@*<form asp-action="Delete" asp-controller="Subject" method="post">
-							<input type="hidden" name="id" value="@Subject.Id" />
-							<button type="submit" class="btn btn-danger">Sil</button>
-							</form>*@
+								<form id="deleteForm" asp-action="Remove" asp-controller="Subject" method="post">
+									<input type="hidden" name="id" value="@course.SubjectId" />
+									<input type="hidden" name="TcNo" value="@course.TcNo" />
+									<button type="submit" class="btn btn-danger">Sil</button>
+
+									<script>
+										document.getElementById('deleteForm').addEventListener('submit', function () {
+											var tcNo = document.getElementById('deleteForm').elements['TcNo'].value;
+											// TempData'ya tcNo'yu atama işlemi
+											TempData['TcNo'] = tcNo;
+										});
+									</script>
+								</form>
 							</td>
 						</tr>
 					}
 				</tbody>
 			</table>
-
-
-
-
 
 		</div>
 	</div><!--box-->
@@ -139,15 +179,7 @@
 </div><!--container-fluid d-flex justify-content-center align-items-center-->
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
-	<button class="btn btn-primary me-md-2" onclick="pdf()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
-
-	<script>
-		function pdf() {
-			window.location.href = "/Home/PdfScreen";
-		}
-	</script>
-
+	<a asp-action="PrintToPdf" asp-controller="Subject" class="btn btn-primary me-md-2" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</a>
 </div>
 <!--KAYDEDILEN DERS BILGILERI BİTİŞ-->
 @* SCRIPTS *@
@@ -162,29 +194,5 @@
 				content: message,
 			});
 		}
-	});
-</script>
-
-<script>
-	document.getElementById('SubjectName').addEventListener('change', function () {
-		var selectedOption = this.options[this.selectedIndex];
-		var credit = selectedOption.getAttribute('data-credit');
-		var akts = selectedOption.getAttribute('data-akts');
-		var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
-
-		document.getElementById('SubjectCredit').value = credit;
-		document.getElementById('SubjectAkts').value = akts;
-		document.getElementById('SubjectId').value = subjectId;
-	});
-
-	document.getElementById('ExemptSubjectName').addEventListener('change', function () {
-		var selectedOption = this.options[this.selectedIndex];
-		var credit = selectedOption.getAttribute('data-credit');
-		var akts = selectedOption.getAttribute('data-akts');
-		var exemptSubjectId = selectedOption.value; // Assuming ExemptSubjectId is the value of the selected option
-
-		document.getElementById('ExemptSubjectCredit').value = credit;
-		document.getElementById('ExemptSubjectAkts').value = akts;
-		document.getElementById('ExemptSubjectId').value = exemptSubjectId;
 	});
 </script>

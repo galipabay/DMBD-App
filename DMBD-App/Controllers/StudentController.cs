@@ -27,7 +27,7 @@ namespace DMBD_App.Controllers
 
 		public IActionResult Index()
 		{
-			return RedirectToAction("Subject", "Subject");
+			return View();
 		}
 
 		public async Task<IActionResult> Save()
@@ -44,8 +44,25 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Save(StudentDto studentDto)
 		{
+
+			if (ModelState.IsValid)
+			{
+				// Session'a verileri ekleyin
+				HttpContext.Session.SetString("Name", studentDto.Name);
+				HttpContext.Session.SetString("Surname", studentDto.Surname);
+				HttpContext.Session.SetString("TcNo", studentDto.TcNo);
+				HttpContext.Session.SetString("StudentNo", studentDto.StudentNo ?? string.Empty);
+				HttpContext.Session.SetString("MailAddress", studentDto.MailAddress);
+				HttpContext.Session.SetString("PhoneNumber", studentDto.PhoneNumber);
+				HttpContext.Session.SetString("RegisterType", studentDto.RegisterType.ToString());
+				HttpContext.Session.SetString("PreSchoolName", studentDto.PreSchoolName);
+				HttpContext.Session.SetString("PreFacultyName", studentDto.PreFacultyName);
+				HttpContext.Session.SetString("PreDepartmentName", studentDto.PreDepartmentName);
+				HttpContext.Session.SetString("DepartmentName", studentDto.DepartmentName);
+			}
+
 			var tempData = new TempDataAttribute();
-			
+
 			if (string.IsNullOrEmpty(studentDto.StudentNo))
 			{
 				// StudentNo alanı boşsa, validasyon hatalarını kaldır
@@ -57,7 +74,8 @@ namespace DMBD_App.Controllers
 				studentDto.CreatedDate = DateTime.Now;
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
 				TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
-				return Redirect(nameof(Index));
+				TempData["TcNo"] = studentDto.TcNo;
+				return RedirectToAction("Subject", "Subject");
 			}
 
 			TempData["ErrorMessage"] = "İşlem başarısız oldu!";
@@ -68,7 +86,9 @@ namespace DMBD_App.Controllers
 			var students = await _services.GetAllAsync();
 			var studentsDto = _mapper.Map<List<StudentDto>>(students.ToList());
 			ViewBag.students = new SelectList(studentsDto, "Id", "Name");
-			return View("~/Views/Home/Index.cshtml", studentDto); }
+			return View("~/Views/Home/Index.cshtml", studentDto);
+		}
+
 
 		[ServiceFilter(typeof(NotFoundFilter<Student>))]
 		public async Task<IActionResult> Update(int id)
@@ -86,14 +106,14 @@ namespace DMBD_App.Controllers
 
 		}
 
-		[HttpGet]	
+		[HttpGet]
 		public async Task<IActionResult> StudentApplicationList()
 		{
-            var applications = await _services.GetAllAsync();
-            var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
-            ViewBag.Applications = applicationDtos;
-            return View("~/Views/Home/StudentApplication.cshtml");
-        }
+			var applications = await _services.GetAllAsync();
+			var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
+			ViewBag.Applications = applicationDtos;
+			return View("~/Views/Home/StudentApplication.cshtml");
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Update(StudentDto studentDto)

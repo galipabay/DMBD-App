@@ -13,17 +13,27 @@
 <div class="container-aside">
 	<div class="row">
 		<div class="col-sm-2 ">
+			<button class="btn btn-primary drawer-toggle" id="drawerToggleBtn">
+				<i class="fas fa-bars"></i>
+			</button>
+			<!--Menü-->
+			<div class="drawer-menu" id="drawerMenu">
+				<!-- Drawer menü içeriği buraya gelecek -->
+				<nav class="nav flex-column">
+					<a class="nav-link active" onclick="loadAddAdminPage()" href="#">Yönetici Ekle</a>
+					<a class="nav-link" onclick="listAdminPage()" href="#">Yönetici Listele</a>
+					<a class="nav-link" onclick="studentApplicationPage()" href="#">Öğrenci Başvuruları</a>
+				</nav>
 
-		<!--Menü-->
-		<button class="btn btn-primary drawer-toggle" onclick="toggleDrawer()">İşlemler</button>
-		<div class="drawer-menu">
-			<!-- Drawer menü içeriği buraya gelecek -->
-			<nav class="nav flex-column">
-				<a class="nav-link active" onclick="loadAddAdminPage()" href="#">Yönetici Ekle</a>
-				<a class="nav-link" onclick="listAdminPage()" href="#">Yönetici Listele</a>
-				<a class="nav-link" onclick="studentApplicationPage()" href="#">Öğrenci Başvuruları</a>
-			</nav>
-		</div>
+				<!-- JavaScript kodu -->
+				<script>
+					$(document).ready(function () {
+						$('#drawerToggleBtn').click(function () {
+							$('#drawerMenu').toggle('slow');
+						});
+					});
+				</script>
+			</div>
 		</div>
 
 		@*<div class="col-sm-1 ">*@
