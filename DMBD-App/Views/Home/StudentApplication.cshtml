@@ -8,19 +8,20 @@
 
 @model DMBD.Kernel.DTOs.StudentDto
 
+
 @section HeaderContent {
 	<p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
 
 <!--İÇERİK BAŞLANGICI-->
-
 <div class="container-application">
-	<h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
-	<div class="container-split">
-		<div class="row">
-			<form asp-action="List" method="get" asp-controller="StudentDto">
-				<div class="col-sm-7">
-					<div class="detail"></div>
+
+	@*<div class="container-split">*@
+	<div class="row">
+		<div class="col-sm-6">
+			<h5 class="text-mainpanel">Öğrenci Başvuruları</h5>
+			<div class="student-app">
+				<form asp-action="List" method="get" asp-controller="StudentDto">
 					<table class="table-student">
 						<thead>
 							<tr>
@@ -31,7 +32,6 @@
 								<th scope="col">Araçlar</th>
 							</tr>
 						</thead>
-
 						<tbody>
 							@foreach (var student in ViewBag.Applications)
 							{
@@ -46,71 +46,73 @@
 								</tr>
 							}
 						</tbody>
+
 					</table>
-				</div>
-				<!--col-->
-				<div class="col-sm-5">
-					<div class="detail">
-						<h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
-						<table class="table-student">
-
-							<tr>
-								<th scope="col">Adı</th>
-								<td><input asp-for="Name" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">Soyadı</th>
-								<td><input asp-for="Surname" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">E-Mail</th>
-								<td><input asp-for="MailAddress" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">Kayıtlanma Şekli</th>
-								<td><input id="RegisterType" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">Önceden Okuduğu Üniversite</th>
-								<td><input asp-for="PreSchoolName" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">Fakülte</th>
-								<td><input asp-for="PreFacultyName" class="form-control" readonly disabled /></td>
-							</tr>
-							<tr>
-								<th scope="col">Bölüm</th>
-								<td><input asp-for="PreDepartmentName" class="form-control" readonly disabled /></td>
-							</tr>
-							
-						</table>
-						<br>
-						<h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
-						<table class="table-student">
-							<tr>
-								<th scope="col">Ders Adı</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="col">Kredi</th>
-								@*<td><input asp-for="ExemptSubjectCredit" class="form-control" id="ExemptSubjectCredit" disabled readonly /></td>*@
-							</tr>
-
-							<tr>
-								<th scope="col">AKTS</th>
-								@*<td><input asp-for="ExemptSubjectAkts" class="form-control" id="ExemptSubjectAkts" disabled readonly /></td>*@
-							</tr>
-
-							<tr></tr>
-						</table>
-					</div>
-					<!--detail-->
-				</div>
-				<!--col-->
-			</form>
+				</form>
+			</div>
 		</div>
-		<!--row-->
+		<!--col-->
+		<div class="col-sm-5">
+			<div class="detail">
+				<h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
+				<table class="table-student">
+					<tr>
+						<th scope="col">Adı</th>
+						<td id="Name"></td>
+					</tr>
+					<tr>
+						<th scope="col">Soyadı</th>
+						<td id="Surname"></td>
+					</tr>
+					<tr>
+						<th scope="col">E-Mail</th>
+						<td id="MailAddress"></td>
+					</tr>
+					<tr>
+						<th scope="col">Kayıtlanma Şekli</th>
+						<td id="RegisterType"></td>
+					</tr>
+					<tr>
+						<th scope="col">Önceden Okuduğu Üniversite</th>
+						<td id="PreSchoolName"></td>
+					</tr>
+					<tr>
+						<th scope="col">Fakülte</th>
+						<td id="PreFacultyName"></td>
+					</tr>
+					<tr>
+						<th scope="col">Bölüm</th>
+						<td id="PreDepartmentName"></td>
+					</tr>
+				</table>
+				<br>
+				<h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
+				<table class="table-student">
+					<tr>
+						<th scope="col">Ders Adı</th>
+						<td id="ExemptSubjectName"></td>
+					</tr>
+					<tr>
+						<th scope="col">Kredi</th>
+						<td id="ExemptSubjectCredit"></td>
+					</tr>
+
+					<tr>
+						<th scope="col">AKTS</th>
+						<td id="ExemptSubjectAkts"></td>
+					</tr>
+
+					<tr></tr>
+
+				</table>
+			</div>
+			<!--detail-->
+		</div>
+		<!--col-->
+
 	</div>
+	<!--row-->
+	@*</div>*@
 	<!--container-split-->
 </div>
 <!--container-application-->
