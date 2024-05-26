@@ -83,7 +83,7 @@
 						</div>
 						<div class="col-md-6">
 							<label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
-							<input asp-for="PhoneNumber" id="phoneNumberInput" class="form-control" required pattern="\d+" onchange="formatPhoneNumber(this)" />
+							<input asp-for="PhoneNumber" id="phoneNumberInput" class="form-control" required maxlength="11" pattern="\d+" onchange="formatPhoneNumber(this)" />
 							<span asp-validation-for="PhoneNumber" class="text-danger"></span>
 						</div>
 
@@ -210,7 +210,7 @@
 
 						@* buraya bak *@
 						<div class="col-12  text-end">
-							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject") class="btn btn-primary"> Kaydet </button>
+							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject") class="btn btn-primary" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;"> Kaydet </button>
 						</div>
 
 						<script>
