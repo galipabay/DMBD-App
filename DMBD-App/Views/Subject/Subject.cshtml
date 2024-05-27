@@ -7,6 +7,7 @@
 
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 @section HeaderContent {
@@ -37,7 +38,7 @@
 	<div class="box-subject left-box" style="background-color: #f0f9ff; border: 2px solid #bad1da; border-radius: 10px;">
 		<h5>Ders Bilgileri</h5>
 
-		<form asp-action="Save" method="post" asp-controller="Subject" class="row g-2">
+		<form id="myform" asp-action="Save" method="post" asp-controller="Subject" class="row g-2">
 			<div class="col-md-6">
 				<label asp-for="SubjectName" class="form-label">Daha Önce Alınan Ders Adı</label>
 				<input asp-for="SubjectName" class="form-control" id="SubjectName" />
@@ -92,7 +93,7 @@
 					var selectedOption = this.options[this.selectedIndex];
 					var credit = selectedOption.getAttribute('data-credit');
 					var akts = selectedOption.getAttribute('data-akts');
-					var subjectId = selectedOption.value; // Assuming SubjectId is the value of the selected option
+					var subjectId = selectedOption.value;
 
 					document.getElementById('SubjectCredit').value = credit;
 					document.getElementById('SubjectAkts').value = akts;
@@ -111,18 +112,28 @@
 					document.getElementById('ExemptSubjectAkts').value = akts;
 					document.getElementById('ExemptSubjectId').value = subjectCode;
 				});
-
 			</script>
 
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<input class="btn" type="submit" value="Dersi Ekle" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">
 			</div>
+			<script>
+				document.getElementById('myform').addEventListener('submit', function (e) {
+					var subjectCredit = document.getElementById('SubjectCredit').value;
+					var exemptSubjectCredit = document.getElementById('ExemptSubjectCredit').value;
+					var subjectAkts = document.getElementById('SubjectAkts').value;
+					var exemptSubjectAkts = document.getElementById('ExemptSubjectAkts').value;
 
+					if (subjectCredit !== exemptSubjectCredit || subjectAkts !== exemptSubjectAkts) {
+						e.preventDefault(); // Formun submit olayını engelle
+						alert('Kredi ve AKTS bilgileri eşleşmiyor. Lütfen bilgileri kontrol edip tekrar deneyin.');
+					}
+				});
+			</script>
 
 		</form>
 	</div><!--box-->
 	<!--KAYDEDILEN DERS BILGILERI BAŞLANGI-->
-
 	<div class="box-subject right-box" style="background-color: #d1e4f2; border: 2px solid #bad1da; border-radius: 10px;">
 
 		<h5>Kaydedilen Ders Bilgileri</h5>
