@@ -42,7 +42,7 @@
 					<br><br>
 					<!--FORM BAŞLANGICI -->
 					<!--<form action="action1.php">-->
-					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3">
+					<form asp-action="Save" method="post" asp-controller="Student" class="row g-3" enctype="multipart/form-data">
 						<div class="col-md-6">
 							<label asp-for="Name" class="form-label">Ad</label>
 							<input asp-for="Name" class="form-control" required maxlength="50" pattern="^[A-Za-zğüşöçİĞÜŞÖÇ\s]+$" title="Ad bilgisi özel karakterler veya rakamlar içermemelidir." />
@@ -131,6 +131,7 @@
 						<div class="col-md-6">
 							<label asp-for="DepartmentName" class="form-label">Başvurulacak Departman Bilgisi</label>
 							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()" required>
+								<option disabled selected value="">Lütfen seçiniz</option>
 								@foreach (var var in ViewBag.Departments)
 								{
 									<option value="@var.DepartmentName">@var.DepartmentName</option>
@@ -152,7 +153,7 @@
 							@foreach (var department in ViewBag.Departments)
 							{
 								<text>
-									if ("@department.DepartmentName" === departmentName) {
+																	if ("@department.DepartmentName" === departmentName) {
 										departmentId = "@department.Id";
 									}
 								</text>
@@ -181,21 +182,17 @@
 						<div class="container">
 							<br />
 							<h5>Ekler</h5>
-
 							<div class="container row">
+
 								<div class="col-sm">
-									<br />
-									<label for="">*Not Döküm Belgesi (Onaylı PDF)</label>
-									<br>
-									<input type="file" accept=".pdf" required>
+									<label for="Transcript" class="form-label">Transkript (Onaylı PDF)</label>
+									<input type="file" form="form-control" class="form-control" id="Transcript" name="Transcript" accept=".pdf" required>
 								</div>
+								<br>
 								<div class="col-sm">
-									<br />
-									<label for="">*Ders İçerikleri (Onaylı PDF)</label>
-									<br>
-									<input type="file" accept=".pdf" required>
+									<label for="CourseContents" class="form-label">Ders İçerikleri (Onaylı PDF)</label>
+									<input type="file" form="form-control" class="form-control" id="CourseContents" name="CourseContents" accept=".pdf" required>
 								</div>
-								<br><br>
 							</div>
 
 						</div>

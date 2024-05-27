@@ -47,7 +47,7 @@ namespace DMBD_App.Controllers
 
 			//Subject Repos cekmek icin
 			var subjects = await _context.SubjectRepos.ToListAsync();
-			ViewBag.Subjects = subjects; 
+			ViewBag.Subjects = subjects;
 
 			//Eklenen bilgileri gorebilmek icin.
 
@@ -114,6 +114,9 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Save(SubjectDto model)
 		{
+
+			HttpContext.Session.Remove("ErrorMessage");
+			ViewBag.ErrorMessage = null;
 			if (!string.IsNullOrEmpty(model.ExemptSubjectName))
 			{
 				var exemptSubject = await _context.SubjectRepos.FirstOrDefaultAsync(s => s.SubjectName == model.ExemptSubjectName);
@@ -134,7 +137,7 @@ namespace DMBD_App.Controllers
 
 			var subjects = await _context.SubjectRepos.ToListAsync();
 			ViewBag.Subjects = subjects;
-			return View("Index", model);
+			return RedirectToAction("GetSubject", "Subject");
 		}
 
 		[HttpGet] // GET olarak değiştirildi
@@ -181,7 +184,7 @@ namespace DMBD_App.Controllers
 
 		public async Task<IActionResult> PrintToPdf()
 		{
-			
+
 			var tcNo = HttpContext.Session.GetString("TcNo");
 			ViewBag.TcNo = tcNo;
 			ViewBag.Name = HttpContext.Session.GetString("Name");
@@ -190,20 +193,19 @@ namespace DMBD_App.Controllers
 			ViewBag.PhoneNumber = HttpContext.Session.GetString("PhoneNumber");
 			ViewBag.MailAddress = HttpContext.Session.GetString("MailAddress");
 			ViewBag.RegisterType = HttpContext.Session.GetString("RegisterType");
-
 			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
 			ViewBag.SubjectList = subjectList;
-			return RedirectToAction("PdfScreen","PdfScreen");
+			return RedirectToAction("PdfScreen", "PdfScreen");
 		}
 
 
 		public async Task<IActionResult> Remove(int id)
 		{
-			
+
 			var subject = await _services.GetByIdAsync(id);
 			await _services.RemoveAsync(subject);
 			TempData["SuccessMessage"] = "Ders başarıyla Silindi!";
-			return RedirectToAction("GetSubject","Subject");
+			return RedirectToAction("GetSubject", "Subject");
 		}
 	}
 }

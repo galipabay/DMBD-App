@@ -3,6 +3,7 @@ using DMBD.Kernel.DTOs;
 using DMBD.Kernel.Model;
 using DMBD.Kernel.Service;
 using DMBD.Types;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,22 @@ namespace DMBD_App.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Save(StudentDto studentDto)
 		{
+
+			//if (Transcript != null && Transcript.Length > 0)
+			//{
+			//	var fileName = Guid.NewGuid().ToString() + Path.GetExtension(Transcript.FileName);
+			//	var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "documents", fileName);
+
+			//	using (var stream = new FileStream(filePath, FileMode.Create))
+			//	{
+			//		await tra.CopyToAsync(stream);
+			//	}
+
+			//	// Dosyanın yolu
+			//	var fileUrl = Path.Combine("documents", fileName);
+
+			//	// Burada dosya yolu ile bir şeyler yapabilirsiniz (örneğin, veritabanına kaydetmek)
+			//}
 
 			if (ModelState.IsValid)
 			{
@@ -181,6 +198,28 @@ namespace DMBD_App.Controllers
 			var surname = HttpContext.Session.GetString("Surname");
 			var mailAddress = HttpContext.Session.GetString("MailAddress");
 			var registerType = HttpContext.Session.GetString("RegisterType");
+
+			var registerTypeText = "";
+			switch (studentDto.RegisterType)
+			{
+				case 1:
+					registerTypeText = "YKS";
+					break;
+				case 2:
+					registerTypeText = "DGS";
+					break;
+				case 3:
+					registerTypeText = "Ek Madde-1";
+					break;
+				case 4:
+					registerTypeText = "AGNO ile Merkezi Yatay Geçiş";
+					break;
+				default:
+					registerTypeText = "Bilinmeyen";
+					break;
+			}
+			HttpContext.Session.SetString("RegisterTypeText", registerTypeText);
+
 			var preSchoolName = HttpContext.Session.GetString("PreSchoolName");
 			var preFacultyName = HttpContext.Session.GetString("PreFacultyName");
 			var preDepartmentName = HttpContext.Session.GetString("PreDepartmentName");
@@ -192,10 +231,7 @@ namespace DMBD_App.Controllers
 			ViewBag.PreSchoolName = preSchoolName;
 			ViewBag.PreFacultyName = preFacultyName;
 			ViewBag.PreDepartmentName = preDepartmentName;
-
-			//var studentinfo = await _services.GetByIdAsync(student.Id);
-			//var studentDto = _mapper.Map<List<StudentDto>>(studentinfo);
-			//ViewBag.Student = studentDto;
+			ViewBag.RegisterTypeText = registerTypeText;
 
 			HttpContext.Session.SetString("TcNo", student.TcNo);
 			var tcNo = HttpContext.Session.GetString("TcNo");
