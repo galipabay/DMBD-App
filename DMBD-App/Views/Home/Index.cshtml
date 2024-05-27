@@ -131,6 +131,7 @@
 						<div class="col-md-6">
 							<label asp-for="DepartmentName" class="form-label">Başvurulacak Departman Bilgisi</label>
 							<select class="form-control" id="DepartmentSelect" onchange="setDepartmentDetails()" required>
+								<option disabled selected value="">Lütfen seçiniz</option>
 								@foreach (var var in ViewBag.Departments)
 								{
 									<option value="@var.DepartmentName">@var.DepartmentName</option>
