@@ -89,6 +89,7 @@ namespace DMBD_App.Controllers
 			var studentsDto = _mapper.Map<List<StudentDto>>(students.ToList());
 			ViewBag.students = new SelectList(studentsDto, "Id", "Name");
 			return View("~/Views/Home/Index.cshtml", studentDto);
+
 		}
 
 

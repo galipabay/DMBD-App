@@ -15,8 +15,10 @@
 
 <div class="container-application">
 	<div class="row">
+		<h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
+		<br />
 		<div class="col-sm-6">
-			<h5 class="text-mainpanel">Öğrenci Başvuruları</h5>
+			
 			<div class="student-app">
 				<table class="table-student">
 					<thead>
@@ -115,9 +117,27 @@
 <!--container-application-->
 
 <script>
-	document.getElementById('getTcno').addEventListener('submit', function () {
+	//document.getElementById('getTcno').addEventListener('submit', function () {
+	//	var tcNo = document.getElementById('getTcno').elements['TcNo'].value;
+	//	// TempData'ya tcNo'yu atama işlemi
+	//	TempData['TcNo'] = tcNo;
+	//});
+
+
+
+
+	document.getElementById('getTcno').addEventListener('submit', function (event) {
+		event.preventDefault(); // Formun varsayılan gönderimini engelle
+
 		var tcNo = document.getElementById('getTcno').elements['TcNo'].value;
 		// TempData'ya tcNo'yu atama işlemi
 		TempData['TcNo'] = tcNo;
+
+		// İsteğe bağlı olarak, form gönderiminden sonra menüyü yeniden görünür hale getirin
+		var drawerMenu = document.querySelector('.drawer-menu');
+		drawerMenu.style.display = 'block';
+
+		// İsteğe bağlı olarak, formu JavaScript ile göndermek için aşağıdaki satırı açabilirsiniz
+		// this.submit(); // Formu programatik olarak göndermek için bu satırı açın
 	});
 </script>

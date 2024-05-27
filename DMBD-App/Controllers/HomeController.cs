@@ -2,7 +2,9 @@
 using DMBD.Kernel.Model;
 using DMBD_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using static DMBD.Types.AppDbContext;
 
 namespace DMBD_App.Controllers
 {
@@ -70,5 +72,6 @@ namespace DMBD_App.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
 	}
 }
