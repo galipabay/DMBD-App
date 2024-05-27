@@ -145,15 +145,6 @@ namespace DMBD_App.Controllers
 			return View("~/Views/Subject/Subject.cshtml");
 		}
 
-		[HttpGet]
-		public async Task<IActionResult> StudentApplication(int id)
-		{
-			var subjects = await _services.GetByIdAsync(id);
-			var subjectDtos = _mapper.Map<List<SubjectDto>>(subjects);
-			ViewBag.Subjects = subjectDtos;
-			return View("~/Views/Home/StudentApplication.cshtml", subjectDtos);
-		}
-
 		[ServiceFilter(typeof(NotFoundFilter<Subject>))]
 		public async Task<IActionResult> Update(int id)
 		{

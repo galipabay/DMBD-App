@@ -8,151 +8,116 @@
 
 @model DMBD.Kernel.DTOs.StudentDto
 
-
 @section HeaderContent {
 	<p style="font-size: large;">Yönetim Paneli Ekranı</p>
 }
 
-<!--İÇERİK BAŞLANGICI-->
+
 <div class="container-application">
-
-	@*<div class="container-split">*@
 	<div class="row">
-		<h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
-		<br />
 		<div class="col-sm-6">
-			
+			<h5 class="text-mainpanel">Öğrenci Başvuruları</h5>
 			<div class="student-app">
-				<form asp-action="List" method="get" asp-controller="StudentDto">
-					<table class="table-student">
-						<thead>
+				<table class="table-student">
+					<thead>
+						<tr>
+							<th scope="col">Adı</th>
+							<th scope="col">Soyadı</th>
+							<th scope="col">E-Mail</th>
+							<th scope="col">Telefon</th>
+							<th scope="col">Araçlar</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var student in ViewBag.Applications)
+						{
 							<tr>
-								<th scope="col">Adı</th>
-								<th scope="col">Soyadı</th>
-								<th scope="col">E-Mail</th>
-								<th scope="col">Telefon</th>
-								<th scope="col">Araçlar</th>
+								<td>@student.Name</td>
+								<td>@student.Surname</td>
+								<td>@student.MailAddress</td>
+								<td>@student.PhoneNumber</td>
+								<td>
+									<form id="getTcno" asp-action="GetSubject" asp-controller="Student" method="post">
+										<input type="hidden" name="TcNo" value="@student.TcNo" />
+										<input type="hidden" name="Id" value="@student.Id" />
+										<button type="submit" class="btn btn-danger">Detay</button>
+									</form>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							@foreach (var student in ViewBag.Applications)
-							{
-								<tr>
-									<td>@student.Name</td>
-									<td>@student.Surname</td>
-									<td>@student.MailAddress</td>
-									<td>@student.PhoneNumber</td>
-									<td>
-										<button type="button" onclick="detail(@student.Id)" class="btn btn-primary">Detay</button>
-									</td>
-								</tr>
-							}
-						</tbody>
-
-					</table>
-				</form>
+						}
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<!--col-->
+
 		<div class="col-sm-5">
 			<div class="detail">
 				<h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
 				<table class="table-student">
-					<tr>
-						<th scope="col">Adı</th>
-						<td id="Name"></td>
-					</tr>
-					<tr>
-						<th scope="col">Soyadı</th>
-						<td id="Surname"></td>
-					</tr>
-					<tr>
-						<th scope="col">E-Mail</th>
-						<td id="MailAddress"></td>
-					</tr>
-					<tr>
-						<th scope="col">Kayıtlanma Şekli</th>
-						<td id="RegisterType"></td>
-					</tr>
-					<tr>
-						<th scope="col">Önceden Okuduğu Üniversite</th>
-						<td id="PreSchoolName"></td>
-					</tr>
-					<tr>
-						<th scope="col">Fakülte</th>
-						<td id="PreFacultyName"></td>
-					</tr>
-					<tr>
-						<th scope="col">Bölüm</th>
-						<td id="PreDepartmentName"></td>
-					</tr>
+					<thead>
+						<tr>
+							<th scope="col">Adı</th>
+							<th scope="col">Soyadı</th>
+							<th scope="col">E-Mail</th>
+							<th scope="col">Kayıtlanma Şekli</th>
+							<th scope="col">Önceden Okuduğu Üniversite</th>
+							<th scope="col">Fakülte</th>
+							<th scope="col">Bölüm</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>@ViewBag.Name</td>
+							<td>@ViewBag.Surname</td>
+							<td>@ViewBag.MailAddress</td>
+							<td>@ViewBag.RegisterType</td>
+							<td>@ViewBag.PreSchoolName</td>
+							<td>@ViewBag.PreFacultyName</td>
+							<td>@ViewBag.PreDepartmentName</td>
+						</tr>
+					</tbody>
 				</table>
 				<br>
 				<h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
 				<table class="table-student">
 					<thead>
-					<tr>
-						<th scope="col" style="width: 10ch">Daha  Önce Alınan Ders</th>
-						<th scope="col" style="width: 10ch">KREDİ</th>
-						<th scope="col" style="width: 10ch">AKTS</th>
-						<th scope="col" style="width: 10ch">ETÜ KARŞILIĞI DERS</th>
-						<th scope="col" style="width: 10ch">Ders Kodu</th>
-						<th scope="col" style="width: 10ch">KREDİ</th>
-						<th scope="col" style="width: 10ch">AKTS</th>
-
-					</tr>
+						<tr>
+							<th scope="col">Ders Adı</th>
+							<th scope="col">Kredi</th>
+							<th scope="col">AKTS</th>
+						</tr>
 					</thead>
 					<tbody>
-						@*@foreach (var course in ViewBag.SubjectList)
-						{
-							<tr>
-								<td>@course.SubjectName</td>
-								<td>@course.SubjectCredit</td>
-								<td>@course.SubjectAkts</td>
-								<td>@course.ExemptSubjectName</td>
-								<th scope="row">@course.SubjectId</th><!--ders kodu Exempt olacak-->
-								<td>@course.ExemptSubjectCredit</td>
-								<td>@course.ExemptSubjectAkts</td>
-							</tr>
-						}*@
+						@{
+							if (ViewBag.SubjectList != null)
+							{
+								@foreach (var subject in ViewBag.SubjectList)
+								{
+									<tr>
+										<td>@subject.ExemptSubjectName</td>
+										<td>@subject.ExemptSubjectCredit</td>
+										<td>@subject.ExemptSubjectAkts</td>
+									</tr>
+								}
+							}
+						}
+
 					</tbody>
 				</table>
 			</div>
 			<!--detail-->
 		</div>
 		<!--col-->
-
 	</div>
 	<!--row-->
-	@*</div>*@
-	<!--container-split-->
 </div>
 <!--container-application-->
 
 <script>
-	function detail(studentId) {
-		// Öğrenci detaylarını getirmek için AJAX isteği yapabilirsiniz
-		$.ajax({
-			url: '@Url.Action("StudentApplication", "Subject")',
-			type: 'GET',
-			data: { id: studentId },
-			success: function (data) {
-				// Başarılı cevap geldiğinde yapılacak işlemler
-				$('#Name').val(data.Name);
-				$('#Surname').val(data.Surname);
-				$('#MailAddress').val(data.MailAddress);
-				$('#RegisterType').val(data.EnrollmentType);
-				$('#PreSchoolName').val(data.PreSchoolName);
-				$('#PreFacultyName').val(data.PreFacultyName);
-				$('#PreDepartmentName').val(data.PreDepartmentName);
-				$('#ExemptSubjectName').val(data.ExemptSubjectName);
-				$('#ExemptSubjectCredit').val(data.ExemptSubjectCredit);
-				$('#ExemptSubjectAkts').val(data.ExemptSubjectAkts);
-			},
-			error: function (xhr, status, error) {
-				// Hata durumunda yapılacak işlemler
-				console.error(error);
-			}
-		});
-	}
+	document.getElementById('getTcno').addEventListener('submit', function () {
+		var tcNo = document.getElementById('getTcno').elements['TcNo'].value;
+		// TempData'ya tcNo'yu atama işlemi
+		TempData['TcNo'] = tcNo;
+	});
 </script>
