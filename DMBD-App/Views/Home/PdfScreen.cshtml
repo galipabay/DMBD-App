@@ -10,8 +10,10 @@
 	<p style="font-size: large;">Ders Muafiyet Başvuru Ekranı</p>
 }
 
+
+
 <!--A4 sayfa düzeni-->
-<div id="containerPDF" class="container-a4 container-sm">
+<div id="containerPDF" class="container-a4 container-sm" >
 
 	@*<div class="box" style="background-color: #ffffff; ">*@
 	<div class="box">
@@ -185,6 +187,7 @@
 	<!--Önceki Butonu-->
 
 </div><!--container-a4-->
+
 <div class="d-grid gap-2 d-md-flex justify-content-md-first">
 	<button class="btn btn-primary me-md-2" onclick="don()" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Önceki Sayfa</button>
 	<button id="btn-print" class="btn btn-primary me-md-2" type="button" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;">Yazdır</button>
@@ -196,6 +199,7 @@
 				var printContents = $("#containerPDF").html();
 				var originalContents = $("body").html();
 
+
 				$("body").html(printContents);
 				window.print();
 				$("body").html(originalContents);
@@ -205,7 +209,7 @@
 
 	<script>
 		function don() {
-			window.location.href = "/Home/Index";
+			window.location.href = "/Subject/Subject";
 		}
 	</script>
 </div>

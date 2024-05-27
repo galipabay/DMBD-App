@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+
 /* Ekran genişliği 600 pikselden küçükse */
 @media only screen and (max-width: 600px) {
     /* Özel stil kuralları */
@@ -40,7 +42,7 @@
 
 body {
     /*padding-top: 8rem;*/
-    background-color: rgb(243, 250, 250);
+    /*background-color: rgb(243, 250, 250);*/
 }
 
 .navbar {
@@ -141,9 +143,11 @@ select {
 .container-a4 {
     padding-top: 1rem;
     width: 21cm;
-    height: 29.7cm;
+    height: auto;
+    /*height: 29.7cm;*/
     font-family: 'Times New Roman', Times, serif;
     background-color: #ffffff;
+    border: 1px solid black;
 }
 
 .container-padding {
@@ -180,7 +184,7 @@ p {
 }
 
 .container-signature {
-    margin-left: 30rem;
+    margin-left: 20rem;
     font-weight: bold;
     font-size: 17px;
 }
@@ -211,6 +215,8 @@ p {
 .container-aside {
     width: 100%;
     box-sizing: border-box;
+    padding-right:20px;
+    padding-left:20px;
 }
 
 .col-sm-3 {
@@ -252,12 +258,14 @@ p {
 .text-mainpanel {
     text-align: center;
     color: #456097;
+    padding-bottom: 15px;
 }
 
 /*addAdmin */
 .container-addAdmin {
     margin: 0%;
     padding-left: 50px;
+    padding-right: 50px;
 }
 
 /*adminList GÜNCELLEŞTİRMELERİ BURADA*/
@@ -268,26 +276,29 @@ p {
 
 .container-list {
     padding-left: 50px;
+    padding-right: 50px;
     margin: 0%;
 }
 
+.container-application{
+    padding-left:50px;
+}
 /*öğrenci başvuruları listeleme*/
 /*.container-split {
     padding-left: 10px;
     margin: 0%;
     padding-top: 20px;
 }*/
-
 .table-student {
     table-layout: fixed;
     width: 100%;
     text-align: start;
 }
 
-    .table-student th,
+    /*.table-student th,
     .table-student td {
         word-wrap: break-word;
-    }
+    }*/
 
 .detail {
     background-color: #cedde6;
@@ -296,6 +307,7 @@ p {
     padding: 10px;
     overflow-y: scroll;
     max-height:25rem;
+    min-width: 40rem;
 }
 
 .form-group {
@@ -340,6 +352,8 @@ p {
 .container-layout {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .left-box {
@@ -368,6 +382,7 @@ p {
     body {
         font-family: 'Times New Roman', Times, serif;
         font-size: 12pt;
+        padding-top: 0 !important; /* Üst boşlukları kaldırın */
     }
 }
 

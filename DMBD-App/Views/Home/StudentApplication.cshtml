@@ -18,8 +18,10 @@
 
 	@*<div class="container-split">*@
 	<div class="row">
+		<h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
+		<br />
 		<div class="col-sm-6">
-			<h5 class="text-mainpanel">Öğrenci Başvuruları</h5>
+			
 			<div class="student-app">
 				<form asp-action="List" method="get" asp-controller="StudentDto">
 					<table class="table-student">
@@ -88,22 +90,32 @@
 				<br>
 				<h5 class="text-mainpanel">Saydırmak İstenen Dersler</h5>
 				<table class="table-student">
+					<thead>
 					<tr>
-						<th scope="col">Ders Adı</th>
-						<td id="ExemptSubjectName"></td>
-					</tr>
-					<tr>
-						<th scope="col">Kredi</th>
-						<td id="ExemptSubjectCredit"></td>
-					</tr>
+						<th scope="col" style="width: 10ch">Daha  Önce Alınan Ders</th>
+						<th scope="col" style="width: 10ch">KREDİ</th>
+						<th scope="col" style="width: 10ch">AKTS</th>
+						<th scope="col" style="width: 10ch">ETÜ KARŞILIĞI DERS</th>
+						<th scope="col" style="width: 10ch">Ders Kodu</th>
+						<th scope="col" style="width: 10ch">KREDİ</th>
+						<th scope="col" style="width: 10ch">AKTS</th>
 
-					<tr>
-						<th scope="col">AKTS</th>
-						<td id="ExemptSubjectAkts"></td>
 					</tr>
-
-					<tr></tr>
-
+					</thead>
+					<tbody>
+						@*@foreach (var course in ViewBag.SubjectList)
+						{
+							<tr>
+								<td>@course.SubjectName</td>
+								<td>@course.SubjectCredit</td>
+								<td>@course.SubjectAkts</td>
+								<td>@course.ExemptSubjectName</td>
+								<th scope="row">@course.SubjectId</th><!--ders kodu Exempt olacak-->
+								<td>@course.ExemptSubjectCredit</td>
+								<td>@course.ExemptSubjectAkts</td>
+							</tr>
+						}*@
+					</tbody>
 				</table>
 			</div>
 			<!--detail-->
