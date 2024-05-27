@@ -36,7 +36,7 @@ namespace DMBD_App.Controllers
 			{
 				await _services.AddAsync(_mapper.Map<AdminUser>(adminUser));
 				TempData["SuccessMessage"] = "Ekleme Islemi Basarili Bir Sekilde Gerceklesti!";
-				return RedirectToAction("","");
+				return View("~/Views/Home/AddAdmin.cshtml");
 			}
 			return View("~/Views/Home/AddAdmin.cshtml");
 		}
