@@ -18,7 +18,7 @@ namespace DMBD_App.Controllers
 		private readonly IMapper _mapper;
 		private readonly AppDbContext _context;
 
-		public StudentController(IService<Subject> subjectService,IService<Department> departmentServices, IService<Student> services, IMapper mapper, AppDbContext context)
+		public StudentController(IService<Subject> subjectService, IService<Department> departmentServices, IService<Student> services, IMapper mapper, AppDbContext context)
 		{
 			_departmentService = departmentServices;
 			_subjectService = subjectService;
@@ -153,10 +153,52 @@ namespace DMBD_App.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		[HttpGet]
+		[HttpPost]
 		public async Task<IActionResult> GetSubject(Student student)
 		{
-			var subjectList = await _context.Subjects.Where(s => s.TcNo == student.TcNo).ToListAsync();
+			var applications = await _services.GetAllAsync();
+			var applicationDtos = _mapper.Map<List<StudentDto>>(applications);
+			ViewBag.Applications = applicationDtos;
+
+
+			var studentinfo = await _services.GetByIdAsync(student.Id);
+			var studentDto = _mapper.Map<StudentDto>(studentinfo);
+
+			HttpContext.Session.SetString("Name", studentDto.Name);
+			HttpContext.Session.SetString("Surname", studentDto.Surname);
+			HttpContext.Session.SetString("TcNo", studentDto.TcNo);
+			HttpContext.Session.SetString("StudentNo", studentDto.StudentNo ?? string.Empty);
+			HttpContext.Session.SetString("MailAddress", studentDto.MailAddress);
+			HttpContext.Session.SetString("PhoneNumber", studentDto.PhoneNumber);
+			HttpContext.Session.SetString("RegisterType", studentDto.RegisterType.ToString());
+			HttpContext.Session.SetString("PreSchoolName", studentDto.PreSchoolName);
+			HttpContext.Session.SetString("PreFacultyName", studentDto.PreFacultyName);
+			HttpContext.Session.SetString("PreDepartmentName", studentDto.PreDepartmentName);
+			HttpContext.Session.SetString("DepartmentName", studentDto.DepartmentName);
+
+			var name = HttpContext.Session.GetString("Name");
+			var surname = HttpContext.Session.GetString("Surname");
+			var mailAddress = HttpContext.Session.GetString("MailAddress");
+			var registerType = HttpContext.Session.GetString("RegisterType");
+			var preSchoolName = HttpContext.Session.GetString("PreSchoolName");
+			var preFacultyName = HttpContext.Session.GetString("PreFacultyName");
+			var preDepartmentName = HttpContext.Session.GetString("PreDepartmentName");
+
+			ViewBag.Name = name;
+			ViewBag.Surname = surname;
+			ViewBag.MailAddress = mailAddress;
+			ViewBag.RegisterType = registerType;
+			ViewBag.PreSchoolName = preSchoolName;
+			ViewBag.PreFacultyName = preFacultyName;
+			ViewBag.PreDepartmentName = preDepartmentName;
+
+			//var studentinfo = await _services.GetByIdAsync(student.Id);
+			//var studentDto = _mapper.Map<List<StudentDto>>(studentinfo);
+			//ViewBag.Student = studentDto;
+
+			HttpContext.Session.SetString("TcNo", student.TcNo);
+			var tcNo = HttpContext.Session.GetString("TcNo");
+			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
 			ViewBag.SubjectList = subjectList;
 			return View("~/Views/Home/StudentApplication.cshtml");
 		}
