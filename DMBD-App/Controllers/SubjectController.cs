@@ -193,6 +193,7 @@ namespace DMBD_App.Controllers
 			ViewBag.PhoneNumber = HttpContext.Session.GetString("PhoneNumber");
 			ViewBag.MailAddress = HttpContext.Session.GetString("MailAddress");
 			ViewBag.RegisterType = HttpContext.Session.GetString("RegisterType");
+			ViewBag.DepartmentName = HttpContext.Session.GetString("DepartmentName");
 			var subjectList = await _context.Subjects.Where(s => s.TcNo == tcNo).ToListAsync();
 			ViewBag.SubjectList = subjectList;
 			return RedirectToAction("PdfScreen", "PdfScreen");

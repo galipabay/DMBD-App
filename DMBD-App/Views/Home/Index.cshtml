@@ -1,5 +1,6 @@
 ﻿@{
 	ViewData["Title"] = "ETÜ";
+	ViewData["BodyClass"] = "background-image";
 }
 			@using DMBD.Kernel.DTOs;
 			@model DMBD.Kernel.DTOs.StudentDto
@@ -207,7 +208,7 @@
 
 						@* buraya bak *@
 						<div class="col-12  text-end">
-							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject") class="btn btn-primary" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;"> Kaydet </button>
+							<button type="submit" id="showPopup" href="@Url.Action("Subject", "Subject") class="btn btn-primary me-md-2" style="background-color: #456097; color: white; border: 2px solid #bad1da; border-radius: 10px;"> Kaydet </button>
 						</div>
 
 						<script>

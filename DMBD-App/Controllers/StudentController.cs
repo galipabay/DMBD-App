@@ -93,7 +93,6 @@ namespace DMBD_App.Controllers
 				studentDto.CreatedDate = DateTime.Now;
 				await _services.AddAsync(_mapper.Map<Student>(studentDto));
 				TempData["SuccessMessage"] = "Kaydetme İşlemi başarılı!";
-				TempData["TcNo"] = studentDto.TcNo;
 				return RedirectToAction("Subject", "Subject");
 			}
 

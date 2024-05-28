@@ -17,7 +17,8 @@
 	<div class="row">
 		<h3 class="text-mainpanel">Öğrenci Başvuruları</h3>
 		<br />
-		<div class="col-sm-6">
+		<div class="col-md-5 col-sm-12">
+			<!-- Küçük ekranlarda alt alta gelmesi için col-sm-12 sınıfını ekledim -->
 			
 			<div class="student-app">
 				<table class="table-student">
@@ -53,7 +54,7 @@
 		</div>
 		<!--col-->
 
-		<div class="col-sm-5">
+		<div class="col-md-6 col-sm-12">
 			<div class="detail">
 				<h5 class="text-mainpanel">Öğrenci Detay Ekranı</h5>
 				<table class="table-student">
@@ -88,6 +89,9 @@
 							<th scope="col">Ders Adı</th>
 							<th scope="col">Kredi</th>
 							<th scope="col">AKTS</th>
+							<th scope="col">ETÜ Ders Adı</th>
+							<th scope="col">Kredi</th>
+							<th scope="col">AKTS</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -97,6 +101,9 @@
 								@foreach (var subject in ViewBag.SubjectList)
 								{
 									<tr>
+										<td>@subject.SubjectName</td>
+										<td>@subject.SubjectCredit</td>
+										<td>@subject.SubjectAkts</td>
 										<td>@subject.ExemptSubjectName</td>
 										<td>@subject.ExemptSubjectCredit</td>
 										<td>@subject.ExemptSubjectAkts</td>

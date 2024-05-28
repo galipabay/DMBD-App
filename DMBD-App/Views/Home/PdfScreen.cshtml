@@ -4,6 +4,7 @@
 
 @{
 	ViewData["Title"] = "PdfScreen";
+	ViewData["BodyClass"] = "background-image";
 }
 
 @section HeaderContent {
@@ -185,7 +186,7 @@
 		<br>
 	</div> <!--box-->
 	<!--Önceki Butonu-->
-
+	
 </div><!--container-a4-->
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-first">
@@ -212,32 +213,33 @@
 			window.location.href = "/Subject/Subject";
 		}
 	</script>
+	<script>
+		// URL'den parametreleri al
+		var urlParams = new URLSearchParams(window.location.search);
+		var preSchool = urlParams.get('preSchool');
+		var preFaculty = urlParams.get('preFaculty');
+		var department = urlParams.get('department');
+
+		// Mevcut tarihi almak
+		var today = new Date();
+		var day = String(today.getDate()).padStart(2, '0');
+		var month = String(today.getMonth() + 1).padStart(2, '0'); // Aylar 0-11 arası olduğu için 1 ekliyoruz
+		var year = today.getFullYear();
+		var formattedDate = day + '/' + month + '/' + year;
+
+		// Sonuç metnini oluştur
+		var resultText = `Erzurum Teknik Üniversitesi Lisans Eğitim-Öğretim ve Sınav Yönetmeliği ve Lisans Muafiyet ve İntibak Yönergesi kapsamında daha önce ${preSchool} ${preFaculty} Fakültesi/Meslek Yüksek Okulu ${department} Bölümünde/Programında alarak başarılı olduğum aşağıda belirtmiş olduğum dersten/derslerden muaf olmak istiyorum.
+
+						Bilgilerinizi ve gereğini arz ederim. (${formattedDate})`
+		var resultDepartment = `${@ViewBag.DepartmentName} BÖLÜMÜ BAŞKANLIĞINA`;
+
+
+		// Sonuç metnini ekrana yazdır
+		document.getElementById('result').innerText = resultText;
+		document.getElementById('resultDep').innerText = resultDepartment;
+		document.getElementById('tarih').innerText = formattedDate;
+
+	</script>
 </div>
 
 
-<script>
-	// URL'den parametreleri al
-	var urlParams = new URLSearchParams(window.location.search);
-	var preSchool = urlParams.get('preSchool');
-	var preFaculty = urlParams.get('preFaculty');
-	var department = urlParams.get('department');
-
-	// Mevcut tarihi almak
-	var today = new Date();
-	var day = String(today.getDate()).padStart(2, '0');
-	var month = String(today.getMonth() + 1).padStart(2, '0'); // Aylar 0-11 arası olduğu için 1 ekliyoruz
-	var year = today.getFullYear();
-	var formattedDate = day + '/' + month + '/' + year;
-
-	// Sonuç metnini oluştur
-	var resultText = `Erzurum Teknik Üniversitesi Lisans Eğitim-Öğretim ve Sınav Yönetmeliği ve Lisans Muafiyet ve İntibak Yönergesi kapsamında daha önce ${preSchool} ${preFaculty} Fakültesi/Meslek Yüksek Okulu ${department} Bölümünde/Programında alarak başarılı olduğum aşağıda belirtmiş olduğum dersten/derslerden muaf olmak istiyorum.
-
-		Bilgilerinizi ve gereğini arz ederim. (${formattedDate})`
-	var resultDepartment = `${department} BÖLÜMÜ BAŞKANLIĞINA`;
-
-	// Sonuç metnini ekrana yazdır
-	document.getElementById('result').innerText = resultText;
-	document.getElementById('resultDep').innerText = resultDepartment;
-	document.getElementById('tarih').innerText = formattedDate;
-
-</script>

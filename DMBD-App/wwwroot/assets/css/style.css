@@ -40,9 +40,25 @@
     }
 }
 
+.background-image {
+    background-image: url('/assets/images/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.plain-background {
+    background-color: #ffffff; /* Düz arka plan rengi */
+}
+
+
 body {
     /*padding-top: 8rem;*/
     /*background-color: rgb(243, 250, 250);*/
+    /*background-image: url('/assets/images/background1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;*/
 }
 
 .navbar {
@@ -215,7 +231,7 @@ p {
 .container-aside {
     width: 100%;
     box-sizing: border-box;
-    padding-right:20px;
+    padding-right:50px;
     padding-left:20px;
 }
 
@@ -307,7 +323,7 @@ p {
     padding: 10px;
     overflow-y: scroll;
     max-height:25rem;
-    min-width: 40rem;
+    min-width: min-content;
 }
 
 .form-group {
